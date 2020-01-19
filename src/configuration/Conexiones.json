@@ -1,0 +1,12 @@
+ [{
+     "Default": {
+         "server": "localhost",
+         "connectionTimeout": 0,
+         "requestTimeout": 600000,
+         "user": "sa",
+         "password": "Fabri061297",
+         "database": "dbsistema",
+
+         "port": 49846
+     }
+ }]
