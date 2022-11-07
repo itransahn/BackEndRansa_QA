@@ -29,6 +29,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     next();
 
 });
+
 //usar las rutas
 app.use("/apiRansa/",index);
 
@@ -42,13 +43,9 @@ const port: any = process.env.PORT || 3000;
 // })
 
 // Cors
-
 // app.use(cors());
 //server listening 
 app.listen(port, () => {
     console.log(`corriendo en el puerto ${port}`);
 });
 
-
-
-//  3000"
