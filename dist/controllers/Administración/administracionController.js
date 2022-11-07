@@ -17,6 +17,7 @@ const app = (0, express_1.Router)();
 const DbHelper_1 = __importDefault(require("../../helpers/DbHelper"));
 const classes_1 = require("../../classes/classes");
 const Encriptacion_1 = require("../../classes/Encriptacion");
+const correo_1 = __importDefault(require("../../correo/correo"));
 class administracion {
     /* VER USUARIOS */
     sp_verUsuarios(parametros) {
@@ -166,8 +167,18 @@ class administracion {
                         /* TABLA DE USUARIOS  */
                     ];
                 }
+                // console.log(parametros)
                 let respuesta = yield conexionSql.Ejecutar(`sp_insUsuario`);
-                if (!respuesta.hasError) {
+                if (!respuesta.hasError && respuesta.data.Table0[0]['codigo'] != -1) {
+                    //enviar correo;
+                    let enviarCorreo = new correo_1.default();
+                    enviarCorreo.enviarCorreo(1, {
+                        nombre: parametros.nombreCompleto,
+                        correo: parametros.correo,
+                        idUsuario: respuesta.data.Table0[0]['usuario'],
+                        usuario: parametros.usuario,
+                        contra: parametros.contraD
+                    }).then();
                     return {
                         data: respuesta.data,
                         errors: respuesta.errors,

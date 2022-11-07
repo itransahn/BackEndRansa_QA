@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const cors_1 = __importDefault(require("cors"));
 // if( process.env.NODE_ENV != 'production'){
 //     require('dotenv').config()
 // }
@@ -14,9 +15,17 @@ const app = (0, express_1.default)();
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(body_parser_1.default.json());
 //configurar CORS
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//     res.header('Access-Control-Allow-Origin', '*', );
+//     res.setHeader('Access-Control-Allow-Origin','http://10.130.65.146:4200');
+//     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+//     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+//     next();
+// });
+// Configurar cabeceras y cors
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -32,9 +41,8 @@ const port = process.env.PORT || 3000;
 //     next(); // Important
 // })
 // Cors
-// app.use(cors());
+app.use((0, cors_1.default)());
 //server listening 
 app.listen(port, () => {
     console.log(`corriendo en el puerto ${port}`);
 });
-//  3000"

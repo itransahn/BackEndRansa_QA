@@ -4,6 +4,8 @@ const app: Router = Router();
 import DbHelper from '../../helpers/DbHelper';
 import { errorMensaje } from '../../classes/classes';
 import { desencriptar, encriptar } from '../../classes/Encriptacion';
+import EnviarEmail from '../../correo/correo';
+
 export default class administracion{
 
 
@@ -159,14 +161,24 @@ export default class administracion{
 
                  ]
          }
-    
+          // console.log(parametros)
          let respuesta: any = await conexionSql.Ejecutar(`sp_insUsuario`);
-        if (!respuesta.hasError ){
+         if (!respuesta.hasError && respuesta.data.Table0[0]['codigo'] != -1 ){
+          //enviar correo;
+          let enviarCorreo = new EnviarEmail();
+          enviarCorreo.enviarCorreo( 1, {
+            nombre  : parametros.nombreCompleto,
+            correo  : parametros.correo,
+            idUsuario : respuesta.data.Table0[0]['usuario'],
+            usuario : parametros.usuario,
+            contra  : parametros.contraD
+          }).then(   )
                 return { 
                   data :      respuesta.data,
                   errors :    respuesta.errors,
                   hasError :  respuesta.hasError
                   }
+                  
         }else{
           return respuesta;
         }
@@ -266,7 +278,7 @@ export default class administracion{
          }
     
          let respuesta: any = await conexionSql.Ejecutar(`sp_updateUsuario`);
-        if (!respuesta.hasError ){
+        if (!respuesta.hasError   ){
                 return { 
                   data :      respuesta.data,
                   errors :    respuesta.errors,

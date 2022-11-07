@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const administracionController_1 = __importDefault(require("../../controllers/Administraci\u00F3n/administracionController"));
+const Encriptacion_1 = require("../../classes/Encriptacion");
 const app = (0, express_1.Router)();
 /* Ver todos los usuarios */
 app.get('/usuarios', (req, res) => {
@@ -47,6 +48,8 @@ app.post('/usuarioEspecifico', (req, res) => {
 app.post('/crearUsuario', (req, res) => {
     let admin = new administracionController_1.default();
     let params = req.body;
+    params.contraD = req.body.contrasena;
+    params.contrasena = (0, Encriptacion_1.encriptar)(req.body.contrasena);
     admin.crearUsuario(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
@@ -122,6 +125,7 @@ app.put('/contraUsuarioSis', (req, res) => {
         contraActual: req.body.contraActual,
         accion: 1
     };
+    // console.log(params)
     admin.CambiocontraUsuarioU(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         return res.status(200).send(result);

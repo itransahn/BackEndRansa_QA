@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const ejemploRoutes_1 = __importDefault(require("./ejemploRoutes"));
 //Autenticación
 const auth_1 = __importDefault(require("./auth/auth"));
 const menu_1 = __importDefault(require("./auth/menu"));
@@ -31,7 +32,7 @@ let app = (0, express_1.default)();
 //let index = Server.getIntance();
 // app.use(ejemploRoutes);
 //Autenticación
-app.use('/auth', auth_1.default, menu_1.default);
+app.use('/auth', auth_1.default, menu_1.default, ejemploRoutes_1.default);
 //Seguridad
 app.use('/seguridad', permisos_1.default, seguridad_1.default, administracion_1.default, roles_1.default, modulosPadre_1.default, menus_1.default);
 //Administración

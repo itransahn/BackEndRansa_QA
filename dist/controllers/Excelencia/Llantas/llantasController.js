@@ -66,7 +66,7 @@ class Llantas {
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_verCantidadLotes`);
-                console.log(respuesta);
+                //  console.log(respuesta)
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,

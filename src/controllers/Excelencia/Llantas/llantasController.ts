@@ -53,7 +53,7 @@ export default class Llantas{
          }
 
        let respuesta: any = await conexionSql.Ejecutar(`sp_verCantidadLotes`);
-         console.log(respuesta)
+        //  console.log(respuesta)
         if (!respuesta.hasError ){
                 return { 
                   data :      respuesta.data,

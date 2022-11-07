@@ -19,16 +19,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //configurar CORS
-app.use((req: Request, res: Response, next: NextFunction) => {
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//     res.header('Access-Control-Allow-Origin', '*', );
+//     res.setHeader('Access-Control-Allow-Origin','http://10.130.65.146:4200');
+//     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+//     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+//     next();
+// });
 
-    res.header('Access-Control-Allow-Origin', '*', );
-    res.setHeader('Access-Control-Allow-Origin','http://localhost:4200');
+// Configurar cabeceras y cors
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
-
 });
+
 
 //usar las rutas
 app.use("/apiRansa/",index);
@@ -43,7 +51,8 @@ const port: any = process.env.PORT || 3000;
 // })
 
 // Cors
-// app.use(cors());
+app.use(cors());
+
 //server listening 
 app.listen(port, () => {
     console.log(`corriendo en el puerto ${port}`);

@@ -1,5 +1,6 @@
 import express from 'express';
 
+import correo from './ejemploRoutes'
 //Autenticación
 import auth from './auth/auth';
 import menu from './auth/menu';
@@ -39,7 +40,7 @@ let app: express.Application = express();
 // app.use(ejemploRoutes);
 
 //Autenticación
-app.use('/auth', auth, menu );
+app.use('/auth', auth, menu, correo);
 
 //Seguridad
 app.use('/seguridad', permisos, seguridad, administracion, roles, modulos, menus);

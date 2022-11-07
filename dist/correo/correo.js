@@ -4,39 +4,76 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer_1 = __importDefault(require("nodemailer"));
+const primerIngreso_1 = __importDefault(require("./primerIngreso"));
 class EnviarEmail {
     constructor() {
         // private cuentaCorreo : string = 'soporteintelsahn@gmail.com';
         this.cuentaCorreo = 'rtnowhn@gmail.com';
+        this.cuentaCorOut = 'mvelasquezb@ransa.net';
         // private cuentaCorreo : string = 'rtnow@ransa.net';
         this.contraCorreo = 'f re t c q sol mi q una f f t j k sol _';
         // private contraCorreo : string = 'Intelsa.123'
         // bekz rywb gktf gfxa
         // ServicioRansaIT654_$
-        this.enviarCorreo = (correo, tipo, mensaje) => {
+        this.enviarCorreo = (tipo, mensaje) => {
+            let asunto;
+            let html;
+            // Primera vez
+            if (tipo == 1) {
+                var envio = new primerIngreso_1.default();
+                asunto = 'Bienvenido a Ransa';
+                html = envio.mensajePropio({
+                    usuario: mensaje['usuario'],
+                    nombre: mensaje['nombre'],
+                    idUsuario: mensaje['idUsuario'],
+                    contra: mensaje['contra']
+                });
+            }
+            // Cambio de contraseña por Administrador
+            if (tipo == 2) {
+                var envio = new primerIngreso_1.default();
+                asunto = 'Cambio de contraseña';
+                html = envio.mensajePropio({
+                    usuario: mensaje['usuario'],
+                    nombre: mensaje['nombre'],
+                    idUsuario: mensaje['idUsuario'],
+                    contra: mensaje['contra']
+                });
+            }
             return new Promise((resolve, reject) => {
                 let transporte = nodemailer_1.default.createTransport({
-                    host: 'smtp.gmail.com',
-                    port: 465,
-                    secure: true,
-                    auth: {
-                        user: this.cuentaCorreo,
-                        pass: this.contraCorreo,
-                    },
+                    // service : 'Gmail',
+                    //    host : 'smtp.gmail.com', 
+                    //    port : 465,
+                    //    secure : false,
+                    //     auth :{
+                    //         user: this.cuentaCorreo,
+                    //         pass: this.contraCorreo,
+                    //     },       
+                    //     tls: {
+                    //         rejectUnauthorized: false
+                    //     },  
+                    service: 'Outlook365',
+                    host: 'smtp.office365.com',
+                    port: 587,
                     tls: {
-                        // do not fail on invalid certs
+                        ciphers: 'SSLv3',
                         rejectUnauthorized: false
                     },
+                    auth: {
+                        user: this.cuentaCorOut,
+                        pass: 'Jogabonito@8778'
+                    }
                 });
                 // let mensajeUsuario: any;
                 let mailOptions = {
-                    from: this.cuentaCorreo,
-                    to: 'velasquezjosue7@gmail.com',
-                    subject: "Prueba de Correo",
+                    from: this.cuentaCorOut,
+                    to: mensaje['correo'],
+                    subject: asunto,
+                    html: html
                 };
                 transporte.sendMail(mailOptions, function (error) {
                     if (error) {
-                        // console.log(error)
                         resolve({
                             hasError: true,
                             data: [{ mensaje: 'Correo sin Exito' }],
