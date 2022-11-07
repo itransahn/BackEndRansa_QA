@@ -15,7 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 //importar clase 
 const ejemploController_1 = __importDefault(require("../controllers/ejemploController"));
-const app = express_1.Router();
+// import EnviarEmail from '../correo/correo';
+const app = (0, express_1.Router)();
 app.get('/', (req, res) => {
     const ejemploController = new ejemploController_1.default();
     ejemploController.resultadoConsulta().then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -23,10 +24,11 @@ app.get('/', (req, res) => {
         return res.status(200).send(result);
     }));
 });
-app.get('/categorias', (req, res) => {
+app.get('/correo', (req, res) => {
     const ejemploController = new ejemploController_1.default();
-    ejemploController.resultadoConsulta2(null).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    ejemploController.ejemplo().then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
+        // console.log(result);
         return res.status(200).send(result);
     }));
 });

@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -11,13 +34,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const DataHelper_1 = __importDefault(require("./DataHelper"));
 const ConexionString_1 = __importDefault(require("./ConexionString"));
@@ -25,6 +41,7 @@ const sql = __importStar(require("mssql"));
 const conexion = require("../configuration/Conexiones.json");
 class DbHelper {
     constructor(nombreConexion) {
+        this.parametros = [];
         this.respuesta = new DataHelper_1.default();
         var c = this.fnAsignarConexion(nombreConexion);
         this.conexion = new ConexionString_1.default(c);
@@ -59,7 +76,7 @@ class DbHelper {
     }
     Ejecutar(procedimiento, parametros = []) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!parametros) {
+            if (parametros.length === 0) {
                 parametros = this.parametros;
             }
             let respuestaInicial = this.respuesta;
@@ -74,11 +91,20 @@ class DbHelper {
                 }
                 // coon.connect();
                 yield new sql.ConnectionPool(conexion).connect().then((pool) => __awaiter(this, void 0, void 0, function* () {
+                    yield pool.connect();
                     const consulta = pool.request();
-                    parametros.forEach(function (elemento) {
-                        consulta.input(elemento.nombre, elemento.tipo, elemento.valor);
+                    parametros.forEach((elemento) => {
+                        // console.log(  elemento.parametro, elemento.valor )
+                        consulta.input(elemento.parametro, elemento.valor);
                     });
+                    // consulta.input('USUARIO',  'ASDASDASDS')
+                    // consulta.input('PASSWORD', 'masdasd')
                     return yield consulta.execute(procedimiento);
+                    // await pool.connect();
+                    // const result = await pool.request()
+                    //     .input('Name', req.query.name)
+                    //     .execute(`SearchEmployee`);
+                    // const employees = result.recordset;
                 })).then((result) => __awaiter(this, void 0, void 0, function* () {
                     //  sql.close();
                     coon.close();
@@ -87,12 +113,12 @@ class DbHelper {
                 })).catch((err) => {
                     //sql.close();
                     coon.close();
-                    const d = new DataHelper_1.default(null);
+                    const d = new DataHelper_1.default();
                     d.hasError = true;
                     d.errors.push({ codigo: "", descripcion: err.message, criticidad: 2000 });
                     resolve(d);
                 });
-                //sql.on('error', (err: any) => {
+                //sql.on('error', (err: any) => 
                 coon.on('error', (err) => {
                     //sql.close();
                     coon.close();

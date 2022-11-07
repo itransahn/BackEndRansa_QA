@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 
 //importar clase 
 import EjemploController from '../controllers/ejemploController';
+// import EnviarEmail from '../correo/correo';
 const app: Router = Router();
 
 
@@ -23,16 +24,13 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 
-app.get('/categorias', (req: Request, res: Response) => {
-
-
+app.get('/correo', (req: Request, res: Response) => {
     const ejemploController: EjemploController = new EjemploController();
-
-
-    ejemploController.resultadoConsulta2(null).then(async (respuesta: any) => {
+ 
+    ejemploController.ejemplo().then(async (respuesta: any) => {
 
         const result: any = await respuesta;
-
+        // console.log(result);
         return res.status(200).send(result);
     });
 

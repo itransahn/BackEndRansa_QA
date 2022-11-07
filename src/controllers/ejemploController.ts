@@ -1,6 +1,8 @@
 import DbHelper from '../helpers/DbHelper';
+import EnviarEmail from '../correo/correo';
 
 
+let Email = new EnviarEmail();
 export default class Ejemplo {
 
 
@@ -12,20 +14,20 @@ export default class Ejemplo {
 
     async resultadoConsulta() {
 
-
+              
         const result = { mensaje: 'Prueba desde el controlador' }
 
         return result;
     }
 
 
-    async resultadoConsulta2(parametros: any) {
+    async ejemplo(parametros?: any) {
 
-        let conexionSql = new DbHelper();
+        // let conexionSql = new DbHelper();
 
         try {
 
-            return conexionSql.Ejecutar('dbo.spCategoriasMostrar');
+            return await Email.enviarCorreo('mvelasquezb@ransa.net',2,'');
 
         } catch (error) {
 

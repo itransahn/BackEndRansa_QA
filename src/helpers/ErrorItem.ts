@@ -12,7 +12,6 @@ export default class ItemError {
         this.descripcion = item.descripcion || "";
         this.criticidad = item.criticidad || "";
 
-
     }
 
 

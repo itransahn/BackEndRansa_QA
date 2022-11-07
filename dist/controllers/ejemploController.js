@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const DbHelper_1 = __importDefault(require("../helpers/DbHelper"));
+const correo_1 = __importDefault(require("../correo/correo"));
+let Email = new correo_1.default();
 class Ejemplo {
     constructor() {
     }
@@ -22,11 +23,11 @@ class Ejemplo {
             return result;
         });
     }
-    resultadoConsulta2(parametros) {
+    ejemplo(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
-            let conexionSql = new DbHelper_1.default();
+            // let conexionSql = new DbHelper();
             try {
-                return conexionSql.Ejecutar('dbo.spCategoriasMostrar');
+                return yield Email.enviarCorreo('mvelasquezb@ransa.net', 2, '');
             }
             catch (error) {
             }

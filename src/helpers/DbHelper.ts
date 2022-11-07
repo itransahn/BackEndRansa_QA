@@ -3,6 +3,7 @@ import ConexionString from './ConexionString';
 
 import * as sql from 'mssql';
 import conexion = require('../configuration/Conexiones.json');
+import { mapeado } from '../controllers/auth/auth';
 
 
 
@@ -16,7 +17,7 @@ export default class DbHelper {
 
     private respuesta: any;
     private conexion: any;
-    public parametros: any[];
+    public parametros: mapeado[]=[];
 
     constructor(nombreConexion?: any) {
 
@@ -70,10 +71,10 @@ export default class DbHelper {
 
 
 
-    async Ejecutar(procedimiento: string, parametros: any[] = []) {
+    async Ejecutar(procedimiento: string, parametros: mapeado[] = []) {
 
 
-        if (!parametros) {
+        if (parametros.length === 0) {
             parametros = this.parametros;
         }
 
@@ -101,14 +102,24 @@ export default class DbHelper {
             // coon.connect();
 
             await new sql.ConnectionPool(conexion).connect().then(async (pool: any) => {
-
+               await pool.connect()
                 const consulta = pool.request();
-
-                parametros.forEach(function (elemento) {
-                    consulta.input(elemento.nombre, elemento.tipo, elemento.valor);
-                });
-
+                
+                parametros.forEach( (elemento )=>{
+                    // console.log(  elemento.parametro, elemento.valor )
+                    consulta.input(elemento.parametro,elemento.valor);
+                } 
+                );
+                // consulta.input('USUARIO',  'ASDASDASDS')
+                // consulta.input('PASSWORD', 'masdasd')
                 return await consulta.execute(procedimiento);
+
+                // await pool.connect();
+                // const result = await pool.request()
+                //     .input('Name', req.query.name)
+                //     .execute(`SearchEmployee`);
+                // const employees = result.recordset;
+        
 
             }).then(async (result: any) => {
 
@@ -128,8 +139,8 @@ export default class DbHelper {
                 resolve(d);
             });
 
-            //sql.on('error', (err: any) => {
-
+            //sql.on('error', (err: any) => 
+    
             coon.on('error', (err: any) => {
                 //sql.close();
                 coon.close();
