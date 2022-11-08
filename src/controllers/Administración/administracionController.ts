@@ -393,7 +393,6 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
       async CambiocontraUsuarioA( parametros ?: any  ) {  
             try {
              let conexionSql = new DbHelper();
-            //  console.log( parametros)
              if ( parametros ) {
     
                      conexionSql.parametros = [
@@ -413,7 +412,7 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
              }
         
              let respuesta: any = await conexionSql.Ejecutar(`sp_cambioContraUsuario`);
-            if (!respuesta.hasError ){
+            if (!respuesta.hasError ){ 
                     return { 
                       data :      respuesta.data,
                       errors :    respuesta.errors,
@@ -425,7 +424,51 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
          } catch ( error ) {
                  errorMensaje(error)
          }
+    }
+
+    
+           /* CAMBIO CONTRASEÑA DE USUARIO POR USUARIO */
+           async UpdaContra( parametros ?: any  ) {  
+            try {
+             let conexionSql = new DbHelper();
+            //  console.log( parametros)
+             if ( parametros ) {
+    
+                     conexionSql.parametros = [
+                       {
+                         parametro : 'idUsuario',
+                         valor : parametros.idUsuario
+                       }, 
+                       {
+                        parametro : 'contra',
+                        valor : parametros.contra
+                       },
+                     ]
+             }
+        
+             let respuesta: any = await conexionSql.Ejecutar(`sp_updateContraAdmin`);
+            if (!respuesta.hasError && respuesta.data.Table0[0]['codigo'] != -1  ){
+             console.log( parametros)
+          //enviar correo;
+          let enviarCorreo = new EnviarEmail();
+          enviarCorreo.enviarCorreo( 2, {
+            nombre  : respuesta.data.Table0[0]['nombre'],
+            correo  : respuesta.data.Table0[0]['correo'],
+            idUsuario : respuesta.data.Table0[0]['usuario'],
+            contra    : parametros.contra
+          }).then(   )
+                    return { 
+                      data :      respuesta.data,
+                      errors :    respuesta.errors,
+                      hasError :  respuesta.hasError
+                      }
+            }else{
+              return respuesta;
+            }
+         } catch ( error ) {
+                 errorMensaje(error)
          }
+    }
 
           /* CATALOGO */
           async catalogo( parametros ?: any  ) {  

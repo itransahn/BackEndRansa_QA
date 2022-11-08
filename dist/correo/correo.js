@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const primerIngreso_1 = __importDefault(require("./primerIngreso"));
+const recuperacionP_1 = __importDefault(require("./recuperacionP"));
 class EnviarEmail {
     constructor() {
         // private cuentaCorreo : string = 'soporteintelsahn@gmail.com';
@@ -18,6 +19,7 @@ class EnviarEmail {
         this.enviarCorreo = (tipo, mensaje) => {
             let asunto;
             let html;
+            console.log(mensaje);
             // Primera vez
             if (tipo == 1) {
                 var envio = new primerIngreso_1.default();
@@ -31,8 +33,8 @@ class EnviarEmail {
             }
             // Cambio de contraseña por Administrador
             if (tipo == 2) {
-                var envio = new primerIngreso_1.default();
-                asunto = 'Cambio de contraseña';
+                var envio = new recuperacionP_1.default();
+                asunto = 'Restablecimiento de Contraseña';
                 html = envio.mensajePropio({
                     usuario: mensaje['usuario'],
                     nombre: mensaje['nombre'],

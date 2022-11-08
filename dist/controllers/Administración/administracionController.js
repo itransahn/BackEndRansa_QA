@@ -433,6 +433,50 @@ class administracion {
             }
         });
     }
+    /* CAMBIO CONTRASEÑA DE USUARIO POR USUARIO */
+    UpdaContra(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                //  console.log( parametros)
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idUsuario',
+                            valor: parametros.idUsuario
+                        },
+                        {
+                            parametro: 'contra',
+                            valor: parametros.contra
+                        },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_updateContraAdmin`);
+                if (!respuesta.hasError && respuesta.data.Table0[0]['codigo'] != -1) {
+                    console.log(parametros);
+                    //enviar correo;
+                    let enviarCorreo = new correo_1.default();
+                    enviarCorreo.enviarCorreo(2, {
+                        nombre: respuesta.data.Table0[0]['nombre'],
+                        correo: respuesta.data.Table0[0]['correo'],
+                        idUsuario: respuesta.data.Table0[0]['usuario'],
+                        contra: parametros.contra
+                    }).then();
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
     /* CATALOGO */
     catalogo(parametros) {
         return __awaiter(this, void 0, void 0, function* () {

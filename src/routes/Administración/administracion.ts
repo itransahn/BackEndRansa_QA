@@ -86,8 +86,31 @@ app.put('/actualizarEUsuario' ,  (req: Request, res:Response)=>{
                /* Contraseña Usuario Admin */
 app.put('/contraUsuarioAdmin' ,  (req: Request, res:Response)=>{
     let admin = new administracion();
-        let params = req.body;
+        let params = {
+          idUsuario    : req.body.idUsuario ,
+          contraActual : req.body.contraNueva,
+          contraNueva  : encriptar(req.body.contraNueva), 
+          contraNoEnc  : req.body.contraNueva
+        }
+        console.log(params)
         admin.CambiocontraUsuarioA( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+                return res.status(200).send( respuesta)
+            }else{
+                return res.status(400).send(result)
+            }
+    });
+    })
+
+                   /* Cambio de contraseña por administrador */
+app.put('/updateContraAdmin' ,  (req: Request, res:Response)=>{
+    let admin = new administracion();
+        let params = {
+          idUsuario    : req.body.idUsuario ,
+          contra      : req.body.contra
+        }
+        admin.UpdaContra( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;
             if(!result.hasError){
                 return res.status(200).send( respuesta)
@@ -100,7 +123,12 @@ app.put('/contraUsuarioAdmin' ,  (req: Request, res:Response)=>{
         /* Contraseña Usuario Administrador */
 app.put('/contraUsuarioUs' ,  (req: Request, res:Response)=>{
     let admin = new administracion();
-        let params = req.body;
+        // let params = req.body;
+        let params = {
+        idUsuario : req.body.idUsuario ,
+        contraActual : req.body.contraActual ,
+        contraNueva : encriptar(req.body.contraNueva ),
+        }
         admin.CambiocontraUsuarioA( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;
             if(!result.hasError){

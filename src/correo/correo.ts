@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import formato from './primerIngreso';
+import recuperacion from './recuperacionP';
 
 export default class EnviarEmail{
     // private cuentaCorreo : string = 'soporteintelsahn@gmail.com';
@@ -15,7 +16,7 @@ export default class EnviarEmail{
     public enviarCorreo = ( tipo ?: number,  mensaje ?: any)=>{
         let asunto : string;
         let html   : string;
-
+        console.log(mensaje)
         // Primera vez
         if ( tipo == 1){
             var envio = new formato();
@@ -29,8 +30,8 @@ export default class EnviarEmail{
         }
         // Cambio de contraseña por Administrador
         if ( tipo == 2){
-            var envio = new formato();
-            asunto = 'Cambio de contraseña';
+            var envio = new recuperacion();
+            asunto = 'Restablecimiento de Contraseña';
             html = envio.mensajePropio({   
                 usuario : mensaje['usuario'],
                 nombre  : mensaje['nombre'],
