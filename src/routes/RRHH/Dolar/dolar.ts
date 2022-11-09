@@ -114,7 +114,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
 
         
             /* Actualizar Permitidos Cafeteria */
-    app.put('/actualizarPermisos' ,  (req: Request, res:Response)=>{
+    app.post('/actualizarPermisos' ,  (req: Request, res:Response)=>{
         let dol = new dolar();
         let params = req.body;
         dol.actualizarPermisoDolar( params ).then(async (respuesta: any) => {

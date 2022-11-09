@@ -399,7 +399,6 @@ class administracion {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let conexionSql = new DbHelper_1.default();
-                //  console.log( parametros)
                 if (parametros) {
                     conexionSql.parametros = [
                         {

@@ -115,7 +115,7 @@ app.post('/insertarPermisos', (req, res) => {
     }));
 });
 /* Actualizar Permitidos Cafeteria */
-app.put('/actualizarPermisos', (req, res) => {
+app.post('/actualizarPermisos', (req, res) => {
     let dol = new dolarController_1.default();
     let params = req.body;
     dol.actualizarPermisoDolar(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
