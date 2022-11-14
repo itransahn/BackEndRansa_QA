@@ -177,5 +177,20 @@ app.get('/catalogo' ,  (req: Request, res:Response)=>{
     })
 
 
+app.post('/parametrosF', (req:Request, res: Response )=>{
+    let admin = new administracion();
+    let params = req.body;
+    admin.parametrosFactura( params).then( async( respuesta: any)=>{
+        const result : dataApi = await respuesta;
+            if(!result.hasError){           
+                return res.status(200).send( respuesta )
+            }else{
+                return res.status(400).send(result)
+            }
+
+    } )
+})
+
+
 export default app;
 

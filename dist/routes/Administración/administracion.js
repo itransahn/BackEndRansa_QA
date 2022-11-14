@@ -177,4 +177,17 @@ app.get('/catalogo', (req, res) => {
         }
     }));
 });
+app.post('/parametrosF', (req, res) => {
+    let admin = new administracionController_1.default();
+    let params = req.body;
+    admin.parametrosFactura(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;

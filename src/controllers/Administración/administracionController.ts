@@ -557,6 +557,30 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
                errorMensaje(error)
        }
        }
+       async parametrosFactura( parametros ?: any  ) {  
+        try {
+         let conexionSql = new DbHelper();
+         if ( parametros ) {
+            // console.log( parametros)
+                 conexionSql.parametros = [
+                  {
+                    parametro : 'sede',
+                    valor :  parametros.sede
+                  },
+                 ]
+         }
+    
+         let respuesta: any = await conexionSql.Ejecutar(`sp_verParametrosF`);
+        return { 
+          data :      respuesta.data,
+          errors :    respuesta.errors,
+          hasError :  respuesta.hasError
+          }
+     } catch ( error ) {
+             errorMensaje(error)
+     }
+     }
+
 
   }
   
