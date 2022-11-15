@@ -589,5 +589,70 @@ class administracion {
             }
         });
     }
+    UpdparametrosFactura(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    // console.log( parametros)
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        },
+                        {
+                            parametro: 'nombre',
+                            valor: parametros.nombre
+                        },
+                        {
+                            parametro: 'direccion1',
+                            valor: parametros.direccion1
+                        },
+                        {
+                            parametro: 'direccion2',
+                            valor: parametros.direccion2
+                        },
+                        {
+                            parametro: 'municipio',
+                            valor: parametros.municipio
+                        },
+                        {
+                            parametro: 'departamento',
+                            valor: parametros.departamento
+                        },
+                        {
+                            parametro: 'telFijos',
+                            valor: parametros.telFijos
+                        },
+                        {
+                            parametro: 'telCelulares',
+                            valor: parametros.telCelulares
+                        },
+                        {
+                            parametro: 'rtnE',
+                            valor: parametros.rtnE
+                        },
+                        {
+                            parametro: 'correo',
+                            valor: parametros.correo
+                        },
+                        {
+                            parametro: 'lema',
+                            valor: parametros.lema
+                        },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_updateParametros`);
+                return {
+                    data: respuesta.data,
+                    errors: respuesta.errors,
+                    hasError: respuesta.hasError
+                };
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
 }
 exports.default = administracion;

@@ -147,6 +147,22 @@ app.delete('/eliminarMenu' ,  (req: Request, res:Response)=>{
                 }
         });
         })
+
+                   /* Eliminar Menú Padre */   
+app.delete('/eliminarMenuH' ,  (req: Request, res:Response)=>{
+    let mod = new seguridad();
+        let params = req.body;
+        mod.eliminarMenuHijo( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+                return res.status(200).send( respuesta )
+            
+            }else{
+                return res.status(400).send(result)
+            }
+    });
+    })
+
 /* Rutas Menu Padre */
 
 /* Rutas Menu Hijo */

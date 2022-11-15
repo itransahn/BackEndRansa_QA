@@ -190,4 +190,17 @@ app.post('/parametrosF', (req, res) => {
         }
     }));
 });
+app.post('/UpdparametrosF', (req, res) => {
+    let admin = new administracionController_1.default();
+    let params = req.body;
+    admin.UpdparametrosFactura(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;

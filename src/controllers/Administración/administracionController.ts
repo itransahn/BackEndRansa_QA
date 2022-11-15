@@ -557,6 +557,7 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
                errorMensaje(error)
        }
        }
+
        async parametrosFactura( parametros ?: any  ) {  
         try {
          let conexionSql = new DbHelper();
@@ -580,6 +581,70 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
              errorMensaje(error)
      }
      }
+
+     async UpdparametrosFactura( parametros ?: any  ) {  
+      try {
+       let conexionSql = new DbHelper();
+       if ( parametros ) {
+          // console.log( parametros)
+               conexionSql.parametros = [
+                {
+                  parametro : 'sede',
+                  valor :  parametros.sede
+                },
+                {
+                  parametro : 'nombre',
+                  valor :  parametros.nombre
+                },
+                {
+                  parametro : 'direccion1',
+                  valor :  parametros.direccion1
+                },
+                {
+                  parametro : 'direccion2',
+                  valor :  parametros.direccion2
+                },
+                {
+                  parametro : 'municipio',
+                  valor :  parametros.municipio
+                },
+                {
+                  parametro : 'departamento',
+                  valor :  parametros.departamento
+                },
+                {
+                  parametro : 'telFijos',
+                  valor :  parametros.telFijos
+                },
+                {
+                  parametro : 'telCelulares',
+                  valor :  parametros.telCelulares
+                },
+                {
+                  parametro : 'rtnE',
+                  valor :  parametros.rtnE
+                },
+                {
+                  parametro : 'correo',
+                  valor :  parametros.correo
+                },
+                {
+                  parametro : 'lema',
+                  valor :  parametros.lema
+                },
+               ]
+       }
+  
+       let respuesta: any = await conexionSql.Ejecutar(`sp_updateParametros`);
+      return { 
+        data :      respuesta.data,
+        errors :    respuesta.errors,
+        hasError :  respuesta.hasError
+        }
+   } catch ( error ) {
+           errorMensaje(error)
+   }
+   }
 
 
   }
