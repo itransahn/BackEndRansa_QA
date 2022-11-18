@@ -27,7 +27,8 @@ import menus          from './Administración/menus';
 //Administracion
 import mantenimientos from './Administración/mantenimientos';
 
-
+//Finanzas
+import finanzas from './finanzas/finanzas'
 //Fleje
 import fleje from './Operaciones/Fleje/Fleje';
 
@@ -55,7 +56,10 @@ app.use('/excelencia',llantas, utilitario)
 app.use('/operaciones', asignacion, fleje)
 
 //RRHH
-app.use('/rrhh', credito, dolar)
+app.use('/rrhh', credito, dolar);
+
+//Finanzas
+app.use('/finanzas', finanzas)
 
 export default app;
 

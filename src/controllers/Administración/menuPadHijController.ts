@@ -66,7 +66,6 @@ export default class Padrehijos{
             url          :      hijo?.urlM,
             estado       :      hijo?.estado
            })
-
           } 
         }
         i++;

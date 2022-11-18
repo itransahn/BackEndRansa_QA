@@ -25,6 +25,8 @@ const modulosPadre_1 = __importDefault(require("./Administraci\u00F3n/modulosPad
 const menus_1 = __importDefault(require("./Administraci\u00F3n/menus"));
 //Administracion
 const mantenimientos_1 = __importDefault(require("./Administraci\u00F3n/mantenimientos"));
+//Finanzas
+const finanzas_1 = __importDefault(require("./finanzas/finanzas"));
 //Fleje
 const Fleje_1 = __importDefault(require("./Operaciones/Fleje/Fleje"));
 //const index = express();
@@ -43,4 +45,6 @@ app.use('/excelencia', llantas_1.default, utilitario_1.default);
 app.use('/operaciones', asignacion_1.default, Fleje_1.default);
 //RRHH
 app.use('/rrhh', credito_1.default, dolar_1.default);
+//Finanzas
+app.use('/finanzas', finanzas_1.default);
 exports.default = app;
