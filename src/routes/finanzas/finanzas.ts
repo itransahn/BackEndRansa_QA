@@ -42,7 +42,6 @@ app.post('/caiActual' ,  (req: Request, res:Response)=>{
         const result:  dataApi = await respuesta;
             if(!result.hasError){
                 return res.status(200).send( respuesta )
-            
             }else{
                 return res.status(400).send(result)
             }
