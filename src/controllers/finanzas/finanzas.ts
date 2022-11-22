@@ -39,7 +39,6 @@ export default class finanzas{
                   }, 
                  ]
          }
-    
          let respuesta: any = await conexionSql.Ejecutar(`sp_insCAI`);
         if (!respuesta.hasError ){
                 return { 
@@ -133,6 +132,37 @@ export default class finanzas{
                  errorMensaje(error)
          }
          }
+
+   /* Actualizar CAI*/
+   async validarCorrelativo( parametros ?: any  ) {  
+    try {
+     let conexionSql = new DbHelper();
+     if ( parametros ) {
+             conexionSql.parametros = [
+              {
+                parametro : 'correlativo',
+                valor : parametros.correlativo
+              },
+                  {
+                    parametro : 'sede',
+                    valor : parametros.sede
+                  }, 
+             ]
+     }
+   let respuesta: any = await conexionSql.Ejecutar(`sp_validarCai`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError : respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+ } catch ( error ) {
+         errorMensaje(error)
+ }
+ }
 
 /* UTILITARIOS */
   }

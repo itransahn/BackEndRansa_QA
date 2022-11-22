@@ -151,5 +151,39 @@ class finanzas {
             }
         });
     }
+    /* Actualizar CAI*/
+    validarCorrelativo(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'correlativo',
+                            valor: parametros.correlativo
+                        },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_validarCai`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
 }
 exports.default = finanzas;

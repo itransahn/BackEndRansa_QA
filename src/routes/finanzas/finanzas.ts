@@ -48,6 +48,19 @@ app.post('/caiActual' ,  (req: Request, res:Response)=>{
     });
     })
 
+        /* Ver Cai Actual */
+app.post('/validarNum' ,  (req: Request, res:Response)=>{
+    let finanza = new finanzas();
+        let params = req.body;
+        finanza.validarCorrelativo( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+                return res.status(200).send( respuesta )
+            }else{
+                return res.status(400).send(result)
+            }
+    });
+    })
 
 export default app;
 
