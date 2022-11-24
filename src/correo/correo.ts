@@ -16,7 +16,7 @@ export default class EnviarEmail{
     public enviarCorreo = ( tipo ?: number,  mensaje ?: any)=>{
         let asunto : string;
         let html   : string;
-        console.log(mensaje)
+        // console.log(mensaje)
         // Primera vez
         if ( tipo == 1){
             var envio = new formato();

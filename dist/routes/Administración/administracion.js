@@ -97,7 +97,7 @@ app.put('/contraUsuarioAdmin', (req, res) => {
         contraNueva: (0, Encriptacion_1.encriptar)(req.body.contraNueva),
         contraNoEnc: req.body.contraNueva
     };
-    console.log(params);
+    // console.log(params)
     admin.CambiocontraUsuarioA(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {

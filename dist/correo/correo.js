@@ -19,7 +19,7 @@ class EnviarEmail {
         this.enviarCorreo = (tipo, mensaje) => {
             let asunto;
             let html;
-            console.log(mensaje);
+            // console.log(mensaje)
             // Primera vez
             if (tipo == 1) {
                 var envio = new primerIngreso_1.default();

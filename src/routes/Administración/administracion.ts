@@ -92,7 +92,7 @@ app.put('/contraUsuarioAdmin' ,  (req: Request, res:Response)=>{
           contraNueva  : encriptar(req.body.contraNueva), 
           contraNoEnc  : req.body.contraNueva
         }
-        console.log(params)
+        // console.log(params)
         admin.CambiocontraUsuarioA( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;
             if(!result.hasError){
