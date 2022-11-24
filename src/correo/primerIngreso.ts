@@ -35,7 +35,7 @@ class formato{
                        <p style="margin: 2px; font-size: 15px; color: #00A72C !important;"> 
                        CREDENCIALES  <br>
                        usuario    : ${data.usuario} <br>
-                       contraseña : ${data.contra}
+                       código     : ${data.contra}
                        </p>
 
                    <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center">
