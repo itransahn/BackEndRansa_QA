@@ -482,7 +482,6 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
              let respuesta: any = await conexionSql.Ejecutar(`sp_catalogo`);
             if (!respuesta.hasError ){
                     return { 
-
                             modulos    :          respuesta.data.Table0,
                             menuPadres :          respuesta.data.Table1,
                             menuHijos  :          respuesta.data.Table2,

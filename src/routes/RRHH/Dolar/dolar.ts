@@ -147,7 +147,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
     app.post('/validarUsuario' ,  (req: Request, res:Response)=>{
         let dol = new dolar();
         let params = req.body;
-        dol.cargarUsuario( params ).then(async (respuesta: any) => {
+        dol.cargarUsuario( params ).then( async ( respuesta: any) => {
         const result:  dataApi = await respuesta;
             if(!result.hasError){
                 return res.status(200).send( respuesta )
