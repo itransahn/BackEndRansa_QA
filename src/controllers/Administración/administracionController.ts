@@ -567,6 +567,10 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
                     parametro : 'sede',
                     valor :  parametros.sede
                   },
+                  {
+                    parametro : 'tipo',
+                    valor :  parametros.tipo
+                  },
                  ]
          }
     

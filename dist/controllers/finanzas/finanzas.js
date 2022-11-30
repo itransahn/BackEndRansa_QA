@@ -48,6 +48,10 @@ class finanzas {
                             parametro: 'usuario',
                             valor: parametros.usuario
                         },
+                        {
+                            parametro: 'tipo',
+                            valor: parametros.tipo
+                        }
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_insCAI`);
@@ -102,6 +106,10 @@ class finanzas {
                             parametro: 'usuario',
                             valor: parametros.usuario
                         },
+                        {
+                            parametro: 'tipo',
+                            valor: parametros.tipo
+                        }
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_modificarCAI`);
@@ -132,6 +140,10 @@ class finanzas {
                             parametro: 'idSede',
                             valor: parametros.idSede
                         },
+                        {
+                            parametro: 'tipo',
+                            valor: parametros.tipo
+                        }
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`spVerCaiActual`);
@@ -166,6 +178,10 @@ class finanzas {
                             parametro: 'sede',
                             valor: parametros.sede
                         },
+                        {
+                            parametro: 'tipo',
+                            valor: parametros.tipo
+                        }
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_validarCai`);

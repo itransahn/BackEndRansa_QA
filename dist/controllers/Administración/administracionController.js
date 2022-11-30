@@ -575,6 +575,10 @@ class administracion {
                             parametro: 'sede',
                             valor: parametros.sede
                         },
+                        {
+                            parametro: 'tipo',
+                            valor: parametros.tipo
+                        },
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_verParametrosF`);

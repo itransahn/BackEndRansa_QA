@@ -37,6 +37,10 @@ export default class finanzas{
                     parametro : 'usuario',
                     valor : parametros.usuario
                   }, 
+                  {
+                    parametro : 'tipo',
+                    valor : parametros.tipo
+                  }
                  ]
          }
          let respuesta: any = await conexionSql.Ejecutar(`sp_insCAI`);
@@ -53,7 +57,7 @@ export default class finanzas{
              errorMensaje(error)
      }
      }
-    
+  
     /* Actualizar CAI*/
     async actualizarCAI( parametros ?: any  ) {  
         try {
@@ -88,6 +92,10 @@ export default class finanzas{
                        parametro : 'usuario',
                        valor : parametros.usuario
                      }, 
+                     {
+                      parametro : 'tipo',
+                      valor : parametros.tipo
+                     }
                  ]
          }
 
@@ -116,6 +124,10 @@ export default class finanzas{
                             parametro : 'idSede',
                             valor : parametros.idSede
                           }, 
+                          {
+                            parametro : 'tipo',
+                            valor : parametros.tipo
+                          }
                      ]
              }
            let respuesta: any = await conexionSql.Ejecutar(`spVerCaiActual`);
@@ -147,6 +159,10 @@ export default class finanzas{
                     parametro : 'sede',
                     valor : parametros.sede
                   }, 
+                  {
+                    parametro : 'tipo',
+                    valor : parametros.tipo
+                  }
              ]
      }
    let respuesta: any = await conexionSql.Ejecutar(`sp_validarCai`);
