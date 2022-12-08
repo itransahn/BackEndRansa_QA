@@ -4,7 +4,6 @@ import DbHelper from '../../helpers/DbHelper';
 import { errorMensaje } from '../../classes/classes';
 import { dataApi } from '../../interfaces/dataApi';
 export default class mantenimientoT{
-    
 
          /* Cambiar de estado a transporte */ 
          async catalogoTransporte( parametros ?: any){
