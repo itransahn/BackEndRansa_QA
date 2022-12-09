@@ -6,6 +6,30 @@ import { errorMensaje } from '../../classes/classes';
 
 export default class transportes{
 
+
+       /* Cambiar de estado a transporte */ 
+       async verTransportes( parametros ?: any){
+        try{
+            let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [  ]
+        }
+
+        let respuesta : any = await conexionSql.Ejecutar('sp_verTransportes')
+        if( !respuesta.hasError  ){
+            return {
+                data   : respuesta.data,
+                errors : respuesta.errors,
+                hasError : respuesta.hasError
+            }
+        }else{
+            return respuesta
+        }
+
+        }catch( error){
+            errorMensaje(error)
+        }
+     }
         /*  Insertar Transportes */
         async insertarTransporte( parametros ?: any  ) {  
             try {

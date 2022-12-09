@@ -17,6 +17,31 @@ const app = (0, express_1.Router)();
 const DbHelper_1 = __importDefault(require("../../helpers/DbHelper"));
 const classes_1 = require("../../classes/classes");
 class camiones {
+    /* Ver Camiones */
+    verTransportes(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_verCamiones');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
     /*  Insertar Camión */
     insertarCamion(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -79,7 +104,7 @@ class camiones {
             }
         });
     }
-    /*  Actualizar Camión */
+    /* Actualizar Camión */
     actualizarCamion(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -145,7 +170,7 @@ class camiones {
             }
         });
     }
-    /*  Cambiar Estado de Camión */
+    /* Cambiar Estado de Camión */
     cambiarEstadoCamion(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -183,7 +208,7 @@ class camiones {
             }
         });
     }
-    /*  Camión Especifico */
+    /* Camión Especifico */
     camionEspecifico(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

@@ -5,6 +5,29 @@ import DbHelper from '../../helpers/DbHelper';
 import { errorMensaje } from '../../classes/classes';
 
 export default class camiones{
+    /* Ver Camiones */ 
+      async verTransportes( parametros ?: any){
+        try{
+            let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [  ]
+        }
+
+        let respuesta : any = await conexionSql.Ejecutar('sp_verCamiones')
+        if( !respuesta.hasError  ){
+            return {
+                data   : respuesta.data,
+                errors : respuesta.errors,
+                hasError : respuesta.hasError
+            }
+        }else{
+            return respuesta
+        }
+
+        }catch( error){
+            errorMensaje(error)
+        }
+     }
     /*  Insertar Camión */
     async insertarCamion( parametros ?: any  ) {  
         try {
@@ -64,7 +87,7 @@ export default class camiones{
              errorMensaje(error)
      }
      }
-  /*  Actualizar Camión */
+    /* Actualizar Camión */
     async actualizarCamion( parametros ?: any  ) {  
     try {
      let conexionSql = new DbHelper();
@@ -127,8 +150,7 @@ export default class camiones{
          errorMensaje(error)
  }
      }
-
-      /*  Cambiar Estado de Camión */
+    /* Cambiar Estado de Camión */
     async cambiarEstadoCamion( parametros ?: any  ) {  
     try {
      let conexionSql = new DbHelper();
@@ -163,8 +185,7 @@ export default class camiones{
          errorMensaje(error)
  }
  }
-
-       /*  Camión Especifico */
+    /* Camión Especifico */
     async camionEspecifico( parametros ?: any  ) {  
         try {
          let conexionSql = new DbHelper();
