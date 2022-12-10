@@ -4,6 +4,30 @@ import DbHelper from '../../helpers/DbHelper';
 import { errorMensaje } from '../../classes/classes';
 
 export default class motoristas{
+
+        /* Ver Motoristas */ 
+        async verMotoristas( parametros ?: any){
+            try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [  ]
+            }
+    
+            let respuesta : any = await conexionSql.Ejecutar('sp_verMotoristas')
+            if( !respuesta.hasError  ){
+                return {
+                    data   : respuesta.data,
+                    errors : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+    
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
         /* Insertar motorista*/ 
 async insertarMotorista( parametros ?: any){
     try{

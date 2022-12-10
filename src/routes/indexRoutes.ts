@@ -33,8 +33,10 @@ import finanzas from './finanzas/finanzas'
 import fleje from './Operaciones/Fleje/Fleje';
 //Transporte
 import transporte from './Transporte/transportes';
-//Transporte
+    //Camiones
 import camiones from './Transporte/camiones';
+    //Motoristas
+import motoristas from './Transporte/motoristas';
 
 
 //const index = express();
@@ -66,10 +68,8 @@ app.use('/rrhh', credito, dolar);
 app.use('/finanzas', finanzas)
 
 //Transporte
-app.use('/transporte', transporte)
+app.use('/transporte', transporte, camiones, motoristas)
 
-//camion
-app.use('/camion', camiones)
 
 export default app;
 

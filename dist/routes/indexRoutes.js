@@ -31,8 +31,10 @@ const finanzas_1 = __importDefault(require("./finanzas/finanzas"));
 const Fleje_1 = __importDefault(require("./Operaciones/Fleje/Fleje"));
 //Transporte
 const transportes_1 = __importDefault(require("./Transporte/transportes"));
-//Transporte
+//Camiones
 const camiones_1 = __importDefault(require("./Transporte/camiones"));
+//Motoristas
+const motoristas_1 = __importDefault(require("./Transporte/motoristas"));
 //const index = express();
 let app = (0, express_1.default)();
 //let index = Server.getIntance();
@@ -52,7 +54,5 @@ app.use('/rrhh', credito_1.default, dolar_1.default);
 //Finanzas
 app.use('/finanzas', finanzas_1.default);
 //Transporte
-app.use('/transporte', transportes_1.default);
-//camion
-app.use('/camion', camiones_1.default);
+app.use('/transporte', transportes_1.default, camiones_1.default, motoristas_1.default);
 exports.default = app;

@@ -17,6 +17,31 @@ const app = (0, express_1.Router)();
 const DbHelper_1 = __importDefault(require("../../helpers/DbHelper"));
 const classes_1 = require("../../classes/classes");
 class motoristas {
+    /* Ver Motoristas */
+    verMotoristas(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_verMotoristas');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
     /* Insertar motorista*/
     insertarMotorista(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
