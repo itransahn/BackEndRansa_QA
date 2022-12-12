@@ -374,5 +374,43 @@ class permisosT {
             }
         });
     }
+    /* Cambiar estado de Tablas  */
+    cambiarEstadoTablas(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'id',
+                            valor: parametros.id
+                        },
+                        {
+                            parametro: 'estado',
+                            valor: parametros.estado
+                        },
+                        {
+                            parametro: 'tabla',
+                            valor: parametros.tabla
+                        },
+                    ];
+                    let respuesta = yield conexionSql.Ejecutar('sp_cambiarStaDina');
+                    if (!respuesta.hasError) {
+                        return {
+                            data: respuesta.data,
+                            errors: respuesta.errors,
+                            hasError: respuesta.hasError
+                        };
+                    }
+                    else {
+                        return respuesta;
+                    }
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
 }
 exports.default = permisosT;

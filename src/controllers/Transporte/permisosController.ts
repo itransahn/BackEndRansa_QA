@@ -329,4 +329,42 @@ export default class permisosT{
                     errorMensaje(error)
             }
     }
+
+    /* Cambiar estado de Tablas  */
+    async cambiarEstadoTablas ( parametros ?: any ){
+      try{  
+        let conexionSql = new DbHelper();
+        if ( parametros ) {
+          conexionSql.parametros = [
+            {
+              parametro : 'id',
+              valor : parametros.id
+            },
+            {
+              parametro : 'estado',
+              valor : parametros.estado
+            },
+            {
+              parametro : 'tabla',
+              valor : parametros.tabla
+            },
+          ]
+
+        let respuesta : any = await conexionSql.Ejecutar('sp_cambiarStaDina');
+
+        if ( !respuesta.hasError){
+          return { 
+            data :      respuesta.data,
+            errors :    respuesta.errors,
+            hasError :  respuesta.hasError
+            }
+        }else{
+          return respuesta;
+        }
+        }
+      }catch( error ){
+        errorMensaje(error) 
+      }
+
+    }
 }

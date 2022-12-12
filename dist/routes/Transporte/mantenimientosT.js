@@ -13,14 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const permisosController_1 = __importDefault(require("../../controllers/Transporte/permisosController"));
+const mantenimientosTController_1 = __importDefault(require("../../controllers/Transporte/mantenimientosTController"));
 const app = (0, express_1.Router)();
 const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEHP?u6<a0f_h3Q%V}_!>N<DElTSi>t=!R{jMtu}j/Eu5Xrb*x>)1$50G|,:xg+Y1OM}H183.b5MNH>5L-7u7tu<Dyc,JHDuqHZy68f71kFBjI4w|T\!{';
-/* ver roles asignados a transporte */
-app.get('/permisosT', (req, res) => {
-    let mot = new permisosController_1.default();
+/* ver Clientes T */
+app.post('/clientesT', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.rolesSupervisor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.verClientesT(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -30,11 +30,11 @@ app.get('/permisosT', (req, res) => {
         }
     }));
 });
-/* insertar roles sobre supervisor Transporte */
-app.post('/insertRolesT', (req, res) => {
-    let mot = new permisosController_1.default();
+/* ver proveedores T */
+app.post('/proveedoresT', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.InsertarRolSupervisor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.verProveedoresT(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -44,11 +44,11 @@ app.post('/insertRolesT', (req, res) => {
         }
     }));
 });
-/* Eliminar roles a supervisor */
-app.delete('/rolesSupervisor', (req, res) => {
-    let mot = new permisosController_1.default();
+/* actualizar clientes T */
+app.put('/AclienteT', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.eliminarRolSupervisor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.actualizarClientesTransportes(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -58,11 +58,11 @@ app.delete('/rolesSupervisor', (req, res) => {
         }
     }));
 });
-/* Relación entre cliente - transporte  */
-app.post('/clienteTransporte', (req, res) => {
-    let mot = new permisosController_1.default();
+/* actualizar Proveedor T */
+app.put('/AproveedorT', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.relacionTranClien(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.actualizarProveedoresTransportes(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -72,11 +72,11 @@ app.post('/clienteTransporte', (req, res) => {
         }
     }));
 });
-/* Relación entre cliente - transporte ELIMINAR */
-app.delete('/clienteTransporte', (req, res) => {
-    let mot = new permisosController_1.default();
+/* catalogo transporte */
+app.get('/catalogoT', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.relacionTranClien(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.catalogoTransporte(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -86,11 +86,11 @@ app.delete('/clienteTransporte', (req, res) => {
         }
     }));
 });
-/* Relación entre proveedor - transporte */
-app.post('/proveedorTransporte', (req, res) => {
-    let mot = new permisosController_1.default();
+/* Catalogo detallado transporte */
+app.get('/catalogoDetT', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.relacionTranProvee(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.catalogoTransporteDetallado(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -100,11 +100,11 @@ app.post('/proveedorTransporte', (req, res) => {
         }
     }));
 });
-/* Relación entre proveedor - transporte ELIMINAR */
-app.delete('/proveedorTransporte', (req, res) => {
-    let mot = new permisosController_1.default();
+/* Insertar Cliente transporte */
+app.put('/insertClienteT', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.relacionTranProvee(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.insertarClientesTransportes(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -114,11 +114,11 @@ app.delete('/proveedorTransporte', (req, res) => {
         }
     }));
 });
-/* Relación entre proveedor - transporte ELIMINAR */
-app.delete('/proveedorTransporte', (req, res) => {
-    let mot = new permisosController_1.default();
+/* Catalogo detallado transporte */
+app.put('/insertProveedorT', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.relacionTranProvee(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.insertarProveedoresTransportes(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -128,11 +128,11 @@ app.delete('/proveedorTransporte', (req, res) => {
         }
     }));
 });
-/* Insertar Relación entre rol - cliente */
-app.post('/rolCliente', (req, res) => {
-    let mot = new permisosController_1.default();
+/* Dimensiones transporte */
+app.put('/insertDimensiones', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.relacionRolCliente(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.insertarDimensiones(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -142,11 +142,11 @@ app.post('/rolCliente', (req, res) => {
         }
     }));
 });
-/* Relación entre rol - cliente ELIMINAR*/
-app.delete('/rolCliente', (req, res) => {
-    let mot = new permisosController_1.default();
+/* Tipos de Unidad transporte */
+app.put('/insertTiposUnidad', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.EliminarRelacionRolCliente(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.insertarTipoUnidad(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -156,11 +156,11 @@ app.delete('/rolCliente', (req, res) => {
         }
     }));
 });
-/* Relación entre rol - proveedor */
-app.post('/rolProveedor', (req, res) => {
-    let mot = new permisosController_1.default();
+/* Relación transporte Cliente */
+app.get('/transCliente', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.relacionRolProveedor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.transCliente(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -170,11 +170,11 @@ app.post('/rolProveedor', (req, res) => {
         }
     }));
 });
-/* Relación entre rol - proveedor ELIMINAR*/
-app.delete('/rolProveedor', (req, res) => {
-    let mot = new permisosController_1.default();
+/* Relación transporte Proveedor */
+app.get('/transProveedor', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.EliminarRelacionRolProveedor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.transProveedor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -184,11 +184,11 @@ app.delete('/rolProveedor', (req, res) => {
         }
     }));
 });
-/* Relación entre rol - proveedor ELIMINAR*/
-app.post('/cambiarEstado', (req, res) => {
-    let mot = new permisosController_1.default();
+/* Relación transporte Proveedor */
+app.post('/relacionRoles', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
     let params = req.body;
-    mot.cambiarEstadoTablas(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    cam.verRelacionesRoles(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);

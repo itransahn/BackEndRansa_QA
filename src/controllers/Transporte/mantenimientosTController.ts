@@ -300,4 +300,127 @@ export default class mantenimientoT{
                 }
              }
 
+                 /* Ver Clientes Transporte*/ 
+      async verClientesT( parametros ?: any){
+        try{
+            let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [ 
+                {
+                    parametro : 'tipo',
+                    valor     : parametros.tipo
+                }
+             ]
+        }
+        let respuesta : any = await conexionSql.Ejecutar('sp_verClientesT')
+        if( !respuesta.hasError  ){
+            return {
+                data   : respuesta.data,
+                errors : respuesta.errors,
+                hasError : respuesta.hasError
+            }
+        }else{
+            return respuesta
+        }
+        }catch( error){
+            errorMensaje(error)
+        }
+     }
+
+           /* Ver Proveedores Transporte*/ 
+           async verProveedoresT( parametros ?: any){
+            try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [ 
+                    {
+                        parametro : 'tipo',
+                        valor     : parametros.tipo
+                    }
+                 ]
+            }
+            let respuesta : any = await conexionSql.Ejecutar('sp_verProveedoresT')
+            if( !respuesta.hasError  ){
+                return {
+                    data   : respuesta.data,
+                    errors : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+           /* Ver Relación Transporte - Clientes */ 
+           async transCliente( parametros ?: any){
+            try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [   ]
+            }
+            let respuesta : any = await conexionSql.Ejecutar('sp_verClienteTransporte')
+            if( !respuesta.hasError  ){
+                return {
+                    data   : respuesta.data,
+                    errors : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+
+            /* Ver Relación Transporte - Proveedores */ 
+            async transProveedor( parametros ?: any){
+                try{
+                    let conexionSql = new DbHelper();
+                if ( parametros ){
+                    conexionSql.parametros = [   ]
+                }
+                let respuesta : any = await conexionSql.Ejecutar('sp_verProveedorTransporte')
+                if( !respuesta.hasError  ){
+                    return {
+                        data   : respuesta.data,
+                        errors : respuesta.errors,
+                        hasError : respuesta.hasError
+                    }
+                }else{
+                    return respuesta
+                }
+                }catch( error){
+                    errorMensaje(error)
+                }
+             }
+
+      /* Ver Relación de roles  */ 
+            async verRelacionesRoles( parametros ?: any){
+                try{
+                    let conexionSql = new DbHelper();
+                if ( parametros ){
+                    conexionSql.parametros = [
+                        {
+                            parametro : 'tipo',
+                            valor     : parametros.tipo
+                        }
+                       ]
+                }
+                let respuesta : any = await conexionSql.Ejecutar('sp_CargarRelacionRoles')
+                if( !respuesta.hasError  ){
+                    return {
+                        data   : respuesta.data,
+                        errors : respuesta.errors,
+                        hasError : respuesta.hasError
+                    }
+                }else{
+                    return respuesta
+                }
+                }catch( error){
+                    errorMensaje(error)
+                }
+             }
 }
