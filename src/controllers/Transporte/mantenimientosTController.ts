@@ -19,7 +19,10 @@ export default class mantenimientoT{
                         camiones    : respuesta.data.Table1,
                         motoristas  : respuesta.data.Table2,
                         tunidad     : respuesta.data.Table3,
-                        dimensiones : respuesta.data.Table4
+                        dimensiones : respuesta.data.Table4,
+                        clientes    : respuesta.data.Table5,
+                        proveedores : respuesta.data.Table6,
+                        roles       : respuesta.data.Table7,
                 }
             }else{
                 return respuesta

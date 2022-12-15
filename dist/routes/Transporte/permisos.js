@@ -59,7 +59,7 @@ app.delete('/rolesSupervisor', (req, res) => {
     }));
 });
 /* Relación entre cliente - transporte  */
-app.post('/clienteTransporte', (req, res) => {
+app.put('/clienteTransporte', (req, res) => {
     let mot = new permisosController_1.default();
     let params = req.body;
     mot.relacionTranClien(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -76,7 +76,7 @@ app.post('/clienteTransporte', (req, res) => {
 app.delete('/clienteTransporte', (req, res) => {
     let mot = new permisosController_1.default();
     let params = req.body;
-    mot.relacionTranClien(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    mot.EliminarrelacionTranClien(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -87,7 +87,7 @@ app.delete('/clienteTransporte', (req, res) => {
     }));
 });
 /* Relación entre proveedor - transporte */
-app.post('/proveedorTransporte', (req, res) => {
+app.put('/proveedorTransporte', (req, res) => {
     let mot = new permisosController_1.default();
     let params = req.body;
     mot.relacionTranProvee(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -104,7 +104,7 @@ app.post('/proveedorTransporte', (req, res) => {
 app.delete('/proveedorTransporte', (req, res) => {
     let mot = new permisosController_1.default();
     let params = req.body;
-    mot.relacionTranProvee(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    mot.EliminarRelacionRolProveedor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -129,7 +129,7 @@ app.delete('/proveedorTransporte', (req, res) => {
     }));
 });
 /* Insertar Relación entre rol - cliente */
-app.post('/rolCliente', (req, res) => {
+app.put('/rolCliente', (req, res) => {
     let mot = new permisosController_1.default();
     let params = req.body;
     mot.relacionRolCliente(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -157,7 +157,7 @@ app.delete('/rolCliente', (req, res) => {
     }));
 });
 /* Relación entre rol - proveedor */
-app.post('/rolProveedor', (req, res) => {
+app.put('/rolProveedor', (req, res) => {
     let mot = new permisosController_1.default();
     let params = req.body;
     mot.relacionRolProveedor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {

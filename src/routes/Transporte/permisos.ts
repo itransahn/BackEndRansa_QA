@@ -54,7 +54,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
 
         /* Relación entre cliente - transporte  */
-    app.post('/clienteTransporte' ,  (req: Request, res:Response)=>{
+    app.put('/clienteTransporte' ,  (req: Request, res:Response)=>{
         let mot = new permisosT();
         let params = req.body;
         mot.relacionTranClien( params ).then(async (respuesta: any) => {
@@ -72,7 +72,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
     app.delete('/clienteTransporte' ,  (req: Request, res:Response)=>{
         let mot = new permisosT();
         let params = req.body;
-        mot.relacionTranClien( params ).then(async (respuesta: any) => {
+        mot.EliminarrelacionTranClien( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;
         if(!result.hasError){
             return res.status(200).send( respuesta )
@@ -84,7 +84,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
 
                        /* Relación entre proveedor - transporte */
-    app.post('/proveedorTransporte' ,  (req: Request, res:Response)=>{
+    app.put('/proveedorTransporte' ,  (req: Request, res:Response)=>{
         let mot = new permisosT();
         let params = req.body;
         mot.relacionTranProvee( params ).then(async (respuesta: any) => {
@@ -103,7 +103,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
     app.delete('/proveedorTransporte' ,  (req: Request, res:Response)=>{
         let mot = new permisosT();
         let params = req.body;
-        mot.relacionTranProvee( params ).then(async (respuesta: any) => {
+        mot.EliminarRelacionRolProveedor( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;
         if(!result.hasError){
             return res.status(200).send( respuesta )
@@ -129,7 +129,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
                     })
 
                  /* Insertar Relación entre rol - cliente */
-    app.post('/rolCliente' ,  (req: Request, res:Response)=>{
+    app.put('/rolCliente' ,  (req: Request, res:Response)=>{
        let mot = new permisosT();
        let params = req.body;
        mot.relacionRolCliente( params ).then(async (respuesta: any) => {
@@ -156,7 +156,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
                 })  
                 
                      /* Relación entre rol - proveedor */
-        app.post('/rolProveedor' ,  (req: Request, res:Response)=>{
+    app.put('/rolProveedor' ,  (req: Request, res:Response)=>{
            let mot = new permisosT();
            let params = req.body;
            mot.relacionRolProveedor( params ).then(async (respuesta: any) => {
@@ -169,7 +169,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
            });
             })  
                    /* Relación entre rol - proveedor ELIMINAR*/
-         app.delete('/rolProveedor' ,  (req: Request, res:Response)=>{
+    app.delete('/rolProveedor' ,  (req: Request, res:Response)=>{
           let mot = new permisosT();
           let params = req.body;
           mot.EliminarRelacionRolProveedor( params ).then(async (respuesta: any) => {
@@ -183,7 +183,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
            }) 
 
                 /* Relación entre rol - proveedor ELIMINAR*/
-               app.post('/cambiarEstado' ,  (req: Request, res:Response)=>{
+    app.post('/cambiarEstado' ,  (req: Request, res:Response)=>{
                 let mot = new permisosT();
                 let params = req.body;
                 mot.cambiarEstadoTablas( params ).then(async (respuesta: any) => {
