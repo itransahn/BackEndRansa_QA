@@ -39,7 +39,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
 
                  /* actualizar camiones */
-    app.post('/ActCamiones' ,  (req: Request, res:Response)=>{
+    app.put('/ActCamiones' ,  (req: Request, res:Response)=>{
         let cam = new camiones();
         let params = req.body;
         cam.actualizarCamion( params ).then(async (respuesta: any) => {

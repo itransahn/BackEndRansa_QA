@@ -45,7 +45,7 @@ app.post('/Instransportes', (req, res) => {
     }));
 });
 /* actualizar Transportes */
-app.post('/ActTransportes', (req, res) => {
+app.put('/ActTransportes', (req, res) => {
     let trans = new transportesController_1.default();
     let params = req.body;
     trans.actualizarTransporte(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -63,6 +63,20 @@ app.post('/EstadoTransportes', (req, res) => {
     let trans = new transportesController_1.default();
     let params = req.body;
     trans.CambiarEstadoTransporte(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* cambiar estado Transportes */
+app.delete('/transporte', (req, res) => {
+    let trans = new transportesController_1.default();
+    let params = req.body;
+    trans.elminarTransporte(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);

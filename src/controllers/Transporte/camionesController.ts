@@ -59,6 +59,10 @@ export default class camiones{
                     valor : parametros.gps
                    },  
                    {
+                    parametro : 'rampa',
+                    valor : parametros.rampa
+                   },  
+                   {
                     parametro : 'refrigerado',
                     valor : parametros.refrigerado
                    },  
@@ -120,6 +124,10 @@ export default class camiones{
                {
                 parametro : 'gps',
                 valor : parametros.gps
+               },  
+               {
+                parametro : 'rampa',
+                valor : parametros.rampa
                },  
                {
                 parametro : 'refrigerado',
@@ -212,5 +220,7 @@ export default class camiones{
              errorMensaje(error)
      }
      }
+
+     
 
 }

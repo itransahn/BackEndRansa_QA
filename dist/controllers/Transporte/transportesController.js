@@ -107,7 +107,6 @@ class transportes {
             try {
                 let conexionSql = new DbHelper_1.default();
                 if (parametros) {
-                    // console.log( parametros.usuario )
                     conexionSql.parametros = [
                         {
                             parametro: 'idTransporte',
@@ -216,6 +215,36 @@ class transportes {
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_cargarTransporteEspecifico');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Transporte Especifico */
+    elminarTransporte(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idTransporte',
+                            valor: parametros.idTransporte
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_bajaTransportistas');
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,

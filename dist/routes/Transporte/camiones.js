@@ -45,7 +45,7 @@ app.post('/InsCamiones', (req, res) => {
     }));
 });
 /* actualizar camiones */
-app.post('/ActCamiones', (req, res) => {
+app.put('/ActCamiones', (req, res) => {
     let cam = new camionesController_1.default();
     let params = req.body;
     cam.actualizarCamion(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {

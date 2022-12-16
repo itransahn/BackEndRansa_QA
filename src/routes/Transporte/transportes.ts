@@ -39,14 +39,13 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
 
                  /* actualizar Transportes */
-    app.post('/ActTransportes' ,  (req: Request, res:Response)=>{
+    app.put('/ActTransportes' ,  (req: Request, res:Response)=>{
         let trans = new transportes();
         let params = req.body;
         trans.actualizarTransporte( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;
         if(!result.hasError){
             return res.status(200).send( respuesta )
-        
         }else{
             return res.status(400).send(result)
         }
@@ -67,6 +66,23 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         }
         });
         })
+
+
+                               /* cambiar estado Transportes */
+    app.delete('/transporte' ,  (req: Request, res:Response)=>{
+        let trans = new transportes();
+        let params = req.body;
+        trans.elminarTransporte( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )
+        
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        })
+
 
 export default app;
 

@@ -92,7 +92,6 @@ export default class transportes{
             try {
              let conexionSql = new DbHelper();
              if ( parametros ) {
-               // console.log( parametros.usuario )
                      conexionSql.parametros = [
                         {
                             parametro : 'idTransporte',
@@ -198,6 +197,34 @@ export default class transportes{
                 ]
             }
         let respuesta : any = await conexionSql.Ejecutar('sp_cargarTransporteEspecifico')
+            if( !respuesta.hasError  ){
+                return {
+                    data   : respuesta.data,
+                    errors : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+
+          /* Transporte Especifico */ 
+          async elminarTransporte( parametros ?: any){
+            try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [
+                    {
+                        parametro: 'idTransporte',
+                        valor    : parametros.idTransporte
+                    }
+                ]
+            }
+        let respuesta : any = await conexionSql.Ejecutar('sp_bajaTransportistas')
             if( !respuesta.hasError  ){
                 return {
                     data   : respuesta.data,
