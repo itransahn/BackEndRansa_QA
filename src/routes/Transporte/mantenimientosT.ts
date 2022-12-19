@@ -207,7 +207,21 @@ app.put('/camionMotorista' ,  (req: Request, res:Response)=>{
        app.delete('/camionMotorista' ,  (req: Request, res:Response)=>{
         let cam = new mantenimientoT();
         let params = req.body;
-        cam.CamionMotorista( params ).then(async (respuesta: any) => {
+        cam.EliminarCamionMotorista( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )   
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        }) 
+            
+       /* ver relación camión motorista */
+       app.get('/camionMotorista' ,  (req: Request, res:Response)=>{
+        let cam = new mantenimientoT();
+        let params = req.body;
+        cam.verUnionesMotCamion( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;
         if(!result.hasError){
             return res.status(200).send( respuesta )   

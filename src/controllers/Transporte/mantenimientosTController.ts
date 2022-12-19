@@ -497,4 +497,27 @@ export default class mantenimientoT{
                 errorMensaje(error)
             }
          }
+
+                  /* Ver Motorista Camion */ 
+        async verUnionesMotCamion( parametros ?: any){
+            try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [  ]
+            }
+            let respuesta : any = await conexionSql.Ejecutar('sp_verUnionesMotCam')
+            if( !respuesta.hasError  ){
+                return {
+                    data   : respuesta.data,
+                    errors : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+
 }
