@@ -6,7 +6,7 @@ import { errorMensaje } from '../../classes/classes';
 export default class motoristas{
 
         /* Ver Motoristas */ 
-        async verMotoristas( parametros ?: any){
+async verMotoristas( parametros ?: any){
             try{
                 let conexionSql = new DbHelper();
             if ( parametros ){

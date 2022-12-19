@@ -186,5 +186,36 @@ app.post('/relacionRoles' ,  (req: Request, res:Response)=>{
     });
     }) 
 
+
+    
+       /* Relación camión motorista */
+app.put('/camionMotorista' ,  (req: Request, res:Response)=>{
+    let cam = new mantenimientoT();
+    let params = req.body;
+    cam.CamionMotorista( params ).then(async (respuesta: any) => {
+    const result:  dataApi = await respuesta;
+    if(!result.hasError){
+        return res.status(200).send( respuesta )   
+    }else{
+        return res.status(400).send(result)
+    }
+    });
+    }) 
+
+    
+       /* Eliminar relación camión motorista */
+       app.delete('/camionMotorista' ,  (req: Request, res:Response)=>{
+        let cam = new mantenimientoT();
+        let params = req.body;
+        cam.CamionMotorista( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )   
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        }) 
+
 export default app;
 

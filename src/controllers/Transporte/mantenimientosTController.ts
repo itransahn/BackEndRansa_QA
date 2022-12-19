@@ -148,6 +148,10 @@ export default class mantenimientoT{
                         {
                             parametro : 'sede',
                             valor     : parametros.sede
+                        },
+                        {
+                            parametro : 'cco',
+                            valor     : parametros.cco
                         }
                     ]
                 }
@@ -195,6 +199,10 @@ export default class mantenimientoT{
                         {
                             parametro : 'sede',
                             valor     : parametros.sede
+                        },
+                        {
+                            parametro : 'cco',
+                            valor     : parametros.cco
                         }
                     ]
                 }
@@ -426,4 +434,67 @@ export default class mantenimientoT{
                     errorMensaje(error)
                 }
              }
+
+
+                   /* Insertar unión camion con motorista */ 
+        async CamionMotorista( parametros ?: any){
+            try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [
+                    {
+                        parametro : 'motorista',
+                        valor     : parametros.motorista
+                    },
+                    {
+                        parametro : 'camion',
+                        valor     : parametros.camion
+                    }
+                   ]
+            }
+            let respuesta : any = await conexionSql.Ejecutar('sp_insertUnionMotCam')
+            if( !respuesta.hasError  ){
+                return {
+                    data   : respuesta.data,
+                    errors : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+         
+                   /* Eliminar Motorista Camion */ 
+        async EliminarCamionMotorista( parametros ?: any){
+            try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [
+                    {
+                        parametro : 'motorista',
+                        valor     : parametros.motorista
+                    },
+                    {
+                        parametro : 'camion',
+                        valor     : parametros.camion
+                    }
+                   ]
+            }
+            let respuesta : any = await conexionSql.Ejecutar('sp_eliminarUnionMotCam')
+            if( !respuesta.hasError  ){
+                return {
+                    data   : respuesta.data,
+                    errors : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
 }

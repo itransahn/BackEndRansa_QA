@@ -31,7 +31,7 @@ app.get('/motoristas', (req, res) => {
     }));
 });
 /* insertar camiones */
-app.put('/InsCamiones', (req, res) => {
+app.put('/InsMotoristas', (req, res) => {
     let mot = new motoristasController_1.default();
     let params = req.body;
     mot.insertarMotorista(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -45,7 +45,7 @@ app.put('/InsCamiones', (req, res) => {
     }));
 });
 /* actualizar camiones */
-app.put('/ActCamiones', (req, res) => {
+app.put('/ActMotoristas', (req, res) => {
     let mot = new motoristasController_1.default();
     let params = req.body;
     mot.actualizarMotorista(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {

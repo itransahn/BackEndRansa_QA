@@ -198,4 +198,32 @@ app.post('/relacionRoles', (req, res) => {
         }
     }));
 });
+/* Relación camión motorista */
+app.put('/camionMotorista', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
+    let params = req.body;
+    cam.CamionMotorista(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Eliminar relación camión motorista */
+app.delete('/camionMotorista', (req, res) => {
+    let cam = new mantenimientosTController_1.default();
+    let params = req.body;
+    cam.CamionMotorista(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;

@@ -170,6 +170,10 @@ class mantenimientoT {
                         {
                             parametro: 'sede',
                             valor: parametros.sede
+                        },
+                        {
+                            parametro: 'cco',
+                            valor: parametros.cco
                         }
                     ];
                 }
@@ -220,6 +224,10 @@ class mantenimientoT {
                         {
                             parametro: 'sede',
                             valor: parametros.sede
+                        },
+                        {
+                            parametro: 'cco',
+                            valor: parametros.cco
                         }
                     ];
                 }
@@ -460,6 +468,74 @@ class mantenimientoT {
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_CargarRelacionRoles');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Insertar unión camion con motorista */
+    CamionMotorista(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'motorista',
+                            valor: parametros.motorista
+                        },
+                        {
+                            parametro: 'camion',
+                            valor: parametros.camion
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_insertUnionMotCam');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Eliminar Motorista Camion */
+    EliminarCamionMotorista(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'motorista',
+                            valor: parametros.motorista
+                        },
+                        {
+                            parametro: 'camion',
+                            valor: parametros.camion
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_eliminarUnionMotCam');
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,

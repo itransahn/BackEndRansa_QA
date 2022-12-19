@@ -24,7 +24,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
     
            /* insertar camiones */
-    app.put('/InsCamiones' ,  (req: Request, res:Response)=>{
+    app.put('/InsMotoristas' ,  (req: Request, res:Response)=>{
         let mot = new motoristas();
         let params = req.body;
         mot.insertarMotorista( params ).then(async (respuesta: any) => {
@@ -39,7 +39,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
 
                  /* actualizar camiones */
-    app.put('/ActCamiones' ,  (req: Request, res:Response)=>{
+    app.put('/ActMotoristas' ,  (req: Request, res:Response)=>{
         let mot = new motoristas();
         let params = req.body;
         mot.actualizarMotorista( params ).then(async (respuesta: any) => {
