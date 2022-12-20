@@ -425,8 +425,6 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
                  errorMensaje(error)
          }
     }
-
-    
            /* CAMBIO CONTRASEÑA DE USUARIO POR USUARIO */
            async UpdaContra( parametros ?: any  ) {  
             try {

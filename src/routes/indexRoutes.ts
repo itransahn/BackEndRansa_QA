@@ -35,6 +35,7 @@ import fleje from './Operaciones/Fleje/Fleje';
 //Modulo 
     //Transporte
 import transporte from './Transporte/transportes';
+import pasesSalid from './Transporte/pasesSalida/PasesSalida';
     //Camiones
 import camiones from './Transporte/camiones';
     //Motoristas
@@ -73,8 +74,7 @@ app.use('/rrhh', credito, dolar);
 app.use('/finanzas', finanzas)
 
 //Transporte
-app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT)
-
+app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid)
 
 export default app;
 

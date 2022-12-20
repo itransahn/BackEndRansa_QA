@@ -49,7 +49,8 @@ export default class login{
                     puestoRansa: respuestaLogin.data.Table0[0].puestoRansa,
                     id_area: respuestaLogin.data.Table0[0].id_area,
                     id_rol: respuestaLogin.data.Table0[0].id_rol,
-                    imgPerfil : respuestaLogin.data.Table0[0].url_imagen  },
+                    imgPerfil : respuestaLogin.data.Table0[0].url_imagen,
+                    sede  : respuestaLogin.data.Table0[0]?.id_sede  },
                 modulosPermitidos : this.menusOficiales },
                 errors :  respuestaLogin.errors ,
                 hasError : false
