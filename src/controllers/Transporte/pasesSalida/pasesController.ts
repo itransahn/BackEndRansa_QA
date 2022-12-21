@@ -66,6 +66,10 @@ export default class pasesSalida{
                 parametro : 'idDestino',
                 valor     : parametros.idDestino
             },
+            {
+                parametro : 'contenido',
+                valor     : parametros.contenido
+            },
 
          ]
     }
@@ -84,10 +88,67 @@ export default class pasesSalida{
     }
  }
 
- 
-         /* Cataglogo */ 
-         async catalogoEspecifico( parametros ?: any){
-             try{
+  /* Aprobar PASE DE SALIDA */
+  async AprobarPaseSalida( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper();
+    if ( parametros ){
+        conexionSql.parametros = [
+            {
+                parametro : 'usuario',
+                valor     : parametros.usuario
+            },
+            {
+                parametro : 'idPase',
+                valor     : parametros.idPase
+            },
+
+         ]
+    }
+    let respuesta : any = await conexionSql.Ejecutar('sp_aprobarPaseSalida')
+    if( !respuesta.hasError  ){
+        return {
+            data     : respuesta.data,
+            errors   : respuesta.errors,
+            hasError : respuesta.hasError
+              }
+    }else{
+        return respuesta
+    }
+    }catch( error){
+        errorMensaje(error)
+    }
+ }
+ /* Eliminar PASE DE SALIDA */
+ async EliminarPaseSalida( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper();
+    if ( parametros ){
+        conexionSql.parametros = [
+            {
+                parametro : 'idPase',
+                valor     : parametros.idPase
+            },
+         ]
+    }
+    let respuesta : any = await conexionSql.Ejecutar('sp_eliminarPaseSalida')
+    if( !respuesta.hasError  ){
+        return {
+            data     : respuesta.data,
+            errors   : respuesta.errors,
+            hasError : respuesta.hasError
+              }
+    }else{
+        return respuesta
+    }
+    }catch( error){
+        errorMensaje(error)
+    }
+ }
+
+ /* Cataglogo */ 
+ async catalogoEspecifico( parametros ?: any){
+     try{
                  let conexionSql = new DbHelper();
              if ( parametros ){
                  conexionSql.parametros = [

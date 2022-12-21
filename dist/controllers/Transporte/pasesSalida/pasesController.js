@@ -81,9 +81,77 @@ class pasesSalida {
                             parametro: 'idDestino',
                             valor: parametros.idDestino
                         },
+                        {
+                            parametro: 'contenido',
+                            valor: parametros.contenido
+                        },
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_insertPasesSalida');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Aprobar PASE DE SALIDA */
+    AprobarPaseSalida(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'usuario',
+                            valor: parametros.usuario
+                        },
+                        {
+                            parametro: 'idPase',
+                            valor: parametros.idPase
+                        },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_aprobarPaseSalida');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Eliminar PASE DE SALIDA */
+    EliminarPaseSalida(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idPase',
+                            valor: parametros.idPase
+                        },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_eliminarPaseSalida');
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
