@@ -103,7 +103,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
     app.delete('/proveedorTransporte' ,  (req: Request, res:Response)=>{
         let mot = new permisosT();
         let params = req.body;
-        mot.EliminarRelacionRolProveedor( params ).then(async (respuesta: any) => {
+        mot.EliminarrelacionTranProvee( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;
         if(!result.hasError){
             return res.status(200).send( respuesta )
@@ -113,20 +113,6 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         }
         });
         })
-
-                /* Relación entre proveedor - transporte ELIMINAR */
-     app.delete('/proveedorTransporte' ,  (req: Request, res:Response)=>{
-        let mot = new permisosT();
-        let params = req.body;
-        mot.relacionTranProvee( params ).then(async (respuesta: any) => {
-        const result:  dataApi = await respuesta;
-        if(!result.hasError){
-            return res.status(200).send( respuesta )
-        }else{
-            return res.status(400).send(result)
-                    }
-                    });
-                    })
 
                  /* Insertar Relación entre rol - cliente */
     app.put('/rolCliente' ,  (req: Request, res:Response)=>{

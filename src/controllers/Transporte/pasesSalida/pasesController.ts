@@ -183,4 +183,26 @@ export default class pasesSalida{
              }
           }
 
+ /* Pases salida Historico */ 
+ async PasesSalidaHistorico( parametros ?: any){
+    try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [ ]
+            }
+        let respuesta : any = await conexionSql.Ejecutar('sp_verPasesSalidaHistorico')
+            if( !respuesta.hasError  ){
+                return {
+                    data     : respuesta.data,
+                    errors   : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+
 }

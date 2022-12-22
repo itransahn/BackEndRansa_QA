@@ -86,4 +86,18 @@ app.delete('/EliminarpaseSalida', (req, res) => {
         }
     }));
 });
+/* Pases de Salida Historico*/
+app.get('/paseSalidaH', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.PasesSalidaHistorico(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;

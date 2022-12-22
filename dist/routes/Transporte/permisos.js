@@ -104,21 +104,7 @@ app.put('/proveedorTransporte', (req, res) => {
 app.delete('/proveedorTransporte', (req, res) => {
     let mot = new permisosController_1.default();
     let params = req.body;
-    mot.EliminarRelacionRolProveedor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield respuesta;
-        if (!result.hasError) {
-            return res.status(200).send(respuesta);
-        }
-        else {
-            return res.status(400).send(result);
-        }
-    }));
-});
-/* Relación entre proveedor - transporte ELIMINAR */
-app.delete('/proveedorTransporte', (req, res) => {
-    let mot = new permisosController_1.default();
-    let params = req.body;
-    mot.relacionTranProvee(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    mot.EliminarrelacionTranProvee(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
