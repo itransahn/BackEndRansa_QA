@@ -24,7 +24,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
     
            /* insertar camiones */
-    app.post('/InsCamiones' ,  (req: Request, res:Response)=>{
+    app.put('/InsCamiones' ,  (req: Request, res:Response)=>{
         let cam = new camiones();
         let params = req.body;
         cam.insertarCamion( params ).then(async (respuesta: any) => {

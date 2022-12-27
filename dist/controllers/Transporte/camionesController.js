@@ -49,10 +49,10 @@ class camiones {
                 let conexionSql = new DbHelper_1.default();
                 if (parametros) {
                     conexionSql.parametros = [
-                        {
-                            parametro: 'descripcionCamion',
-                            valor: parametros.descripcionCamion
-                        },
+                        //  {
+                        //    parametro : 'descripcionCamion',
+                        //    valor : parametros.descripcionCamion
+                        //  }, 
                         {
                             parametro: 'tipoUnidad',
                             valor: parametros.tipoUnidad
@@ -64,10 +64,6 @@ class camiones {
                         {
                             parametro: 'idTransportista',
                             valor: parametros.idTransportista
-                        },
-                        {
-                            parametro: 'dimenciones',
-                            valor: parametros.dimenciones
                         },
                         {
                             parametro: 'gps',
@@ -89,9 +85,29 @@ class camiones {
                             parametro: 'usuario',
                             valor: parametros.usuario
                         },
+                        {
+                            parametro: 'modelo',
+                            valor: parametros.modelo
+                        },
+                        {
+                            parametro: 'tonelada',
+                            valor: parametros.tonelada
+                        },
+                        {
+                            parametro: 'metraje',
+                            valor: parametros.metraje
+                        },
+                        {
+                            parametro: 'anio',
+                            valor: parametros.anio
+                        },
+                        {
+                            parametro: 'color',
+                            valor: parametros.color
+                        },
                     ];
                 }
-                let respuesta = yield conexionSql.Ejecutar(`sp_insertCamion`);
+                let respuesta = yield conexionSql.Ejecutar(`sp_inserCamion`);
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
@@ -119,10 +135,10 @@ class camiones {
                             parametro: 'idCamion',
                             valor: parametros.idCamion
                         },
-                        {
-                            parametro: 'descripcionCamion',
-                            valor: parametros.descripcionCamion
-                        },
+                        //  {
+                        //    parametro : 'descripcionCamion',
+                        //    valor : parametros.descripcionCamion
+                        //  }, 
                         {
                             parametro: 'tipoUnidad',
                             valor: parametros.tipoUnidad
@@ -134,10 +150,6 @@ class camiones {
                         {
                             parametro: 'idTransportista',
                             valor: parametros.idTransportista
-                        },
-                        {
-                            parametro: 'dimenciones',
-                            valor: parametros.dimenciones
                         },
                         {
                             parametro: 'gps',
@@ -158,6 +170,26 @@ class camiones {
                         {
                             parametro: 'usuario',
                             valor: parametros.usuario
+                        },
+                        {
+                            parametro: 'modelo',
+                            valor: parametros.modelo
+                        },
+                        {
+                            parametro: 'tonelada',
+                            valor: parametros.tonelada
+                        },
+                        {
+                            parametro: 'metraje',
+                            valor: parametros.metraje
+                        },
+                        {
+                            parametro: 'anio',
+                            valor: parametros.anio
+                        },
+                        {
+                            parametro: 'color',
+                            valor: parametros.color
                         },
                     ];
                 }

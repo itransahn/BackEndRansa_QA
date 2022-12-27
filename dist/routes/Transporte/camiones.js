@@ -31,7 +31,7 @@ app.get('/camiones', (req, res) => {
     }));
 });
 /* insertar camiones */
-app.post('/InsCamiones', (req, res) => {
+app.put('/InsCamiones', (req, res) => {
     let cam = new camionesController_1.default();
     let params = req.body;
     cam.insertarCamion(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {

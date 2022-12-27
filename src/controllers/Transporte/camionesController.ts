@@ -34,10 +34,10 @@ export default class camiones{
          let conexionSql = new DbHelper();
          if ( parametros ) {
                  conexionSql.parametros = [
-                   {
-                     parametro : 'descripcionCamion',
-                     valor : parametros.descripcionCamion
-                   }, 
+                  //  {
+                  //    parametro : 'descripcionCamion',
+                  //    valor : parametros.descripcionCamion
+                  //  }, 
                    {
                     parametro : 'tipoUnidad',
                     valor : parametros.tipoUnidad
@@ -49,10 +49,6 @@ export default class camiones{
                    {
                     parametro : 'idTransportista',
                     valor : parametros.idTransportista
-                   },  
-                   {
-                    parametro : 'dimenciones',
-                    valor : parametros.dimenciones
                    },  
                    {
                     parametro : 'gps',
@@ -74,10 +70,30 @@ export default class camiones{
                     parametro : 'usuario',
                     valor : parametros.usuario
                    },  
+                   {
+                    parametro : 'modelo',
+                    valor : parametros.modelo
+                   }, 
+                   {
+                    parametro : 'tonelada',
+                    valor : parametros.tonelada
+                   }, 
+                   {
+                    parametro : 'metraje',
+                    valor : parametros.metraje
+                   },  
+                   {
+                    parametro : 'anio',
+                    valor : parametros.anio
+                   },  
+                   {
+                    parametro : 'color',
+                    valor : parametros.color
+                   },  
                  ]
          }
     
-         let respuesta: any = await conexionSql.Ejecutar(`sp_insertCamion`);
+         let respuesta: any = await conexionSql.Ejecutar(`sp_inserCamion`);
         if (!respuesta.hasError ){
                 return { 
                   data :      respuesta.data,
@@ -101,10 +117,10 @@ export default class camiones{
                     parametro : 'idCamion',
                     valor : parametros.idCamion
                }, 
-               {
-                 parametro : 'descripcionCamion',
-                 valor : parametros.descripcionCamion
-               }, 
+              //  {
+              //    parametro : 'descripcionCamion',
+              //    valor : parametros.descripcionCamion
+              //  }, 
                {
                 parametro : 'tipoUnidad',
                 valor : parametros.tipoUnidad
@@ -116,10 +132,6 @@ export default class camiones{
                {
                 parametro : 'idTransportista',
                 valor : parametros.idTransportista
-               },  
-               {
-                parametro : 'dimenciones',
-                valor : parametros.dimenciones
                },  
                {
                 parametro : 'gps',
@@ -141,6 +153,26 @@ export default class camiones{
                 parametro : 'usuario',
                 valor : parametros.usuario
                },  
+               {
+                parametro : 'modelo',
+                valor : parametros.modelo
+               }, 
+               {
+                parametro : 'tonelada',
+                valor : parametros.tonelada
+               }, 
+               {
+                parametro : 'metraje',
+                valor : parametros.metraje
+               },  
+               {
+                parametro : 'anio',
+                valor : parametros.anio
+               },  
+               {
+                parametro : 'color',
+                valor : parametros.color
+               }, 
              ]
      }
 
