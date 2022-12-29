@@ -68,5 +68,82 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         });
         })
 
+    
+     /* Documentos Motoristas */
+     app.post('/documentosMotorista' ,  (req: Request, res:Response)=>{
+            let mot = new motoristas();
+            let params = req.body;
+            mot.cargarDocumentos( params ).then(async (respuesta: any) => {
+            const result:  dataApi = await respuesta;
+            if(!result.hasError){
+                return res.status(200).send( respuesta )
+            
+            }else{
+                return res.status(400).send(result)
+            }
+            });
+            })
+
+             /* Insert Documentos Motoristas */
+     app.put('/InsAntecedente' ,  (req: Request, res:Response)=>{
+        let mot = new motoristas();
+        let params = req.body;
+        mot.InsertarAntecedente( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )
+        
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        })
+
+                                     /* Actualizar Documentos Motoristas */
+     app.put('/updAntecedente' ,  (req: Request, res:Response)=>{
+        let mot = new motoristas();
+        let params = req.body;
+        mot.actualizarAntecedente( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )
+        
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        })
+
+                     /* Insert Documentos Motoristas */
+     app.put('/InsTarjeta' ,  (req: Request, res:Response)=>{
+        let mot = new motoristas();
+        let params = req.body;
+        mot.InsertarTarjeta( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )
+        
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        })
+
+
+                             /* Insert Documentos Motoristas */
+     app.put('/updTarjeta' ,  (req: Request, res:Response)=>{
+        let mot = new motoristas();
+        let params = req.body;
+        mot.actualizarTarjeta( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )
+        
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        })
+
 export default app;
 

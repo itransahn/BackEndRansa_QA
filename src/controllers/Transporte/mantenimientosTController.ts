@@ -26,7 +26,8 @@ export default class mantenimientoT{
                         modelos     : respuesta.data.Table8,
                         toneladas   : respuesta.data.Table9,
                         colores     : respuesta.data.Table10,
-                        metrajes     : respuesta.data.Table11,
+                        metrajes    : respuesta.data.Table11,
+                        motivos     : respuesta.data.Table12
 
                 }
             }else{

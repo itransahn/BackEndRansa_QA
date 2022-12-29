@@ -72,4 +72,74 @@ app.post('/EstadoCamiones', (req, res) => {
         }
     }));
 });
+/* Documentos Motoristas */
+app.post('/documentosMotorista', (req, res) => {
+    let mot = new motoristasController_1.default();
+    let params = req.body;
+    mot.cargarDocumentos(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Insert Documentos Motoristas */
+app.put('/InsAntecedente', (req, res) => {
+    let mot = new motoristasController_1.default();
+    let params = req.body;
+    mot.InsertarAntecedente(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Actualizar Documentos Motoristas */
+app.put('/updAntecedente', (req, res) => {
+    let mot = new motoristasController_1.default();
+    let params = req.body;
+    mot.actualizarAntecedente(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Insert Documentos Motoristas */
+app.put('/InsTarjeta', (req, res) => {
+    let mot = new motoristasController_1.default();
+    let params = req.body;
+    mot.InsertarTarjeta(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Insert Documentos Motoristas */
+app.put('/updTarjeta', (req, res) => {
+    let mot = new motoristasController_1.default();
+    let params = req.body;
+    mot.actualizarTarjeta(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;
