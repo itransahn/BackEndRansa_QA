@@ -2,15 +2,22 @@
 import index from './routes/indexRoutes';
 import bodyParser from 'body-parser';
 import { Request, Response, NextFunction } from 'express';
-
+import dotenv from 'dotenv';
 import cors from 'cors';
 import http from 'http';
-
-// if( process.env.NODE_ENV != 'production'){
-//     require('dotenv').config()
-// }
-
 import express from 'express';
+import path from 'path';
+
+if( process.env.NODE_ENV != 'production'){
+    require('dotenv').config();
+}
+
+
+dotenv.config({
+    path: path.resolve(__dirname, process.env.NODE_ENV + '.env')
+  });
+
+  console.log( path.resolve(__dirname, process.env.NODE_ENV + '.env'))
 
 const app: express.Application = express();
 
@@ -40,8 +47,7 @@ app.use((req, res, next) => {
 
 //usar las rutas
 app.use("/apiRansa/",index);
-
-const port: any = process.env.PORT || 3000;
+const port: any = process.env.PORT;
 
 // app.use((req, res, next) => {
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -55,6 +61,6 @@ app.use(cors());
 
 //server listening 
 app.listen(port, () => {
-    console.log(`corriendo en el puerto ${port}`);
+    console.log(`corriendo en ambiente ${ process.env.NODE_ENV }`);
 });
 

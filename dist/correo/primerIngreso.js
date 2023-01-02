@@ -6,6 +6,7 @@ class formato {
         this.urlLo = 'http://localhost:4200';
         this.urlSer = 'http://10.130.65.146:4200';
     }
+    // public env : process.env.Server;
     mensajePropio(data) {
         this.mensajeP = `
         <!DOCTYPE html>

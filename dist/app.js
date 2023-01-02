@@ -5,11 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
-// if( process.env.NODE_ENV != 'production'){
-//     require('dotenv').config()
-// }
 const express_1 = __importDefault(require("express"));
+const path_1 = __importDefault(require("path"));
+if (process.env.NODE_ENV != 'production') {
+    require('dotenv').config();
+}
+dotenv_1.default.config({
+    path: path_1.default.resolve(__dirname, process.env.NODE_ENV + '.env')
+});
+console.log(path_1.default.resolve(__dirname, process.env.NODE_ENV + '.env'));
 const app = (0, express_1.default)();
 //usar el parseo de json
 app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -33,7 +39,7 @@ app.use((req, res, next) => {
 });
 //usar las rutas
 app.use("/apiRansa/", indexRoutes_1.default);
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 // app.use((req, res, next) => {
 //     res.header("Access-Control-Allow-Origin", "*");
 //     res.header("Access-Control-Allow-Methods", "GET , PUT , POST , DELETE, OPTIONS");
@@ -44,5 +50,5 @@ const port = process.env.PORT || 3000;
 app.use((0, cors_1.default)());
 //server listening 
 app.listen(port, () => {
-    console.log(`corriendo en el puerto ${port}`);
+    console.log(`corriendo en ambiente ${process.env.NODE_ENV}`);
 });
