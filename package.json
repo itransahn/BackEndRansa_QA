@@ -6,9 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon ./dist/app.js",
-
-        "dev":  "set NODE_ENV=development&& nodemon ./dist/app.js",
-        "dev2":  "set NODE_ENV=development2&& nodemon ./dist/app.js",
+        "dev": "set NODE_ENV=development&& nodemon ./dist/app.js",
+        "dev2": "set NODE_ENV=development2&& nodemon ./dist/app.js",
         "prod": "set NODE_ENV=prd&&  nodemon ./dist/app.js"
     },
     "author": "",

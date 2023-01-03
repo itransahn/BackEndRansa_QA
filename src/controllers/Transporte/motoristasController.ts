@@ -298,20 +298,17 @@ async actualizarAntecedente( parametros ?: any){
                             valor    : parametros.detalleAntecedentes
                         },
                         {
-                            parametro: 'tipo',
-                            valor    : parametros.tipo
+                            parametro: 'tipoD',
+                            valor    : parametros.tipoD
                         },
                     ]
                 }
-            let respuesta : any = await conexionSql.Ejecutar('sp_insertAntecedentesMot')
+            let respuesta : any = await conexionSql.Ejecutar('sp_update_Antecedentes')
                 if( !respuesta.hasError  ){
                     return {
-                        // data   : respuesta.data,
-                        // errors : respuesta.errors,
-                        // hasError : respuesta.hasError
-                        antecedentesPenales    : respuesta.data.Table0,
-                        antecedentesPoliciales : respuesta.data.Table1,
-                        tarjetaSalud           : respuesta.data.Table2
+                        data   : respuesta.data,
+                        errors : respuesta.errors,
+                        hasError : respuesta.hasError
                     }
                 }else{
                     return respuesta

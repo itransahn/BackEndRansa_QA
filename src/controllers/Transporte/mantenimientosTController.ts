@@ -128,7 +128,6 @@ export default class mantenimientoT{
                 }
              }
 
-
                /* Insertar Clientes para transportes */ 
             async insertarClientesTransportes( parametros ?: any){
                 try{
