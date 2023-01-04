@@ -31,7 +31,7 @@ app.get('/transportes', (req, res) => {
     }));
 });
 /* insertar Transportes */
-app.post('/Instransportes', (req, res) => {
+app.put('/Instransportes', (req, res) => {
     let trans = new transportesController_1.default();
     let params = req.body;
     trans.insertarTransporte(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {

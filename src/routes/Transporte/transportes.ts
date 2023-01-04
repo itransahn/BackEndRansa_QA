@@ -24,7 +24,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
     
            /* insertar Transportes */
-    app.post('/Instransportes' ,  (req: Request, res:Response)=>{
+    app.put('/Instransportes' ,  (req: Request, res:Response)=>{
         let trans = new transportes();
         let params = req.body;
         trans.insertarTransporte( params ).then(async (respuesta: any) => {
