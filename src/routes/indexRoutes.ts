@@ -28,7 +28,8 @@ import menus          from './Administración/menus';
 import mantenimientos from './Administración/mantenimientos';
 
 //Finanzas
-import finanzas from './finanzas/finanzas'
+import finanzas from './finanzas/finanzas';
+import retencion from './finanzas/retenciones';
 //Fleje
 
 import fleje from './Operaciones/Fleje/Fleje';
@@ -71,7 +72,7 @@ app.use('/operaciones', asignacion, fleje)
 app.use('/rrhh', credito, dolar);
 
 //Finanzas
-app.use('/finanzas', finanzas)
+app.use('/finanzas', finanzas, retencion )
 
 //Transporte
 app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid)
