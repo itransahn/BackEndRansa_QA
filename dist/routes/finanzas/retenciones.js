@@ -58,7 +58,7 @@ app.put('/Aproveedores', (req, res) => {
     }));
 });
 /* Actualizar Proveedor */
-app.post('/Eproveedores', (req, res) => {
+app.put('/Eproveedores', (req, res) => {
     let ret = new retenciones_1.default();
     let params = req.body;
     ret.actualizarEstadoProveedor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {

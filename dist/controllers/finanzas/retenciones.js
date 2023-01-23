@@ -362,6 +362,10 @@ class retenciones {
                         {
                             parametro: 'retencion',
                             valor: parametros.retencion
+                        },
+                        {
+                            parametro: 'tipoR',
+                            valor: parametros.tipoR
                         }
                     ];
                     let respuesta = yield conexionSql.Ejecutar('sp_cambiarestadoRetencion');

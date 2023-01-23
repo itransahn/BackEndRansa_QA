@@ -51,7 +51,7 @@ app.put('/Aproveedores', (req: Request, res:Response)=>{
     })
 
         /* Actualizar Proveedor */
-app.post('/Eproveedores', (req: Request, res:Response)=>{
+app.put('/Eproveedores', (req: Request, res:Response)=>{
     let ret = new retenciones()
         let params = req.body;
          ret.actualizarEstadoProveedor( params ).then(async (respuesta: any) => {

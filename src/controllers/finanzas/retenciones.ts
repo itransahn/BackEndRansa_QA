@@ -326,6 +326,10 @@ export default class retenciones{
                   {
                     parametro : 'retencion',
                     valor     : parametros.retencion
+                  },
+                  {
+                    parametro : 'tipoR',
+                    valor     : parametros.tipoR
                   }
                 ]
               let respuesta : any = await conexionSql.Ejecutar('sp_cambiarestadoRetencion');
