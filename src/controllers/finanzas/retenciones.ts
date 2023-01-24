@@ -41,6 +41,10 @@ export default class retenciones{
                     parametro : 'rtn',
                     valor : parametros.rtn
                   },
+                  {
+                    parametro : 'sede',
+                    valor : parametros.sede
+                  },
                  ]
          }
          let respuesta: any = await conexionSql.Ejecutar(`sp_insertProveedorF`);
@@ -75,6 +79,10 @@ export default class retenciones{
                   {
                     parametro : 'rtn',
                     valor : parametros.rtn
+                  },
+                  {
+                    parametro : 'sede',
+                    valor : parametros.sede
                   },
                  ]
          }

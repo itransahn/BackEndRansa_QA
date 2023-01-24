@@ -57,6 +57,10 @@ class retenciones {
                             parametro: 'rtn',
                             valor: parametros.rtn
                         },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        },
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_insertProveedorF`);
@@ -94,6 +98,10 @@ class retenciones {
                         {
                             parametro: 'rtn',
                             valor: parametros.rtn
+                        },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
                         },
                     ];
                 }
