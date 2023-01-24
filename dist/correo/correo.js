@@ -10,7 +10,7 @@ class EnviarEmail {
     constructor() {
         // private cuentaCorreo : string = 'soporteintelsahn@gmail.com';
         this.cuentaCorreo = 'rtnowhn@gmail.com';
-        this.cuentaCorOut = 'mvelasquezb@ransa.net';
+        this.cuentaCorOut = 'ITRansaHN@ransa.net';
         // private cuentaCorreo : string = 'rtnow@ransa.net';
         this.contraCorreo = 'f re t c q sol mi q una f f t j k sol _';
         // private contraCorreo : string = 'Intelsa.123'
@@ -64,7 +64,7 @@ class EnviarEmail {
                     },
                     auth: {
                         user: this.cuentaCorOut,
-                        pass: 'Jogabonito@8778'
+                        pass: 'R4ns4Adm1nistr4ad0r.1T'
                     }
                 });
                 // let mensajeUsuario: any;

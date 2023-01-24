@@ -5,7 +5,7 @@ import recuperacion from './recuperacionP';
 export default class EnviarEmail{
     // private cuentaCorreo : string = 'soporteintelsahn@gmail.com';
     private cuentaCorreo : string = 'rtnowhn@gmail.com';
-    private cuentaCorOut : string = 'mvelasquezb@ransa.net';
+    private cuentaCorOut : string = 'ITRansaHN@ransa.net';
 
     // private cuentaCorreo : string = 'rtnow@ransa.net';
     private contraCorreo : string = 'f re t c q sol mi q una f f t j k sol _';
@@ -62,7 +62,7 @@ export default class EnviarEmail{
             },
             auth : {
                 user : this.cuentaCorOut ,
-                pass :'Jogabonito@8778'
+                pass :'R4ns4Adm1nistr4ad0r.1T'
             }
             });
 
