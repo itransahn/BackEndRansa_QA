@@ -194,6 +194,10 @@ class retenciones {
                         {
                             parametro: 'cai',
                             valor: parametros.cai
+                        },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
                         }
                     ];
                 }
@@ -236,6 +240,10 @@ class retenciones {
                         {
                             parametro: 'mes',
                             valor: parametros.mes
+                        },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
                         }
                     ];
                     let respuesta = yield conexionSql.Ejecutar('sp_verRetenciones');

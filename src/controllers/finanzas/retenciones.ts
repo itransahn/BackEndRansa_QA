@@ -170,6 +170,10 @@ export default class retenciones{
                    {
                     parametro : 'cai',
                     valor : parametros.cai
+                   },
+                    {
+                    parametro : 'sede',
+                    valor : parametros.sede
                    } 
                  ]
          }
@@ -209,6 +213,10 @@ export default class retenciones{
                 {
                   parametro : 'mes',
                   valor     : parametros.mes
+                },
+                {
+                  parametro : 'sede',
+                  valor     : parametros.sede
                 }
               ]
             let respuesta : any = await conexionSql.Ejecutar('sp_verRetenciones');
