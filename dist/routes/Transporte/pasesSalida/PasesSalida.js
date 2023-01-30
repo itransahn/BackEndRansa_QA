@@ -100,4 +100,32 @@ app.get('/paseSalidaH', (req, res) => {
         }
     }));
 });
+/* Pases de Salida Estandar*/
+app.get('/paseSalidaE', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.cargarPasesSalidaEstandar(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Pases de Salida Estandar*/
+app.put('/paseSalidaE', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.insertarPasesSalidaEstandar(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;

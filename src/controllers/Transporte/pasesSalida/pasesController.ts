@@ -205,4 +205,80 @@ export default class pasesSalida{
             }
          }
 
+
+          /* Pases salida Estandar */ 
+ async cargarPasesSalidaEstandar( parametros ?: any){
+    try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [ ]
+            }
+        let respuesta : any = await conexionSql.Ejecutar('SP_cargarPasesEstandar')
+            if( !respuesta.hasError  ){
+                return {
+                    data     : respuesta.data,
+                    errors   : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+
+          /* Pases salida  */ 
+ async insertarPasesSalidaEstandar( parametros ?: any){
+            try{
+                        let conexionSql = new DbHelper();
+                    if ( parametros ){
+                        conexionSql.parametros = [
+                            {
+                                parametro : 'fechaSalida',
+                                valor     : parametros.fechaSalida
+                            },
+                            {
+                                parametro : 'horaSalida',
+                                valor     : parametros.horaSalida
+                            },
+                            {
+                                parametro : 'usuarioCreador',
+                                valor     : parametros.usuarioCreador
+                            },
+                            {
+                                parametro : 'nombrePersona',
+                                valor     : parametros.nombrePersona
+                            },
+                            {
+                                parametro : 'contenido',
+                                valor     : parametros.contenido
+                            },
+                            {
+                                parametro : 'identidad',
+                                valor     : parametros.identidad
+                            },
+                            {
+                                parametro : 'placa',
+                                valor     : parametros.placa
+                            }
+
+                         ]
+                    }
+                let respuesta : any = await conexionSql.Ejecutar('sp_inserPaseEstandar')
+                    if( !respuesta.hasError  ){
+                        return {
+                            data     : respuesta.data,
+                            errors   : respuesta.errors,
+                            hasError : respuesta.hasError
+                        }
+                    }else{
+                        return respuesta
+                    }
+                    }catch( error){
+                        errorMensaje(error)
+                    }
+                 }
+
+
 }

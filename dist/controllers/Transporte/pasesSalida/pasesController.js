@@ -232,5 +232,84 @@ class pasesSalida {
             }
         });
     }
+    /* Pases salida Estandar */
+    cargarPasesSalidaEstandar(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar('SP_cargarPasesEstandar');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Pases salida  */
+    insertarPasesSalidaEstandar(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'fechaSalida',
+                            valor: parametros.fechaSalida
+                        },
+                        {
+                            parametro: 'horaSalida',
+                            valor: parametros.horaSalida
+                        },
+                        {
+                            parametro: 'usuarioCreador',
+                            valor: parametros.usuarioCreador
+                        },
+                        {
+                            parametro: 'nombrePersona',
+                            valor: parametros.nombrePersona
+                        },
+                        {
+                            parametro: 'contenido',
+                            valor: parametros.contenido
+                        },
+                        {
+                            parametro: 'identidad',
+                            valor: parametros.identidad
+                        },
+                        {
+                            parametro: 'placa',
+                            valor: parametros.placa
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_inserPaseEstandar');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
 }
 exports.default = pasesSalida;
