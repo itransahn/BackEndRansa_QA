@@ -102,7 +102,14 @@ export default class pasesSalida{
                 parametro : 'idPase',
                 valor     : parametros.idPase
             },
-
+            {
+                parametro : 'tipo',
+                valor     : parametros.tipo
+            },
+            {
+                parametro : 'motivo',
+                valor     : parametros.motivo
+            },
          ]
     }
     let respuesta : any = await conexionSql.Ejecutar('sp_aprobarPaseSalida')
@@ -129,9 +136,17 @@ export default class pasesSalida{
                 parametro : 'idPase',
                 valor     : parametros.idPase
             },
+            {
+                parametro : 'usuario',
+                valor     : parametros.usuario
+            },
+            {
+                parametro : 'tipo',
+                valor     : parametros.tipo
+            },
          ]
     }
-    let respuesta : any = await conexionSql.Ejecutar('sp_eliminarPaseSalida')
+    let respuesta : any = await conexionSql.Ejecutar('sp_eliminarPaseSalida');
     if( !respuesta.hasError  ){
         return {
             data     : respuesta.data,
@@ -280,5 +295,56 @@ export default class pasesSalida{
                     }
                  }
 
+          /* Eliminar Pases salida  */ 
+async eliminarPasesSalidaEstandar( parametros ?: any){
+            try{
+                        let conexionSql = new DbHelper();
+                    if ( parametros ){
+                        conexionSql.parametros = [
+                            {
+                                parametro : 'idPase',
+                                valor     : parametros.idPase
+                            },
+                            {
+                                parametro : 'idUsuario',
+                                valor     : parametros.idUsuario
+                            }
+                         ]
+                    }
+                let respuesta : any = await conexionSql.Ejecutar('sp_deletePaseEstandar')
+                    if( !respuesta.hasError  ){
+                        return {
+                            data     : respuesta.data,
+                            errors   : respuesta.errors,
+                            hasError : respuesta.hasError
+                        }
+                    }else{
+                        return respuesta
+                    }
+                    }catch( error){
+                        errorMensaje(error)
+                    }
+                 }
 
+          /* Eliminar Pases salida  */ 
+async PaseSalidaPorton( parametros ?: any){
+            try{
+                    let conexionSql = new DbHelper();
+                    if ( parametros ){
+                        conexionSql.parametros = [  ]
+                    }
+                let respuesta : any = await conexionSql.Ejecutar('sp_pasesSalidaPorton')
+                    if( !respuesta.hasError  ){
+                        return {
+                            data     : respuesta.data,
+                            errors   : respuesta.errors,
+                            hasError : respuesta.hasError
+                        }
+                    }else{
+                        return respuesta
+                    }
+                    }catch( error){
+                        errorMensaje(error)
+                    }
+                 }
 }

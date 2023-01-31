@@ -62,11 +62,11 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
        });
  }); 
 
-          /* Aprobar Pases de Salida */
+          /* Eliminar Pases de Salida */
     app.delete('/EliminarpaseSalida' ,  (req: Request, res:Response)=>{
     let ps = new pasesSalida();
     let params = req.body;
-    ps.AprobarPaseSalida( params ).then(async (respuesta: any) => {
+    ps.EliminarPaseSalida( params ).then(async (respuesta: any) => {
     const result:  dataApi = await respuesta;
         if(!result.hasError){
         return res.status(200).send( respuesta )
@@ -119,4 +119,31 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
             });
       }); 
 
+
+                             /* Eliminar Pases de Salida Estandar*/
+    app.delete('/paseSalidaE' ,  (req: Request, res:Response)=>{
+        let ps = new pasesSalida();
+        let params = req.body;
+        ps.eliminarPasesSalidaEstandar( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+            return res.status(200).send( respuesta )
+            }else{
+            return res.status(400).send(result)
+            }
+            });
+      }); 
+
+    app.get('/paseSalidaPorton' ,  (req: Request, res:Response)=>{
+        let ps = new pasesSalida();
+        let params = req.body;
+        ps.PaseSalidaPorton( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+            return res.status(200).send( respuesta )
+            }else{
+            return res.status(400).send(result)
+            }
+            });
+      }); 
 export default app;

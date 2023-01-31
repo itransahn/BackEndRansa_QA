@@ -72,11 +72,11 @@ app.put('/AprobarpaseSalida', (req, res) => {
         }
     }));
 });
-/* Aprobar Pases de Salida */
+/* Eliminar Pases de Salida */
 app.delete('/EliminarpaseSalida', (req, res) => {
     let ps = new pasesController_1.default();
     let params = req.body;
-    ps.AprobarPaseSalida(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    ps.EliminarPaseSalida(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);
@@ -119,6 +119,33 @@ app.put('/paseSalidaE', (req, res) => {
     let ps = new pasesController_1.default();
     let params = req.body;
     ps.insertarPasesSalidaEstandar(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Eliminar Pases de Salida Estandar*/
+app.delete('/paseSalidaE', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.eliminarPasesSalidaEstandar(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+app.get('/paseSalidaPorton', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.PaseSalidaPorton(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);

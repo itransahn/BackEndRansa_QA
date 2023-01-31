@@ -119,6 +119,14 @@ class pasesSalida {
                             parametro: 'idPase',
                             valor: parametros.idPase
                         },
+                        {
+                            parametro: 'tipo',
+                            valor: parametros.tipo
+                        },
+                        {
+                            parametro: 'motivo',
+                            valor: parametros.motivo
+                        },
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_aprobarPaseSalida');
@@ -148,6 +156,14 @@ class pasesSalida {
                         {
                             parametro: 'idPase',
                             valor: parametros.idPase
+                        },
+                        {
+                            parametro: 'usuario',
+                            valor: parametros.usuario
+                        },
+                        {
+                            parametro: 'tipo',
+                            valor: parametros.tipo
                         },
                     ];
                 }
@@ -295,6 +311,65 @@ class pasesSalida {
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_inserPaseEstandar');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Eliminar Pases salida  */
+    eliminarPasesSalidaEstandar(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idPase',
+                            valor: parametros.idPase
+                        },
+                        {
+                            parametro: 'idUsuario',
+                            valor: parametros.idUsuario
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_deletePaseEstandar');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Eliminar Pases salida  */
+    PaseSalidaPorton(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_pasesSalidaPorton');
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
