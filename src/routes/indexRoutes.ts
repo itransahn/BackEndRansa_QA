@@ -37,14 +37,18 @@ import fleje from './Operaciones/Fleje/Fleje';
     //Transporte
 import transporte from './Transporte/transportes';
 import pasesSalid from './Transporte/pasesSalida/PasesSalida';
-    //Camiones
+         //Camiones
 import camiones from './Transporte/camiones';
-    //Motoristas
+         //Motoristas
 import motoristas from './Transporte/motoristas';
-    //Permisos 
+         //Permisos 
 import permisosT from './Transporte/permisos';
-    //Mantenimientos Transporte
+         //Mantenimientos Transporte
 import mantenimientoT from './Transporte/mantenimientosT';
+             //Recibo
+import recibos from './Transporte/recibos';  
+
+
 
 //const index = express();
 
@@ -75,7 +79,7 @@ app.use('/rrhh', credito, dolar);
 app.use('/finanzas', finanzas, retencion )
 
 //Transporte
-app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid)
+app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid, recibos )
 
 export default app;
 
