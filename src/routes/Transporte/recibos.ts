@@ -83,5 +83,19 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         });
         })
     
+            /* Catálogo de recibos */
+    app.post('/catalogoRec' ,  (req: Request, res:Response)=>{
+        let mot = new permisosT();
+        let params = req.body;
+        mot.catalogoRecibos( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )
+        
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        })
 export default app;
 

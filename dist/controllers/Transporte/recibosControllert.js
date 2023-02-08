@@ -148,7 +148,7 @@ class recibos {
                         }
                     ];
                 }
-                let respuesta = yield conexionSql.Ejecutar('sp_crearRecibo');
+                let respuesta = yield conexionSql.Ejecutar('sp_updateRecibo');
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
@@ -259,6 +259,42 @@ class recibos {
                         data: respuesta.data,
                         errors: respuesta.errors,
                         hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Ver recibos por Fecha  */
+    catalogoRecibos(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_catalogoRecibos');
+                if (!respuesta.hasError) {
+                    return {
+                        clientes: respuesta.data.Table0,
+                        transportes: respuesta.data.Table1,
+                        personas: respuesta.data.Table2,
+                        placasPersonas: respuesta.data.Table3,
+                        camiones: respuesta.data.Table4,
+                        proveedoresC: respuesta.data.Table5,
+                        tiposC: respuesta.data.Table6,
+                        ccoT: respuesta.data.Table7,
+                        ccoE: respuesta.data.Table8,
                     };
                 }
                 else {

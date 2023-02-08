@@ -136,7 +136,7 @@ export default class recibos{
              ]
         }
 
-        let respuesta : any = await conexionSql.Ejecutar('sp_crearRecibo')
+        let respuesta : any = await conexionSql.Ejecutar('sp_updateRecibo')
         if( !respuesta.hasError  ){
             return {
                 data   : respuesta.data,
@@ -244,6 +244,42 @@ export default class recibos{
             data   : respuesta.data,
             errors : respuesta.errors,
             hasError : respuesta.hasError
+        }
+    }else{
+        return respuesta
+    }
+
+    }catch( error){
+        errorMensaje(error)
+    }
+ } 
+
+     /* Ver recibos por Fecha  */
+     async catalogoRecibos( parametros ?: any){
+        try{
+        let conexionSql = new DbHelper();
+    if ( parametros ){
+        conexionSql.parametros = [ 
+            {
+                parametro : 'sede',
+                valor     : parametros.sede
+            },
+         ]
+    }
+
+    let respuesta : any = await conexionSql.Ejecutar('sp_catalogoRecibos')
+    if( !respuesta.hasError  ){
+        return {
+          clientes       : respuesta.data.Table0,
+          transportes    : respuesta.data.Table1,
+          personas       : respuesta.data.Table2,
+          placasPersonas : respuesta.data.Table3,
+          camiones       : respuesta.data.Table4,
+          proveedoresC   : respuesta.data.Table5,
+          tiposC         : respuesta.data.Table6,
+          ccoT           : respuesta.data.Table7,
+          ccoE           : respuesta.data.Table8,
+
         }
     }else{
         return respuesta
