@@ -290,4 +290,42 @@ export default class recibos{
     }
  } 
 
+  /* Cerrar Recibo */ 
+  async anularRecibo( parametros ?: any){
+    try{
+    let conexionSql = new DbHelper();
+if ( parametros ){
+    conexionSql.parametros = [ 
+        {
+            parametro : 'idRecibo',
+            valor     : parametros.idRecibo
+        },
+        {
+            parametro : 'recibo',
+            valor     : parametros.recibo
+        },
+        {
+            parametro : 'usuario',
+            valor     : parametros.usuario
+        }
+     ]
+}
+
+let respuesta : any = await conexionSql.Ejecutar('sp_anularRecibo')
+if( !respuesta.hasError  ){
+    return {
+        data   : respuesta.data,
+        errors : respuesta.errors,
+        hasError : respuesta.hasError
+    }
+}else{
+    return respuesta
+}
+
+}catch( error){
+    errorMensaje(error)
+}
+} 
+
+
 }

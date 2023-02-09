@@ -73,6 +73,20 @@ app.put('/Updrecibos', (req, res) => {
     }));
 });
 /* actualizar Recibos*/
+app.post('/anularRecibo', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.anularRecibo(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* actualizar Recibos*/
 app.put('/Closerecibos', (req, res) => {
     let mot = new recibosControllert_1.default();
     let params = req.body;

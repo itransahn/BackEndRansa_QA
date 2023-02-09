@@ -67,7 +67,20 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
             }
             });
             })
-
+          /* actualizar Recibos*/
+    app.post('/anularRecibo' ,  (req: Request, res:Response)=>{
+            let mot = new permisosT();
+            let params = req.body;
+            mot.anularRecibo( params ).then(async (respuesta: any) => {
+            const result:  dataApi = await respuesta;
+            if(!result.hasError){
+                return res.status(200).send( respuesta )
+            
+            }else{
+                return res.status(400).send(result)
+            }
+            });
+            })
 
                       /* actualizar Recibos*/
     app.put('/Closerecibos' ,  (req: Request, res:Response)=>{
