@@ -83,7 +83,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
             })
 
                       /* actualizar Recibos*/
-    app.put('/Closerecibos' ,  (req: Request, res:Response)=>{
+    app.put('/Cerrarrecibos' ,  (req: Request, res:Response)=>{
         let mot = new permisosT();
         let params = req.body;
         mot.CerrarRecibo( params ).then(async (respuesta: any) => {

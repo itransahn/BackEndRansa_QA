@@ -87,7 +87,7 @@ app.post('/anularRecibo', (req, res) => {
     }));
 });
 /* actualizar Recibos*/
-app.put('/Closerecibos', (req, res) => {
+app.put('/Cerrarrecibos', (req, res) => {
     let mot = new recibosControllert_1.default();
     let params = req.body;
     mot.CerrarRecibo(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
