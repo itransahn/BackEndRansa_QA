@@ -110,5 +110,48 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         }
         });
         })
+
+            /* Catálogo de recibos */
+    app.post('/recibosCerrados' ,  (req: Request, res:Response)=>{
+                let mot = new permisosT();
+                let params = req.body;
+                mot.reciboCerrados( params ).then(async (respuesta: any) => {
+                const result:  dataApi = await respuesta;
+                if(!result.hasError){
+                    return res.status(200).send( respuesta )
+                
+                }else{
+                    return res.status(400).send(result)
+                }
+                });
+                })
+                /* Catálogo de recibos */
+    app.post('/recibosaCerrar' ,  (req: Request, res:Response)=>{
+                    let mot = new permisosT();
+                    let params = req.body;
+                    mot.reciboAcerrar( params ).then(async (respuesta: any) => {
+                    const result:  dataApi = await respuesta;
+                    if(!result.hasError){
+                        return res.status(200).send( respuesta )
+                    
+                    }else{
+                        return res.status(400).send(result)
+                    }
+                    });
+                    })
+                    /* Cancelar recibo */
+    app.post('/cancelarRecibo' ,  (req: Request, res:Response)=>{
+                        let mot = new permisosT();
+                        let params = req.body;
+                        mot.cancelarRecibo( params ).then(async (respuesta: any) => {
+                        const result:  dataApi = await respuesta;
+                        if(!result.hasError){
+                            return res.status(200).send( respuesta )
+                        
+                        }else{
+                            return res.status(400).send(result)
+                        }
+                        });
+                        })
 export default app;
 

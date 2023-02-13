@@ -114,4 +114,46 @@ app.post('/catalogoRec', (req, res) => {
         }
     }));
 });
+/* Catálogo de recibos */
+app.post('/recibosCerrados', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.reciboCerrados(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Catálogo de recibos */
+app.post('/recibosaCerrar', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.reciboAcerrar(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Cancelar recibo */
+app.post('/cancelarRecibo', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.cancelarRecibo(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;

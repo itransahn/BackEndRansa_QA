@@ -181,7 +181,7 @@ export default class recibos{
          ]
     }
 
-    let respuesta : any = await conexionSql.Ejecutar('sp_crearRecibo')
+    let respuesta : any = await conexionSql.Ejecutar('sp_cerrarRecibo')
     if( !respuesta.hasError  ){
         return {
             data   : respuesta.data,
@@ -312,6 +312,103 @@ if ( parametros ){
 }
 
 let respuesta : any = await conexionSql.Ejecutar('sp_anularRecibo')
+if( !respuesta.hasError  ){
+    return {
+        data   : respuesta.data,
+        errors : respuesta.errors,
+        hasError : respuesta.hasError
+    }
+}else{
+    return respuesta
+}
+
+}catch( error){
+    errorMensaje(error)
+}
+} 
+
+  /* Recibos Cerrados  */ 
+  async reciboCerrados( parametros ?: any){
+    try{
+    let conexionSql = new DbHelper();
+if ( parametros ){
+    conexionSql.parametros = [ 
+        {
+            parametro : 'desde',
+            valor     : parametros.desde
+        },
+        {
+            parametro : 'hasta',
+            valor     : parametros.hasta
+        },
+     ]
+}
+let respuesta : any = await conexionSql.Ejecutar('sp_recFacPro')
+if( !respuesta.hasError  ){
+    return {
+        data   : respuesta.data,
+        errors : respuesta.errors,
+        hasError : respuesta.hasError
+    }
+}else{
+    return respuesta
+}
+
+}catch( error){
+    errorMensaje(error)
+}
+} 
+
+  /* Recibos Cerrados  */ 
+  async reciboAcerrar( parametros ?: any){
+    try{
+    let conexionSql = new DbHelper();
+if ( parametros ){
+    conexionSql.parametros = [
+            {
+                parametro : 'sede',
+                valor     : parametros.sede
+            }
+      ]
+}
+let respuesta : any = await conexionSql.Ejecutar('sp_recFacProFact')
+if( !respuesta.hasError  ){
+    return {
+        data   : respuesta.data,
+        errors : respuesta.errors,
+        hasError : respuesta.hasError
+    }
+}else{
+    return respuesta
+}
+
+}catch( error){
+    errorMensaje(error)
+}
+} 
+
+
+  /* Cancelar Recibo  */ 
+  async cancelarRecibo( parametros ?: any){
+    try{
+    let conexionSql = new DbHelper();
+if ( parametros ){
+    conexionSql.parametros = [
+            {
+                parametro : 'idRecibo',
+                valor     : parametros.idRecibo
+            },
+            {
+                parametro : 'cancelado',
+                valor     : parametros.cancelado
+            },
+            {
+                parametro : 'usuario',
+                valor     : parametros.usuario
+            }
+      ]
+}
+let respuesta : any = await conexionSql.Ejecutar('sp_cancelarRecibos')
 if( !respuesta.hasError  ){
     return {
         data   : respuesta.data,

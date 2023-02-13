@@ -194,7 +194,7 @@ class recibos {
                         }
                     ];
                 }
-                let respuesta = yield conexionSql.Ejecutar('sp_crearRecibo');
+                let respuesta = yield conexionSql.Ejecutar('sp_cerrarRecibo');
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
@@ -328,6 +328,108 @@ class recibos {
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_anularRecibo');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Recibos Cerrados  */
+    reciboCerrados(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'desde',
+                            valor: parametros.desde
+                        },
+                        {
+                            parametro: 'hasta',
+                            valor: parametros.hasta
+                        },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_recFacPro');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Recibos Cerrados  */
+    reciboAcerrar(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_recFacProFact');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Cancelar Recibo  */
+    cancelarRecibo(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idRecibo',
+                            valor: parametros.idRecibo
+                        },
+                        {
+                            parametro: 'cancelado',
+                            valor: parametros.cancelado
+                        },
+                        {
+                            parametro: 'usuario',
+                            valor: parametros.usuario
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_cancelarRecibos');
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
