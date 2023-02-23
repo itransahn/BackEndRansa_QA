@@ -386,5 +386,160 @@ class pasesSalida {
             }
         });
     }
+    /* Pases salida FINANZAS */
+    cargarPasesSalidaFinanzas(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_verpasesFinanzas');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* INSERTAR Pases salida  FINANZAS*/
+    insertarPasesSalidaFinanzas(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'fechaSalida',
+                            valor: parametros.fechaSalida
+                        },
+                        {
+                            parametro: 'horaSalida',
+                            valor: parametros.horaSalida
+                        },
+                        {
+                            parametro: 'usuarioCreador',
+                            valor: parametros.usuarioCreador
+                        },
+                        {
+                            parametro: 'nombrePersona',
+                            valor: parametros.nombrePersona
+                        },
+                        {
+                            parametro: 'contenido',
+                            valor: parametros.contenido
+                        },
+                        {
+                            parametro: 'identidad',
+                            valor: parametros.identidad
+                        },
+                        {
+                            parametro: 'placa',
+                            valor: parametros.placa
+                        },
+                        {
+                            parametro: 'valorSa',
+                            valor: parametros.valorSa
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_inserPaseFinanzas');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Eliminar Pases salida  FINANZAS*/
+    eliminarPasesSalidaFinanzas(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idPase',
+                            valor: parametros.idPase
+                        },
+                        {
+                            parametro: 'usuario',
+                            valor: parametros.usuario
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_deletePaseEstandar');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Eliminar Pases salida  FINANZAS*/
+    aprobarPasesSalidaFinanzas(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idPase',
+                            valor: parametros.idPase
+                        },
+                        {
+                            parametro: 'usuario',
+                            valor: parametros.usuario
+                        },
+                        {
+                            parametro: 'accion',
+                            valor: parametros.accion
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_deletePaseEstandar');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
 }
 exports.default = pasesSalida;

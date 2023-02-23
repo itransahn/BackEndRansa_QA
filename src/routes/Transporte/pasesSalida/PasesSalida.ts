@@ -104,7 +104,6 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
             });
       }); 
 
-
                         /* Pases de Salida Estandar*/
     app.put('/paseSalidaE' ,  (req: Request, res:Response)=>{
         let ps = new pasesSalida();
@@ -118,7 +117,6 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
             }
             });
       }); 
-
 
                              /* Eliminar Pases de Salida Estandar*/
     app.delete('/paseSalidaE' ,  (req: Request, res:Response)=>{
@@ -146,4 +144,63 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
             }
             });
       }); 
+
+/* PASES DE SALIDA FINANZAS */
+     /* Pases de Salida FINANZAS*/
+     app.get('/paseSalidaf' ,  (req: Request, res:Response)=>{
+        let ps = new pasesSalida();
+        let params = req.body;
+        ps.cargarPasesSalidaFinanzas( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+            return res.status(200).send( respuesta )
+            }else{
+            return res.status(400).send(result)
+            }
+            });
+      }); 
+
+                        /* Pases de Salida FINANZAS*/
+    app.put('/paseSalidaf' ,  (req: Request, res:Response)=>{
+        let ps = new pasesSalida();
+        let params = req.body;
+        ps.insertarPasesSalidaFinanzas( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+            return res.status(200).send( respuesta )
+            }else{
+            return res.status(400).send(result)
+            }
+            });
+      }); 
+
+                             /* Eliminar Pases de Salida FINANZAS*/
+    app.delete('/paseSalidaf' ,  (req: Request, res:Response)=>{
+        let ps = new pasesSalida();
+        let params = req.body;
+        ps.eliminarPasesSalidaFinanzas( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+            return res.status(200).send( respuesta )
+            }else{
+            return res.status(400).send(result)
+            }
+            });
+      }); 
+
+                             /* Eliminar Pases de Salida FINANZAS*/
+    app.put('/ApaseSalidaf' ,  (req: Request, res:Response)=>{
+        let ps = new pasesSalida();
+        let params = req.body;
+        ps.aprobarPasesSalidaFinanzas( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+            return res.status(200).send( respuesta )
+            }else{
+            return res.status(400).send(result)
+            }
+            });
+      }); 
+
+
 export default app;

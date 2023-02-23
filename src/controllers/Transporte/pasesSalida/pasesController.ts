@@ -220,7 +220,6 @@ export default class pasesSalida{
             }
          }
 
-
           /* Pases salida Estandar */ 
  async cargarPasesSalidaEstandar( parametros ?: any){
     try{
@@ -347,4 +346,150 @@ async PaseSalidaPorton( parametros ?: any){
                         errorMensaje(error)
                     }
                  }
+
+
+                /* Pases salida FINANZAS */ 
+ async cargarPasesSalidaFinanzas( parametros ?: any){
+    try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [ ]
+            }
+        let respuesta : any = await conexionSql.Ejecutar('sp_verpasesFinanzas')
+            if( !respuesta.hasError  ){
+                return {
+                    data     : respuesta.data,
+                    errors   : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }       
+         
+            /* INSERTAR Pases salida  FINANZAS*/ 
+ async insertarPasesSalidaFinanzas( parametros ?: any){
+    try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [
+                    {
+                        parametro : 'fechaSalida',
+                        valor     : parametros.fechaSalida
+                    },
+                    {
+                        parametro : 'horaSalida',
+                        valor     : parametros.horaSalida
+                    },
+                    {
+                        parametro : 'usuarioCreador',
+                        valor     : parametros.usuarioCreador
+                    },
+                    {
+                        parametro : 'nombrePersona',
+                        valor     : parametros.nombrePersona
+                    },
+                    {
+                        parametro : 'contenido',
+                        valor     : parametros.contenido
+                    },
+                    {
+                        parametro : 'identidad',
+                        valor     : parametros.identidad
+                    },
+                    {
+                        parametro : 'placa',
+                        valor     : parametros.placa
+                    },
+                    {
+                        parametro : 'valorSa',
+                        valor     : parametros.valorSa
+                    }
+
+                 ]
+            }
+        let respuesta : any = await conexionSql.Ejecutar('sp_inserPaseFinanzas')
+            if( !respuesta.hasError  ){
+                return {
+                    data     : respuesta.data,
+                    errors   : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+
+                   /* Eliminar Pases salida  FINANZAS*/ 
+async eliminarPasesSalidaFinanzas( parametros ?: any){
+    try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [
+                    {
+                        parametro : 'idPase',
+                        valor     : parametros.idPase
+                    },
+                    {
+                        parametro : 'usuario',
+                        valor     : parametros.usuario
+                    }
+                 ]
+            }
+        let respuesta : any = await conexionSql.Ejecutar('sp_deletePaseEstandar')
+            if( !respuesta.hasError  ){
+                return {
+                    data     : respuesta.data,
+                    errors   : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+
+                    /* Eliminar Pases salida  FINANZAS*/ 
+async aprobarPasesSalidaFinanzas( parametros ?: any){
+    try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [
+                    {
+                        parametro : 'idPase',
+                        valor     : parametros.idPase
+                    },
+                    {
+                        parametro : 'usuario',
+                        valor     : parametros.usuario
+                    },
+                    {
+                        parametro : 'accion',
+                        valor     : parametros.accion
+                    }
+                 ]
+            }
+        let respuesta : any = await conexionSql.Ejecutar('sp_deletePaseEstandar')
+            if( !respuesta.hasError  ){
+                return {
+                    data     : respuesta.data,
+                    errors   : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+         }
+
 }

@@ -155,4 +155,61 @@ app.get('/paseSalidaPorton', (req, res) => {
         }
     }));
 });
+/* PASES DE SALIDA FINANZAS */
+/* Pases de Salida FINANZAS*/
+app.get('/paseSalidaf', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.cargarPasesSalidaFinanzas(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Pases de Salida FINANZAS*/
+app.put('/paseSalidaf', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.insertarPasesSalidaFinanzas(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Eliminar Pases de Salida FINANZAS*/
+app.delete('/paseSalidaf', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.eliminarPasesSalidaFinanzas(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Eliminar Pases de Salida FINANZAS*/
+app.put('/ApaseSalidaf', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.aprobarPasesSalidaFinanzas(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;
