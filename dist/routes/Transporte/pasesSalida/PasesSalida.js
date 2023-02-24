@@ -170,6 +170,34 @@ app.get('/paseSalidaf', (req, res) => {
         }
     }));
 });
+/* Pases de Salida FINANZAS Pendiente */
+app.get('/paseSalidafP', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.cargarPasesSalidaFinanzasPendientes(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Pases de Salida FINANZAS Historico */
+app.get('/paseSalidafH', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.body;
+    ps.cargarPasesSalidaFinanzasHistorico(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 /* Pases de Salida FINANZAS*/
 app.put('/paseSalidaf', (req, res) => {
     let ps = new pasesController_1.default();

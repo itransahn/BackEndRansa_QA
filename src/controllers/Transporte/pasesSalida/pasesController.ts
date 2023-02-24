@@ -370,6 +370,49 @@ async PaseSalidaPorton( parametros ?: any){
             }
          }       
          
+                /* Pases salida FINANZAS Pendientes */ 
+async cargarPasesSalidaFinanzasPendientes( parametros ?: any){
+                    try{
+                                let conexionSql = new DbHelper();
+                            if ( parametros ){
+                                conexionSql.parametros = [ ]
+                            }
+                        let respuesta : any = await conexionSql.Ejecutar('sp_cargarpasesPendientes')
+                            if( !respuesta.hasError  ){
+                                return {
+                                    data     : respuesta.data,
+                                    errors   : respuesta.errors,
+                                    hasError : respuesta.hasError
+                                }
+                            }else{
+                                return respuesta
+                            }
+                            }catch( error){
+                                errorMensaje(error)
+                            }
+    }   
+    
+                 /* Pases salida FINANZAS Historico */ 
+async cargarPasesSalidaFinanzasHistorico( parametros ?: any){
+    try{
+                let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = [ ]
+            }
+        let respuesta : any = await conexionSql.Ejecutar('sp_pasesFhistorico')
+            if( !respuesta.hasError  ){
+                return {
+                    data     : respuesta.data,
+                    errors   : respuesta.errors,
+                    hasError : respuesta.hasError
+                }
+            }else{
+                return respuesta
+            }
+            }catch( error){
+                errorMensaje(error)
+            }
+}     
             /* INSERTAR Pases salida  FINANZAS*/ 
  async insertarPasesSalidaFinanzas( parametros ?: any){
     try{
@@ -477,7 +520,7 @@ async aprobarPasesSalidaFinanzas( parametros ?: any){
                     }
                  ]
             }
-        let respuesta : any = await conexionSql.Ejecutar('sp_deletePaseEstandar')
+        let respuesta : any = await conexionSql.Ejecutar('sp_aprobarPaseFinanzas')
             if( !respuesta.hasError  ){
                 return {
                     data     : respuesta.data,
