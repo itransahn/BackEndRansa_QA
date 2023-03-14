@@ -374,8 +374,8 @@ if ( parametros ){
 let respuesta : any = await conexionSql.Ejecutar('sp_recFacProFact')
 if( !respuesta.hasError  ){
     return {
-        data   : respuesta.data,
-        errors : respuesta.errors,
+        data     : respuesta.data,
+        errors   : respuesta.errors,
         hasError : respuesta.hasError
     }
 }else{
@@ -424,5 +424,163 @@ if( !respuesta.hasError  ){
 }
 } 
 
+  /* deducciones */ 
+  async deducciones ( parametros ?: any){
+    try{
+    let conexionSql = new DbHelper();
+if ( parametros ){
+    conexionSql.parametros = [
+            {
+                parametro : 'cco',
+                valor     : parametros.cco
+            },
+            {
+                parametro : 'transportista',
+                valor     : parametros.transportista
+            },
+            {
+                parametro : 'sede',
+                valor     : parametros.sede
+            },
+            {
+                parametro : 'fecha',
+                valor     : parametros.fecha
+            }
+      ]
+}
+let respuesta : any = await conexionSql.Ejecutar('sp_verRecibosTransporte')
+if( !respuesta.hasError  ){
+    return {
+        data   : respuesta.data,
+        errors : respuesta.errors,
+        hasError : respuesta.hasError
+    }
+}else{
+    return respuesta
+}
 
+}catch( error){
+    errorMensaje(error)
+}
+} 
+
+/* Ver placas empleados */
+async placasEmpleado( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper();
+    if ( parametros ){
+        conexionSql.parametros = [  ]
+    }
+    let respuesta : any = await conexionSql.Ejecutar('sp_placasEmpleado')
+    if( !respuesta.hasError  ){
+        return {
+            data   : respuesta.data,
+            errors : respuesta.errors,
+            hasError : respuesta.hasError
+        }
+    }else{
+        return respuesta
+    }
+    
+    }catch( error){
+        errorMensaje(error)
+    }
+}
+
+/* Crear placas empleados */
+async CrearplacasEmpleado( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper();
+    if ( parametros ){
+        conexionSql.parametros = [ 
+            {
+                parametro : 'placa',
+                valor     : parametros.placa
+            },
+            {
+                parametro : 'usuario',
+                valor     : parametros.usuario
+            }
+         ]
+    }
+    let respuesta : any = await conexionSql.Ejecutar('sp_insertPlacaEmpleado')
+    if( !respuesta.hasError  ){
+        return {
+            data   : respuesta.data,
+            errors : respuesta.errors,
+            hasError : respuesta.hasError
+        }
+    }else{
+        return respuesta
+    }
+    
+    }catch( error){
+        errorMensaje(error)
+    }
+}
+
+
+/* Actualizar placas empleados */
+async ActualizarplacasEmpleado( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper();
+    if ( parametros ){
+        conexionSql.parametros = [ 
+            {
+                parametro : 'idRegistro',
+                valor     : parametros.idRegistro
+            },
+            {
+                parametro : 'placa',
+                valor     : parametros.placa
+            },
+            {
+                parametro : 'usuario',
+                valor     : parametros.usuario
+            }
+         ]
+    }
+    let respuesta : any = await conexionSql.Ejecutar('sp_updatePlacaEmpleado')
+    if( !respuesta.hasError  ){
+        return {
+            data   : respuesta.data,
+            errors : respuesta.errors,
+            hasError : respuesta.hasError
+        }
+    }else{
+        return respuesta
+    }
+    
+    }catch( error){
+        errorMensaje(error)
+    }
+}
+
+/* Cambiar estado de recibo */
+async cambiarEstadoRecibo( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper();
+    if ( parametros ){
+        conexionSql.parametros = [ 
+            {
+                parametro : 'idRecibo',
+                valor     : parametros.idRecibo
+            }
+         ]
+    }
+    let respuesta : any = await conexionSql.Ejecutar('sp_cambiarEstadoRecibo')
+    if( !respuesta.hasError  ){
+        return {
+            data   : respuesta.data,
+            errors : respuesta.errors,
+            hasError : respuesta.hasError
+        }
+    }else{
+        return respuesta
+    }
+    
+    }catch( error){
+        errorMensaje(error)
+    }
+}
 }

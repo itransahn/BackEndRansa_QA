@@ -153,5 +153,81 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
                         }
                         });
                         })
+                        /* Deducciones */
+     app.post('/deducciones' ,  (req: Request, res:Response)=>{
+                            let mot = new permisosT();
+                            let params = req.body;
+                            mot.deducciones( params ).then(async (respuesta: any) => {
+                            const result:  dataApi = await respuesta;
+                            if(!result.hasError){
+                                return res.status(200).send( respuesta )
+                            
+                            }else{
+                                return res.status(400).send(result)
+                            }
+                            });
+                            })
+
+        /* Placas Empelados */
+  app.get('/placaEmpleado' ,  (req: Request, res:Response)=>{
+        let mot = new permisosT();
+        let params = req.body;
+        mot.placasEmpleado( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )
+        
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        })
+
+        /* Placas Empelados */
+  app.put('/IplacaEmpleado' ,  (req: Request, res:Response)=>{
+            let mot = new permisosT();
+            let params = req.body;
+            mot.CrearplacasEmpleado( params ).then(async (respuesta: any) => {
+            const result:  dataApi = await respuesta;
+            if(!result.hasError){
+                return res.status(200).send( respuesta )
+            
+            }else{
+                return res.status(400).send(result)
+            }
+            });
+            })
+
+        /* Placas Empelados */
+ app.put('/UplacaEmpleado' ,  (req: Request, res:Response)=>{
+            let mot = new permisosT();
+            let params = req.body;
+            mot.ActualizarplacasEmpleado( params ).then(async (respuesta: any) => {
+            const result:  dataApi = await respuesta;
+            if(!result.hasError){
+                return res.status(200).send( respuesta )
+            
+            }else{
+                return res.status(400).send(result)
+            }
+            });
+            })
+
+app.put('/estadoRecibo' ,  (req: Request, res:Response)=>{
+                let mot = new permisosT();
+                let params = req.body;
+                mot.cambiarEstadoRecibo( params ).then(async (respuesta: any) => {
+                const result:  dataApi = await respuesta;
+                if(!result.hasError){
+                    return res.status(200).send( respuesta )
+                
+                }else{
+                    return res.status(400).send(result)
+                }
+                });
+                })
+
+
+
 export default app;
 

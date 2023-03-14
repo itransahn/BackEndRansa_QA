@@ -156,4 +156,73 @@ app.post('/cancelarRecibo', (req, res) => {
         }
     }));
 });
+/* Deducciones */
+app.post('/deducciones', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.deducciones(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Placas Empelados */
+app.get('/placaEmpleado', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.placasEmpleado(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Placas Empelados */
+app.put('/IplacaEmpleado', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.CrearplacasEmpleado(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Placas Empelados */
+app.put('/UplacaEmpleado', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.ActualizarplacasEmpleado(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+app.put('/estadoRecibo', (req, res) => {
+    let mot = new recibosControllert_1.default();
+    let params = req.body;
+    mot.cambiarEstadoRecibo(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;

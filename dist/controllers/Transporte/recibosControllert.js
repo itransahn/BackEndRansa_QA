@@ -446,5 +446,174 @@ class recibos {
             }
         });
     }
+    /* deducciones */
+    deducciones(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'cco',
+                            valor: parametros.cco
+                        },
+                        {
+                            parametro: 'transportista',
+                            valor: parametros.transportista
+                        },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        },
+                        {
+                            parametro: 'fecha',
+                            valor: parametros.fecha
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_verRecibosTransporte');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Ver placas empleados */
+    placasEmpleado(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_placasEmpleado');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Crear placas empleados */
+    CrearplacasEmpleado(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'placa',
+                            valor: parametros.placa
+                        },
+                        {
+                            parametro: 'usuario',
+                            valor: parametros.usuario
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_insertPlacaEmpleado');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Actualizar placas empleados */
+    ActualizarplacasEmpleado(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idRegistro',
+                            valor: parametros.idRegistro
+                        },
+                        {
+                            parametro: 'placa',
+                            valor: parametros.placa
+                        },
+                        {
+                            parametro: 'usuario',
+                            valor: parametros.usuario
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_updatePlacaEmpleado');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Cambiar estado de recibo */
+    cambiarEstadoRecibo(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idRecibo',
+                            valor: parametros.idRecibo
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_cambiarEstadoRecibo');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
 }
 exports.default = recibos;
