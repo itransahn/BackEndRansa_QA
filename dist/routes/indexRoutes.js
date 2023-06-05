@@ -44,6 +44,7 @@ const permisos_2 = __importDefault(require("./Transporte/permisos"));
 const mantenimientosT_1 = __importDefault(require("./Transporte/mantenimientosT"));
 //Recibo
 const recibos_1 = __importDefault(require("./Transporte/recibos"));
+const Infor_1 = __importDefault(require("./Administraci\u00F3n/Infor"));
 //const index = express();
 let app = (0, express_1.default)();
 //let index = Server.getIntance();
@@ -53,7 +54,7 @@ app.use('/auth', auth_1.default, menu_1.default, ejemploRoutes_1.default);
 //Seguridad
 app.use('/seguridad', permisos_1.default, seguridad_1.default, administracion_1.default, roles_1.default, modulosPadre_1.default, menus_1.default);
 //Administración
-app.use('/administracion', mantenimientos_1.default);
+app.use('/administracion', mantenimientos_1.default, Infor_1.default);
 //Excelencia
 app.use('/excelencia', llantas_1.default, utilitario_1.default);
 //Operaciones

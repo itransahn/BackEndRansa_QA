@@ -511,7 +511,8 @@ class administracion {
                         Maquinas: respuesta.data.Table21,
                         usuarios: respuesta.data.Table22,
                         proveFleje: respuesta.data.Table23,
-                        ColumFleje: respuesta.data.Table24
+                        ColumFleje: respuesta.data.Table24,
+                        PropietarioInfor: respuesta.data.Table25,
                     };
                 }
                 else {

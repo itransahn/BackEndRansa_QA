@@ -48,6 +48,8 @@ import mantenimientoT from './Transporte/mantenimientosT';
              //Recibo
 import recibos from './Transporte/recibos';  
 
+import infor from './Administración/Infor';
+
 
 
 //const index = express();
@@ -64,7 +66,7 @@ app.use('/auth', auth, menu, correo);
 app.use('/seguridad', permisos, seguridad, administracion, roles, modulos, menus);
 
 //Administración
-app.use('/administracion', mantenimientos )
+app.use('/administracion', mantenimientos, infor )
 
 //Excelencia
 app.use('/excelencia',llantas, utilitario)
@@ -79,7 +81,7 @@ app.use('/rrhh', credito, dolar);
 app.use('/finanzas', finanzas, retencion )
 
 //Transporte
-app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid, recibos )
+app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid, recibos );
 
 export default app;
 
