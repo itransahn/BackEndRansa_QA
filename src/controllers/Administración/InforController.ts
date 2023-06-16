@@ -71,8 +71,8 @@ export default class infor{
                     valor : parametros.sede
                    },
                    {
-                    parametro : 'sede',
-                    valor : parametros.sede
+                    parametro : 'usuario',
+                    valor : parametros.usuario
                    },
                  ]
          }
