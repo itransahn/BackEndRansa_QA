@@ -2,7 +2,7 @@ class recuperacion{
     public mensajeP : string = "";
     public imagenRansa : string =  "https://www.ransa.biz/wp-content/uploads/2019/07/logo-1.png";
     public urlLo  : string = 'http://localhost:4200';
-    public urlSer : string = 'http://10.130.65.146:4200';
+    public urlSer : string = 'http://10.130.65.223:4200';
 
     mensajePropio(data?:any){
         this.mensajeP = `
@@ -41,7 +41,7 @@ class recuperacion{
                    <a title="Facebook" href="https://es-la.facebook.com/ransa.comercialsa/"><img style="padding: 0; width: 20px; margin: 5px" src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook">
                    </div>
                    <div style="width: 100%; text-align: center">
-                       <a style="text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #006F1D" href="${this.urlLo}/#/cambiocontra/${data.idUsuario}">Ingresar</a>	
+                       <a style="text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #006F1D" href="${this.urlSer}/#/cambiocontra/${data.idUsuario}">Ingresar</a>	
                    </div>
                    <p style="color: #b3b3b3; font-size: 12px; text-align: center;margin: 30px 0 0">Código válido por 10 minutos a partir de la generación</p>
                </div>
