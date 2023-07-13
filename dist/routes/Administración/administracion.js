@@ -48,11 +48,14 @@ app.post('/usuarioEspecifico', (req, res) => {
 app.post('/crearUsuario', (req, res) => {
     let admin = new administracionController_1.default();
     let params = req.body;
-    params.contraD = req.body.contrasena;
+    // params.contraD = req.body.contrasena
     params.contrasena = (0, Encriptacion_1.encriptar)(req.body.contrasena);
+    // params.contraUsuario =  req.body.contrasena
+    // console.log(params)
     admin.crearUsuario(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
-        if (!result.hasError) {
+        // console.log(result)
+        if (!(result === null || result === void 0 ? void 0 : result.hasError)) {
             return res.status(200).send(respuesta);
         }
         else {

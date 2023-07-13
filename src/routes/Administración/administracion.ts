@@ -40,11 +40,14 @@ app.post('/usuarioEspecifico' ,  (req: Request, res:Response)=>{
 app.post('/crearUsuario' ,  (req: Request, res:Response)=>{
     let admin = new administracion();
         let params = req.body;
-        params.contraD = req.body.contrasena
+        // params.contraD = req.body.contrasena
         params.contrasena = encriptar(req.body.contrasena)
+        // params.contraUsuario =  req.body.contrasena
+        // console.log(params)
         admin.crearUsuario( params ).then(async (respuesta: any) => {
-        const result:  dataApi = await respuesta;
-            if(!result.hasError){
+        const result:  dataApi | any = await respuesta;
+        // console.log(result)
+            if(!result?.hasError){
                 return res.status(200).send( respuesta )
             
             }else{
@@ -108,7 +111,7 @@ app.put('/updateContraAdmin' ,  (req: Request, res:Response)=>{
     let admin = new administracion();
         let params = {
           idUsuario    : req.body.idUsuario ,
-          contra      : req.body.contra
+          contra      :  req.body.contra
         }
         admin.UpdaContra( params ).then(async (respuesta: any) => {
         const result:  dataApi = await respuesta;

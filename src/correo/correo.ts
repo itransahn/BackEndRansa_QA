@@ -8,9 +8,12 @@ export default class EnviarEmail{
     private cuentaCorOut : string = 'ITRansaHN@ransa.net';
 
     // private cuentaCorreo : string = 'rtnow@ransa.net';
-    private contraCorreo : string = 'f re t c q sol mi q una f f t j k sol _';
+    // private contraCorreo : string = 'f re t c q sol mi q una f f t j k sol _';
     // private contraCorreo : string = 'Intelsa.123'
     // bekz rywb gktf gfxa
+    private contraCorreo : string = 'sonu vtsu tcrn jsyb';
+
+    
     // ServicioRansaIT654_$
     
     public enviarCorreo = ( tipo ?: number,  mensaje ?: any)=>{
@@ -42,10 +45,11 @@ export default class EnviarEmail{
        
         return new Promise(( resolve, reject)=>{
             let transporte = nodemailer.createTransport({
-            // service : 'Gmail',
-            //    host : 'smtp.gmail.com', 
-            //    port : 465,
-            //    secure : false,
+            service : 'gmail',
+            // host : 'smtp.gmail.com', 
+            port : 587,
+            secure : true,
+            // requireTLS : true,
             //     auth :{
             //         user: this.cuentaCorreo,
             //         pass: this.contraCorreo,
@@ -53,22 +57,25 @@ export default class EnviarEmail{
             //     tls: {
             //         rejectUnauthorized: false
             //     },  
-            service : 'Outlook365',
-            host    : 'smtp.office365.com',
-            port    : 587,
-            tls : {
-                ciphers : 'SSLv3',
-                rejectUnauthorized : false
-            },
+            // service : 'Outlook365',
+            // host    : 'smtp.office365.com',
+            // port    : 587,
+            // tls : {
+            //     ciphers : 'SSLv3',
+            //     rejectUnauthorized : false
+            // },
             auth : {
-                user : this.cuentaCorOut ,
-                pass :'R4ns4Adm1nistr4ad0r.1T'
+                // user : this.cuentaCorOut ,
+                // pass :'R4ns4Adm1nistr4ad0r.1T'
+                user : this.cuentaCorreo,
+                // pass : 'ServicioRansaIT654_$'
+                pass : this.contraCorreo
             }
             });
 
         // let mensajeUsuario: any;
         let mailOptions = {
-            from : this.cuentaCorOut,
+            from : this.cuentaCorreo,
             to:  mensaje['correo'],
             subject: asunto,
             html: html
@@ -76,10 +83,11 @@ export default class EnviarEmail{
 
         transporte.sendMail(mailOptions , function (error) {
             if( error ){
+            console.log(error)    
                 resolve({
                     hasError: true,
                     data: [{ mensaje: 'Correo sin Exito' }],
-                    errors: []
+                    errors:  [error]
                 })
             }else{
                 resolve({

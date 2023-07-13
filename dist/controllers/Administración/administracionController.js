@@ -164,6 +164,10 @@ class administracion {
                             parametro: 'id_sede',
                             valor: parametros.id_sede
                         },
+                        {
+                            parametro: 'contraUsuario',
+                            valor: parametros.contraUsuario
+                        }
                         /* TABLA DE USUARIOS  */
                     ];
                 }
@@ -171,14 +175,14 @@ class administracion {
                 let respuesta = yield conexionSql.Ejecutar(`sp_insUsuario`);
                 if (!respuesta.hasError && respuesta.data.Table0[0]['codigo'] != -1) {
                     //enviar correo;
-                    let enviarCorreo = new correo_1.default();
-                    enviarCorreo.enviarCorreo(1, {
-                        nombre: parametros.nombreCompleto,
-                        correo: parametros.correo,
-                        idUsuario: respuesta.data.Table0[0]['usuario'],
-                        usuario: parametros.usuario,
-                        contra: parametros.contraD
-                    }).then();
+                    // let enviarCorreo = new EnviarEmail();
+                    // enviarCorreo.enviarCorreo( 1, {
+                    //   nombre  : parametros.nombreCompleto,
+                    //   correo  : parametros.correo,
+                    //   idUsuario : respuesta.data.Table0[0]['usuario'],
+                    //   usuario : parametros.usuario,
+                    //   contra  : parametros.contraD
+                    // }).then(   )
                     return {
                         data: respuesta.data,
                         errors: respuesta.errors,
@@ -452,20 +456,20 @@ class administracion {
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_updateContraAdmin`);
                 if (!respuesta.hasError && respuesta.data.Table0[0]['codigo'] != -1) {
-                    console.log(parametros);
+                    //  console.log( parametros)
                     //enviar correo;
                     let enviarCorreo = new correo_1.default();
-                    enviarCorreo.enviarCorreo(2, {
-                        nombre: respuesta.data.Table0[0]['nombre'],
-                        correo: respuesta.data.Table0[0]['correo'],
-                        idUsuario: respuesta.data.Table0[0]['usuario'],
-                        contra: parametros.contra
-                    }).then();
-                    return {
-                        data: respuesta.data,
-                        errors: respuesta.errors,
-                        hasError: respuesta.hasError
-                    };
+                    // enviarCorreo.enviarCorreo( 2, {
+                    //   nombre  : respuesta.data.Table0[0]['nombre'],
+                    //   correo  : respuesta.data.Table0[0]['correo'],
+                    //   idUsuario : respuesta.data.Table0[0]['usuario'],
+                    //   contra    : parametros.contra
+                    // }).then(   )
+                    //           return { 
+                    //             data :      respuesta.data,
+                    //             errors :    respuesta.errors,
+                    //             hasError :  respuesta.hasError
+                    //             }
                 }
                 else {
                     return respuesta;

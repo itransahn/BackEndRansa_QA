@@ -47,8 +47,12 @@ import permisosT from './Transporte/permisos';
 import mantenimientoT from './Transporte/mantenimientosT';
              //Recibo
 import recibos from './Transporte/recibos';  
-
 import infor from './Administración/Infor';
+
+    //SSMOA
+import SSMOA from './SSMOA/Extintores';
+import mante_SSMOA from './SSMOA/mantenimientoSSMOA';
+
 
 
 
@@ -82,6 +86,9 @@ app.use('/finanzas', finanzas, retencion )
 
 //Transporte
 app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid, recibos );
+
+//SSMOA
+app.use('/ssmoa',SSMOA, mante_SSMOA)
 
 export default app;
 
