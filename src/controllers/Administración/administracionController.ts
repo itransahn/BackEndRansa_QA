@@ -193,6 +193,7 @@ export default class administracion{
 
      /* ACTUALIZAR USUARIO */
      async actualizarUsuario( parametros ?: any  ) {  
+      console.log(parametros)
         try {
          let conexionSql = new DbHelper();
          if ( parametros ) {
