@@ -13,7 +13,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
     app.get('/extintor' ,  (req: Request, res:Response)=>{
         let per = new ssmoa();
             let params = req.query;
-             console.log(params)
+            //  console.log(params)
             per.verExtintores( params ).then(async (respuesta: any) => {
             const result:  dataApi = await respuesta;
                 if(!result.hasError){
@@ -39,7 +39,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         })
 
             /* Actualizar Extintor */
-    app.post('/extintores' ,  (req: Request, res:Response)=>{
+    app.put('/extintores' ,  (req: Request, res:Response)=>{
                 let per = new ssmoa();
                     let params = req.body;
                     per.actualizarExtintores( params ).then(async (respuesta: any) => {
@@ -51,5 +51,33 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
                         }
                 });
                 })
+
+            /* Auditoria Extintor */
+    app.put('/Audextintores' ,  (req: Request, res:Response)=>{
+        let per = new ssmoa();
+            let params = req.body;
+            per.crearAuditoria( params ).then(async (respuesta: any) => {
+            const result:  dataApi = await respuesta;
+                if(!result.hasError){
+                    return res.status(200).send( respuesta )              
+                }else{
+                    return res.status(400).send(result)
+                }
+        });
+        })
+
+                /* Auditoria Extintor */
+    app.get('/extintoresAud' ,  (req: Request, res:Response)=>{
+                    let per = new ssmoa();
+                        let params = req.query;
+             per.cargarExtintoresAuditoria( params ).then(async (respuesta: any) => {
+                        const result:  dataApi = await respuesta;
+                            if(!result.hasError){
+                                return res.status(200).send( respuesta )              
+                            }else{
+                                return res.status(400).send(result)
+                            }
+                    });
+                    })
 
 export default app;

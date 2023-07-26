@@ -85,9 +85,7 @@ class extintores {
                         }
                     ];
                 }
-                console.log(parametros);
                 let respuesta = yield conexionSql.Ejecutar(`sp_insert_Extintor`);
-                console.log(respuesta);
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
@@ -144,6 +142,113 @@ class extintores {
                             valor: parametros.fechaCreacion
                         }
                     ];
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    crearAuditoria(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default;
+                if (parametros) {
+                    conexionSql.parametros = [
+                        { parametro: 'Presion',
+                            valor: parametros.Presion },
+                        { parametro: 'Sello',
+                            valor: parametros.Sello },
+                        { parametro: 'Manometro',
+                            valor: parametros.Manometro },
+                        { parametro: 'Soporte',
+                            valor: parametros.Soporte },
+                        { parametro: 'Manguera',
+                            valor: parametros.Manguera },
+                        { parametro: 'Boquilla',
+                            valor: parametros.Boquilla },
+                        { parametro: 'Pintura',
+                            valor: parametros.Pintura },
+                        { parametro: 'Señalizacion',
+                            valor: parametros.Señalizacion },
+                        { parametro: 'Altura',
+                            valor: parametros.Altura },
+                        { parametro: 'Acceso',
+                            valor: parametros.Acceso },
+                        { parametro: 'Estado',
+                            valor: parametros.Estado },
+                        { parametro: 'Usuario',
+                            valor: parametros.Usuario },
+                        { parametro: 'observaciones',
+                            valor: parametros.observaciones },
+                        { parametro: 'idExtintor',
+                            valor: parametros.idExtintor },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_auditoriaExtintor`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    cargarExtintoresAuditoria(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default;
+                if (parametros) {
+                    conexionSql.parametros = [
+                        { parametro: 'sede',
+                            valor: parametros.sede },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_cargarExtintoresAuditoriaHoy`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    cargarAuditorias(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default;
+                if (parametros) {
+                    conexionSql.parametros = [
+                        { parametro: 'sede',
+                            valor: parametros.sede },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_cargarExtintoresAuditoriaHoy`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
                 }
             }
             catch (error) {

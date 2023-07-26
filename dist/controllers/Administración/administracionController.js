@@ -201,7 +201,7 @@ class administracion {
     /* ACTUALIZAR USUARIO */
     actualizarUsuario(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(parametros);
+            //  console.log(parametros)
             try {
                 let conexionSql = new DbHelper_1.default();
                 if (parametros) {

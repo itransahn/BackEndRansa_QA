@@ -7,7 +7,28 @@ import { errorMensaje } from '../../classes/classes';
 export default class extintores{
 
 
-    
+      
+   /* Tipo Agente */
+   async v_tipoAgente ( parametros ?: any  ) {  
+    try {
+     let conexionSql = new DbHelper();
+     if ( parametros ) { 
+             conexionSql.parametros = [  ]
+     }
+     let respuesta: any = await conexionSql.Ejecutar(`sp_verTipoAgente`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+  } catch ( error ) {
+         errorMensaje(error)
+  }
+  }  
    /* Tipo Agente */
    async tipoAgente ( parametros ?: any  ) {  
     try {
@@ -34,7 +55,29 @@ export default class extintores{
          errorMensaje(error)
   }
   }
- 
+
+  
+   /* Tipo Extintor */
+  async v_tipoExtintor ( parametros ?: any  ) {  
+    try {
+     let conexionSql = new DbHelper();
+     if ( parametros ) { 
+             conexionSql.parametros = [  ]
+     }
+     let respuesta: any = await conexionSql.Ejecutar(`sp_verTipoExtintor`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+  } catch ( error ) {
+         errorMensaje(error)
+  }
+  }
    /* Tipo Extintor */
     async tipoExtintor ( parametros ?: any  ) {  
         try {
@@ -62,6 +105,27 @@ export default class extintores{
       }
       }
 
+     /* Capacidad */
+     async v_Capacidad ( parametros ?: any  ) {  
+      try {
+       let conexionSql = new DbHelper();
+       if ( parametros ) { 
+               conexionSql.parametros = [   ]
+       }
+       let respuesta: any = await conexionSql.Ejecutar(`sp_verCapacidades`);
+      if (!respuesta.hasError ){
+              return { 
+                data :      respuesta.data,
+                errors :    respuesta.errors,
+                hasError :  respuesta.hasError
+                }
+      }else{
+        return respuesta;
+      }
+    } catch ( error ) {
+           errorMensaje(error)
+    }
+    }
    /* Tipo Capacidad */
    async tipoCapacidad ( parametros ?: any  ) {  
     try {
@@ -93,7 +157,60 @@ export default class extintores{
   }
   }
 
+     /* Eliminar Capacidad */
+     async DCapacidad ( parametros ?: any  ) {  
+      try {
+       let conexionSql = new DbHelper();
+       if ( parametros ) { 
+               conexionSql.parametros = [ 
+                  {
+                      parametro : 'idCapacidad' ,
+                      valor     : parametros.idCapacidad 
+                  }
+                 ]
+       }
+       let respuesta: any = await conexionSql.Ejecutar(`sp_deleteCapacidad`);
+      if (!respuesta.hasError ){
+              return { 
+                data :      respuesta.data,
+                errors :    respuesta.errors,
+                hasError :  respuesta.hasError
+                }
+      }else{
+        return respuesta;
+      }
+    } catch ( error ) {
+           errorMensaje(error)
+    }
+    }
 
+
+       /* Ubicación */
+  async v_ubicacion ( parametros ?: any  ) {  
+        try {
+         let conexionSql = new DbHelper();
+         if ( parametros ) { 
+                 conexionSql.parametros = [ 
+                    // {
+                    //     parametro : 'sede' ,
+                    //     valor     : parametros.sede 
+                    // }
+                   ]
+         }
+         let respuesta: any = await conexionSql.Ejecutar(`sp_verUbicacionesExt`);
+        if (!respuesta.hasError ){
+                return { 
+                  data :      respuesta.data,
+                  errors :    respuesta.errors,
+                  hasError :  respuesta.hasError
+                  }
+        }else{
+          return respuesta;
+        }
+      } catch ( error ) {
+             errorMensaje(error)
+      }
+      }
      /* Ubicación */
      async ubicacion ( parametros ?: any  ) {  
         try {
@@ -175,6 +292,9 @@ export default class extintores{
           tipoExtintor : respuesta.data.Table1,
           Ubicaciones  : respuesta.data.Table2,
           Capacidad    : respuesta.data.Table3,
+          Umedicion    : respuesta.data.Table4,
+          Sedes        : respuesta.data.Table5,
+
         }
       }else{
       

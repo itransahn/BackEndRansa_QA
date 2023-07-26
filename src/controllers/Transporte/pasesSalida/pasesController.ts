@@ -330,7 +330,10 @@ async PaseSalidaPorton( parametros ?: any){
             try{
                     let conexionSql = new DbHelper();
                     if ( parametros ){
-                        conexionSql.parametros = [  ]
+                        conexionSql.parametros = [ {
+                            parametro : 'sede',
+                            valor     : parametros.sede
+                        } ]
                     }
                 let respuesta : any = await conexionSql.Ejecutar('sp_pasesSalidaPorton')
                     if( !respuesta.hasError  ){
@@ -353,7 +356,10 @@ async PaseSalidaPorton( parametros ?: any){
     try{
                 let conexionSql = new DbHelper();
             if ( parametros ){
-                conexionSql.parametros = [ ]
+                conexionSql.parametros = [ 
+                    {parametro : 'sede',
+                     valor : parametros.sede}
+                ]
             }
         let respuesta : any = await conexionSql.Ejecutar('sp_verpasesFinanzas')
             if( !respuesta.hasError  ){
@@ -375,7 +381,12 @@ async cargarPasesSalidaFinanzasPendientes( parametros ?: any){
                     try{
                                 let conexionSql = new DbHelper();
                             if ( parametros ){
-                                conexionSql.parametros = [ ]
+                                conexionSql.parametros = [
+                                    {
+                                        parametro : 'sede',
+                                        valor : parametros.sede
+                                    }
+                                 ]
                             }
                         let respuesta : any = await conexionSql.Ejecutar('sp_cargarpasesPendientes')
                             if( !respuesta.hasError  ){
@@ -397,7 +408,11 @@ async cargarPasesSalidaFinanzasHistorico( parametros ?: any){
     try{
                 let conexionSql = new DbHelper();
             if ( parametros ){
-                conexionSql.parametros = [ ]
+                conexionSql.parametros = [     
+                    {
+                    parametro : 'sede',
+                    valor : parametros.sede}
+                ]
             }
         let respuesta : any = await conexionSql.Ejecutar('sp_pasesFhistorico')
             if( !respuesta.hasError  ){

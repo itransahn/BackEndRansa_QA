@@ -367,7 +367,10 @@ class pasesSalida {
             try {
                 let conexionSql = new DbHelper_1.default();
                 if (parametros) {
-                    conexionSql.parametros = [];
+                    conexionSql.parametros = [{
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        }];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_pasesSalidaPorton');
                 if (!respuesta.hasError) {
@@ -392,7 +395,10 @@ class pasesSalida {
             try {
                 let conexionSql = new DbHelper_1.default();
                 if (parametros) {
-                    conexionSql.parametros = [];
+                    conexionSql.parametros = [
+                        { parametro: 'sede',
+                            valor: parametros.sede }
+                    ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_verpasesFinanzas');
                 if (!respuesta.hasError) {
@@ -417,7 +423,12 @@ class pasesSalida {
             try {
                 let conexionSql = new DbHelper_1.default();
                 if (parametros) {
-                    conexionSql.parametros = [];
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        }
+                    ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_cargarpasesPendientes');
                 if (!respuesta.hasError) {
@@ -442,7 +453,12 @@ class pasesSalida {
             try {
                 let conexionSql = new DbHelper_1.default();
                 if (parametros) {
-                    conexionSql.parametros = [];
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        }
+                    ];
                 }
                 let respuesta = yield conexionSql.Ejecutar('sp_pasesFhistorico');
                 if (!respuesta.hasError) {

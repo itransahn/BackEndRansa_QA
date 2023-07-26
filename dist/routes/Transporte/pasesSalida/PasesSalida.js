@@ -144,7 +144,7 @@ app.delete('/paseSalidaE', (req, res) => {
 });
 app.get('/paseSalidaPorton', (req, res) => {
     let ps = new pasesController_1.default();
-    let params = req.body;
+    let params = req.query;
     ps.PaseSalidaPorton(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
@@ -159,7 +159,7 @@ app.get('/paseSalidaPorton', (req, res) => {
 /* Pases de Salida FINANZAS*/
 app.get('/paseSalidaf', (req, res) => {
     let ps = new pasesController_1.default();
-    let params = req.body;
+    let params = req.query;
     ps.cargarPasesSalidaFinanzas(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
@@ -173,7 +173,7 @@ app.get('/paseSalidaf', (req, res) => {
 /* Pases de Salida FINANZAS Pendiente */
 app.get('/paseSalidafP', (req, res) => {
     let ps = new pasesController_1.default();
-    let params = req.body;
+    let params = req.query;
     ps.cargarPasesSalidaFinanzasPendientes(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
@@ -187,7 +187,7 @@ app.get('/paseSalidafP', (req, res) => {
 /* Pases de Salida FINANZAS Historico */
 app.get('/paseSalidafH', (req, res) => {
     let ps = new pasesController_1.default();
-    let params = req.body;
+    let params = req.query;
     ps.cargarPasesSalidaFinanzasHistorico(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {

@@ -18,6 +18,31 @@ const DbHelper_1 = __importDefault(require("../../helpers/DbHelper"));
 const classes_1 = require("../../classes/classes");
 class extintores {
     /* Tipo Agente */
+    v_tipoAgente(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_verTipoAgente`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Tipo Agente */
     tipoAgente(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -31,6 +56,31 @@ class extintores {
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_insert_tipoAgente`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Tipo Extintor */
+    v_tipoExtintor(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_verTipoExtintor`);
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
@@ -77,6 +127,31 @@ class extintores {
             }
         });
     }
+    /* Capacidad */
+    v_Capacidad(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_verCapacidades`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
     /* Tipo Capacidad */
     tipoCapacidad(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -95,6 +170,66 @@ class extintores {
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_insert_capacidadExtintor`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Eliminar Capacidad */
+    DCapacidad(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                        {
+                            parametro: 'idCapacidad',
+                            valor: parametros.idCapacidad
+                        }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_deleteCapacidad`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Ubicación */
+    v_ubicacion(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [
+                    // {
+                    //     parametro : 'sede' ,
+                    //     valor     : parametros.sede 
+                    // }
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_verUbicacionesExt`);
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,
@@ -199,6 +334,8 @@ class extintores {
                         tipoExtintor: respuesta.data.Table1,
                         Ubicaciones: respuesta.data.Table2,
                         Capacidad: respuesta.data.Table3,
+                        Umedicion: respuesta.data.Table4,
+                        Sedes: respuesta.data.Table5,
                     };
                 }
                 else {

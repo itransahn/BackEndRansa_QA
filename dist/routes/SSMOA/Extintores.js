@@ -20,7 +20,7 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
 app.get('/extintor', (req, res) => {
     let per = new Extintores_1.default();
     let params = req.query;
-    console.log(params);
+    //  console.log(params)
     per.verExtintores(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
@@ -46,10 +46,38 @@ app.post('/extintor', (req, res) => {
     }));
 });
 /* Actualizar Extintor */
-app.post('/extintores', (req, res) => {
+app.put('/extintores', (req, res) => {
     let per = new Extintores_1.default();
     let params = req.body;
     per.actualizarExtintores(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Auditoria Extintor */
+app.put('/Audextintores', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.body;
+    per.crearAuditoria(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Auditoria Extintor */
+app.get('/extintoresAud', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.query;
+    per.cargarExtintoresAuditoria(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);

@@ -16,8 +16,22 @@ const express_1 = require("express");
 const mantenimientosSSMA_1 = __importDefault(require("../../controllers/SSMOA/mantenimientosSSMA"));
 const app = (0, express_1.Router)();
 const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEHP?u6<a0f_h3Q%V}_!>N<DElTSi>t=!R{jMtu}j/Eu5Xrb*x>)1$50G|,:xg+Y1OM}H183.b5MNH>5L-7u7tu<Dyc,JHDuqHZy68f71kFBjI4w|T\!{';
+/* tipo agente */
+app.get('/TipoAgente', (req, res) => {
+    let per = new mantenimientosSSMA_1.default();
+    let params = req.body;
+    per.v_tipoAgente(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 /* Insertar tipo agente */
-app.post('/insertTipoAgente', (req, res) => {
+app.post('/TipoAgente', (req, res) => {
     let per = new mantenimientosSSMA_1.default();
     let params = req.body;
     per.tipoAgente(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -30,8 +44,22 @@ app.post('/insertTipoAgente', (req, res) => {
         }
     }));
 });
+/* Tipo extintor */
+app.get('/TipoExtintor', (req, res) => {
+    let per = new mantenimientosSSMA_1.default();
+    let params = req.body;
+    per.v_tipoExtintor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 /* Insertar tipo extintor */
-app.post('/insertTipoExtintor', (req, res) => {
+app.post('/TipoExtintor', (req, res) => {
     let per = new mantenimientosSSMA_1.default();
     let params = req.body;
     per.tipoExtintor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -44,8 +72,22 @@ app.post('/insertTipoExtintor', (req, res) => {
         }
     }));
 });
+/* Capacidad */
+app.get('/CapacidadExtintor', (req, res) => {
+    let per = new mantenimientosSSMA_1.default();
+    let params = req.body;
+    per.v_Capacidad(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 /* Insertar tipo Capacidad */
-app.post('/insertCapacidadExtintor', (req, res) => {
+app.post('/CapacidadExtintor', (req, res) => {
     let per = new mantenimientosSSMA_1.default();
     let params = req.body;
     per.tipoCapacidad(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -58,8 +100,36 @@ app.post('/insertCapacidadExtintor', (req, res) => {
         }
     }));
 });
+/* Eliminar Capacidad */
+app.delete('/CapacidadExtintor', (req, res) => {
+    let per = new mantenimientosSSMA_1.default();
+    let params = req.body;
+    per.DCapacidad(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Ubicacion */
+app.get('/Ubicaciones', (req, res) => {
+    let per = new mantenimientosSSMA_1.default();
+    let params = req.body;
+    per.v_ubicacion(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 /* Insertar ubicacion */
-app.post('/insertUbicacionExtintor', (req, res) => {
+app.post('/Ubicaciones', (req, res) => {
     let per = new mantenimientosSSMA_1.default();
     let params = req.body;
     per.ubicacion(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
