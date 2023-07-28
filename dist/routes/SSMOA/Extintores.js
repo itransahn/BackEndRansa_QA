@@ -46,7 +46,7 @@ app.post('/extintor', (req, res) => {
     }));
 });
 /* Actualizar Extintor */
-app.put('/extintores', (req, res) => {
+app.put('/extintor', (req, res) => {
     let per = new Extintores_1.default();
     let params = req.body;
     per.actualizarExtintores(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
@@ -78,6 +78,62 @@ app.get('/extintoresAud', (req, res) => {
     let per = new Extintores_1.default();
     let params = req.query;
     per.cargarExtintoresAuditoria(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Auditoria Extintor */
+app.get('/auditoriasGeneradas', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.query;
+    per.auditoriasExtintores(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Auditoria Extintor */
+app.put('/Incidencia', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.body;
+    per.Incidencia(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Validar auditoria */
+app.get('/Auditoria', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.query;
+    per.validarAuditoria(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Incidencia Extintor */
+app.get('/IncidenciaG', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.query;
+    per.incidenciasG(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);

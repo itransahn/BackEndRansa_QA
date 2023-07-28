@@ -128,6 +128,16 @@ export default class extintores{
            }
         ]
     }
+    let respuesta: any = await conexionSql.Ejecutar(`sp_update_Extintores`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
     }catch( error ){
         errorMensaje(error)
     }
@@ -213,7 +223,8 @@ async cargarExtintoresAuditoria( parametros ?: any){
     if( parametros){
         conexionSql.parametros = [
             { parametro : 'sede' ,
-              valor     : parametros.sede },
+              valor     : parametros.sede
+             },
         ]
     }
     let respuesta: any = await conexionSql.Ejecutar(`sp_cargarExtintoresAuditoriaHoy`);
@@ -229,6 +240,134 @@ async cargarExtintoresAuditoria( parametros ?: any){
     }catch( error ){
         errorMensaje(error)
     }
+  }
+
+  async auditoriasExtintores( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper;
+    if( parametros){
+        conexionSql.parametros = [
+            { parametro : 'Mes' ,
+              valor     : parametros.Mes },
+              { parametro : 'anio' ,
+              valor     : parametros.anio },
+        ]
+    }
+    let respuesta: any = await conexionSql.Ejecutar(`sp_verAuditoriasGeneradas`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+    }catch( error ){
+        errorMensaje(error)
+    }
+  }
+
+  async incidenciasG( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper;
+    if( parametros){
+        conexionSql.parametros = [
+            { parametro : 'Mes' ,
+              valor     : parametros.Mes },
+              { parametro : 'anio' ,
+              valor     : parametros.anio },
+        ]
+    }
+    let respuesta: any = await conexionSql.Ejecutar(`sp_verIncidenciasGeneradas`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+    }catch( error ){
+        errorMensaje(error)
+    }
+  }
+
+  async Incidencia( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper;
+    if( parametros){
+        conexionSql.parametros = [
+            { parametro : 'Presion' ,
+              valor     : parametros.Presion },
+             { parametro : 'Sello' ,
+              valor     : parametros.Sello },
+            { parametro : 'Manometro' ,
+              valor     : parametros.Manometro }, 
+            { parametro : 'Soporte' ,
+              valor     : parametros.Soporte }, 
+             { parametro : 'Manguera' ,
+              valor     : parametros.Manguera }, 
+             { parametro : 'Boquilla' ,
+              valor     : parametros.Boquilla }, 
+              { parametro : 'Pintura' ,
+              valor     : parametros.Pintura }, 
+              { parametro : 'Señalizacion' ,
+              valor     : parametros.Señalizacion }, 
+              { parametro : 'Altura' ,
+              valor     : parametros.Altura }, 
+              { parametro : 'Acceso' ,
+              valor     : parametros.Acceso }, 
+              { parametro : 'Estado' ,
+              valor     : parametros.Estado }, 
+              { parametro : 'Usuario' ,
+              valor     : parametros.Usuario }, 
+              { parametro : 'observaciones' ,
+              valor     : parametros.observaciones }, 
+              { parametro : 'idExtintor' ,
+              valor     : parametros.idExtintor }, 
+        ]
+    }
+    let respuesta: any = await conexionSql.Ejecutar(`sp_IncidenciaExtintor`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+    }catch( error ){
+        errorMensaje(error)
+    }
+  }
+ 
+  async validarAuditoria ( parametros ?: any  ) {  
+    try {
+     let conexionSql = new DbHelper();
+     if ( parametros ) { 
+             conexionSql.parametros = [
+                {
+                  parametro : 'idExtintor',
+                  valor     : parametros.idExtintor
+                }
+                ]
+     }
+     let respuesta: any = await conexionSql.Ejecutar(`sp_validadExtintor`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+  } catch ( error ) {
+         errorMensaje(error)
+  }
   }
 
 }
