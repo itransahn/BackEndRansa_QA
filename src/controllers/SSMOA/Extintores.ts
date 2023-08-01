@@ -442,4 +442,29 @@ async cargarAuditoria ( parametros ?: any  ) {
     }
   }
 
+  async correccionesG( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper;
+    if( parametros){
+        conexionSql.parametros = [
+            { parametro : 'Mes' ,
+              valor     : parametros.Mes },
+              { parametro : 'anio' ,
+              valor     : parametros.anio },
+        ]
+    }
+    let respuesta: any = await conexionSql.Ejecutar(`sp_verCorrecionesGeneradas`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+    }catch( error ){
+        errorMensaje(error)
+    }
+  }
 }

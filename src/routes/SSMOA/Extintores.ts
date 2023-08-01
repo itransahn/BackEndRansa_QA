@@ -162,4 +162,18 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
                 }
         });
         })
+        
+        /* Incidencia Extintor */
+    app.get('/correccionesG' ,  (req: Request, res:Response)=>{
+            let per = new ssmoa();
+                let params = req.query;
+     per.correccionesG( params ).then(async (respuesta: any) => {
+                const result:  dataApi = await respuesta;
+                    if(!result.hasError){
+                        return res.status(200).send( respuesta )              
+                    }else{
+                        return res.status(400).send(result)
+                    }
+            });
+            })
 export default app;
