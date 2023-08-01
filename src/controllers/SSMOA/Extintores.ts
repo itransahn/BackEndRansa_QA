@@ -168,8 +168,6 @@ export default class extintores{
               valor     : parametros.Altura }, 
               { parametro : 'Acceso' ,
               valor     : parametros.Acceso }, 
-              { parametro : 'Estado' ,
-              valor     : parametros.Estado }, 
               { parametro : 'Usuario' ,
               valor     : parametros.Usuario }, 
               { parametro : 'observaciones' ,
@@ -319,8 +317,6 @@ async cargarExtintoresAuditoria( parametros ?: any){
               valor     : parametros.Altura }, 
               { parametro : 'Acceso' ,
               valor     : parametros.Acceso }, 
-              { parametro : 'Estado' ,
-              valor     : parametros.Estado }, 
               { parametro : 'Usuario' ,
               valor     : parametros.Usuario }, 
               { parametro : 'observaciones' ,
@@ -368,6 +364,82 @@ async cargarExtintoresAuditoria( parametros ?: any){
   } catch ( error ) {
          errorMensaje(error)
   }
+  }
+
+async cargarAuditoria ( parametros ?: any  ) {  
+    try {
+     let conexionSql = new DbHelper();
+     if ( parametros ) { 
+             conexionSql.parametros = [
+                {
+                  parametro : 'idExtintor',
+                  valor     : parametros.idExtintor
+                }
+                ]
+     }
+     let respuesta: any = await conexionSql.Ejecutar(`sp_CargarAudotoriaMesActual`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+  } catch ( error ) {
+         errorMensaje(error)
+  }
+  }
+
+  async correccionExtintor( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper;
+    if( parametros){
+        conexionSql.parametros = [
+            { parametro : 'Presion' ,
+              valor     : parametros.Presion },
+             { parametro : 'Sello' ,
+              valor     : parametros.Sello },
+            { parametro : 'Manometro' ,
+              valor     : parametros.Manometro }, 
+            { parametro : 'Soporte' ,
+              valor     : parametros.Soporte }, 
+             { parametro : 'Manguera' ,
+              valor     : parametros.Manguera }, 
+             { parametro : 'Boquilla' ,
+              valor     : parametros.Boquilla }, 
+              { parametro : 'Pintura' ,
+              valor     : parametros.Pintura }, 
+              { parametro : 'Señalizacion' ,
+              valor     : parametros.Señalizacion }, 
+              { parametro : 'Altura' ,
+              valor     : parametros.Altura }, 
+              { parametro : 'Acceso' ,
+              valor     : parametros.Acceso }, 
+              { parametro : 'Usuario' ,
+              valor     : parametros.Usuario }, 
+              { parametro : 'observaciones' ,
+              valor     : parametros.observaciones }, 
+              { parametro : 'idExtintor' ,
+              valor     : parametros.idExtintor }, 
+              { parametro : 'tipo' ,
+              valor     : parametros.tipo }, 
+        ]
+    }
+    let respuesta: any = await conexionSql.Ejecutar(`sp_Correcion_Extintor`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+    }catch( error ){
+        errorMensaje(error)
+    }
   }
 
 }

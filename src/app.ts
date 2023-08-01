@@ -59,6 +59,8 @@ const port: any = process.env.PORT;
 // Cors
 app.use(cors());
 
+app.use('/uploads', express.static(path.resolve('uploads')));
+
 //server listening 
 app.listen(port, () => {
     console.log(`corriendo en ambiente ${ process.env.NODE_ENV }`);

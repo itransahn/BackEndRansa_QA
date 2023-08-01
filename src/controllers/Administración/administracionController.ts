@@ -511,7 +511,7 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
                             proveFleje :          respuesta.data.Table23,
                             ColumFleje :          respuesta.data.Table24,
                             PropietarioInfor :    respuesta.data.Table25,       
-
+                            SedesExtintor    :    respuesta.data.Table26,       
         }
             }else{
               return respuesta;

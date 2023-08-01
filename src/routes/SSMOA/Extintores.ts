@@ -135,4 +135,31 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
                                 }
                         });
                         })
+       /* Auditoria Extintor */
+       app.get('/AuditoriaE' ,  (req: Request, res:Response)=>{
+        let per = new ssmoa();
+            let params = req.query;
+ per.cargarAuditoria( params ).then(async (respuesta: any) => {
+            const result:  dataApi = await respuesta;
+                if(!result.hasError){
+                    return res.status(200).send( respuesta )              
+                }else{
+                    return res.status(400).send(result)
+                }
+        });
+        })
+
+            /* Auditoria Extintor */
+    app.put('/CorreccionE' ,  (req: Request, res:Response)=>{
+        let per = new ssmoa();
+            let params = req.body;
+            per.correccionExtintor( params ).then(async (respuesta: any) => {
+            const result:  dataApi = await respuesta;
+                if(!result.hasError){
+                    return res.status(200).send( respuesta )              
+                }else{
+                    return res.status(400).send(result)
+                }
+        });
+        })
 export default app;

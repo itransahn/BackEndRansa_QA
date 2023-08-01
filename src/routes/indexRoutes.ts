@@ -53,6 +53,8 @@ import infor from './Administración/Infor';
 import SSMOA from './SSMOA/Extintores';
 import mante_SSMOA from './SSMOA/mantenimientoSSMOA';
 
+// Carga
+import carga from './CargaArchivos/SubirImagenes';
 
 
 
@@ -88,7 +90,12 @@ app.use('/finanzas', finanzas, retencion )
 app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid, recibos );
 
 //SSMOA
-app.use('/ssmoa',SSMOA, mante_SSMOA)
+app.use('/ssmoa',SSMOA, mante_SSMOA);
+
+//Carga
+app.use('/carga', carga );
+
+
 
 export default app;
 

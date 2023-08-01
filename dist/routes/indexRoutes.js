@@ -48,6 +48,8 @@ const Infor_1 = __importDefault(require("./Administraci\u00F3n/Infor"));
 //SSMOA
 const Extintores_1 = __importDefault(require("./SSMOA/Extintores"));
 const mantenimientoSSMOA_1 = __importDefault(require("./SSMOA/mantenimientoSSMOA"));
+// Carga
+const SubirImagenes_1 = __importDefault(require("./CargaArchivos/SubirImagenes"));
 //const index = express();
 let app = (0, express_1.default)();
 //let index = Server.getIntance();
@@ -70,4 +72,6 @@ app.use('/finanzas', finanzas_1.default, retenciones_1.default);
 app.use('/transporte', transportes_1.default, camiones_1.default, motoristas_1.default, permisos_2.default, mantenimientosT_1.default, PasesSalida_1.default, recibos_1.default);
 //SSMOA
 app.use('/ssmoa', Extintores_1.default, mantenimientoSSMOA_1.default);
+//Carga
+app.use('/carga', SubirImagenes_1.default);
 exports.default = app;

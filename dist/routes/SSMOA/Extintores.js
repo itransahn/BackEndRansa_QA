@@ -143,4 +143,32 @@ app.get('/IncidenciaG', (req, res) => {
         }
     }));
 });
+/* Auditoria Extintor */
+app.get('/AuditoriaE', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.query;
+    per.cargarAuditoria(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+/* Auditoria Extintor */
+app.put('/CorreccionE', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.body;
+    per.correccionExtintor(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;
