@@ -15,7 +15,9 @@ const storage = multer_1.default.diskStorage({
         const filetypes = /jpeg|jpg|png/;
         const mimetype = filetypes.test(file.mimetype);
         if (mimetype) {
-            return cb(null, (0, uuid_1.v4)() + path_1.default.extname(file.originalname));
+            let codigo = (0, uuid_1.v4)();
+            funcion('/uploads/' + codigo + path_1.default.extname(file.originalname));
+            return cb(null, codigo + path_1.default.extname(file.originalname));
         }
         else {
             return cb(null, 'error');
@@ -24,6 +26,13 @@ const storage = multer_1.default.diskStorage({
     },
     destination: './uploads',
 });
+const funcion = (nombre) => {
+    let ficheros = [];
+    if (nombre) {
+        ficheros.push(nombre);
+        console.log(ficheros);
+    }
+};
 // const storage = multer.diskStorage({
 //         destination: ( req, file, cb) =>{
 //                 cb(null,'./uploads')
@@ -50,10 +59,9 @@ const CargadeImagen = (0, multer_1.default)({
             error: true
         };
     }
-}).single('file');
-app.post('/upload', upload.single('file'), (req, res) => {
-    const file = req.file;
-    // console.log(file?.path)
+}).fields([{ name: "file", maxCount: 10 }]);
+app.post('/upload', upload.fields([{ name: "file", maxCount: 10 }]), (req, res) => {
+    const file = req.files;
     if (!file) {
         res.send({
             data: [{
@@ -64,8 +72,8 @@ app.post('/upload', upload.single('file'), (req, res) => {
         });
     }
     else {
-        const nombreArchivo = file === null || file === void 0 ? void 0 : file.path;
-        // console.log(nombreArchivo.search('error') )
+        // const nombreArchivo = file?.path;
+        const nombreArchivo = '';
         if (nombreArchivo.search('error') == -1) {
             res.send({
                 data: [{
@@ -115,4 +123,5 @@ app.post('/cargaI', (req, res) => {
     //         hasError: false
     //     });
 });
+[];
 exports.default = app;

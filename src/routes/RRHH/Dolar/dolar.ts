@@ -82,6 +82,21 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
         });
         })
 
+                    /* Ver Cajeo Dolar TR */
+    app.get('/canjeoDolarSps' ,  (req: Request, res:Response)=>{
+        let dol = new dolar();
+        let params = req.body;
+        dol.canjeoDolar_sps( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+        if(!result.hasError){
+            return res.status(200).send( respuesta )
+        
+        }else{
+            return res.status(400).send(result)
+        }
+        });
+        })
+
            /* usuarios Permitidos Cafeteria */
     app.get('/usuariosPermitidosC' ,  (req: Request, res:Response)=>{
         let dol = new dolar();

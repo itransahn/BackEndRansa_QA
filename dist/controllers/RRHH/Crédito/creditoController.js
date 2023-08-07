@@ -191,7 +191,7 @@ class credito {
             }
         });
     }
-    /* Insertar Crédito */
+    /* ver Crédito Tiempo real */
     Credito(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -200,6 +200,31 @@ class credito {
                     conexionSql.parametros = [];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_vercreditoshoy`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* ver Crédito Tiempo real */
+    CreditoSps(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_vercreditoshoy_sps`);
                 if (!respuesta.hasError) {
                     return {
                         data: respuesta.data,

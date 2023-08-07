@@ -24,6 +24,21 @@ app.get('/credito' ,  (req: Request, res:Response)=>{
     });
     })
 
+    /* CARGAR Creditos actuales SPS*/
+app.get('/creditoSps' ,  (req: Request, res:Response)=>{
+    let credit = new credito();
+        let params = req.body;
+        credit.CreditoSps( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+                return res.status(200).send( respuesta )
+            
+            }else{
+                return res.status(400).send(result)
+            }
+    });
+    })
+
 
     /* CARGAR Creditos por X empleado */
 app.post('/creditoacumulado' ,  (req: Request, res:Response)=>{

@@ -1,7 +1,7 @@
 import { error } from 'console';
 import { Response, Router, Request } from 'express';
 import  multer  from 'multer';
-import path from 'path';
+import path, { normalize } from 'path';
 import { v4 as uuidv4 } from 'uuid';
 const app : Router = Router();
 //const rutaCarga = '/src/public/ssmoa';
@@ -11,8 +11,11 @@ const storage = multer.diskStorage({
     filename: ( req , file , cb)=>{   
         const filetypes = /jpeg|jpg|png/;
         const mimetype   = filetypes.test(file.mimetype);
-        if ( mimetype )
-        {  return cb( null, uuidv4() + path.extname(file.originalname)) }
+        if ( mimetype )        
+        {  
+            let codigo = uuidv4();
+        funcion  ( '/uploads/'+codigo + path.extname(file.originalname) );
+        return cb( null, codigo + path.extname(file.originalname)) }
         else{
             return cb( null, 'error')   
         };
@@ -21,7 +24,13 @@ const storage = multer.diskStorage({
 
 });
 
-
+const funcion = (nombre: string)=>{
+    let ficheros : any[]=[];
+   if(nombre){
+    ficheros.push(nombre)
+    console.log(ficheros)
+   }
+}
 // const storage = multer.diskStorage({
 //         destination: ( req, file, cb) =>{
 //                 cb(null,'./uploads')
@@ -49,12 +58,10 @@ const CargadeImagen = multer({
             error : true
         } ;
     }
-}).single('file');
+}).fields([{ name : "file", maxCount : 10}]);
 
-app.post('/upload', upload.single('file'), (req,res)=>{
-    const file = req.file;
-
-    // console.log(file?.path)
+app.post('/upload', upload.fields([{ name : "file", maxCount : 10 }]), (req,res)=>{
+    const file = req.files;
     if(!file){
       res.send({
          data: [{
@@ -64,8 +71,8 @@ app.post('/upload', upload.single('file'), (req,res)=>{
          hasError: true
      });
      }else{
-        const nombreArchivo = file?.path;
-        // console.log(nombreArchivo.search('error') )
+        // const nombreArchivo = file?.path;
+        const nombreArchivo = '';
      if ( nombreArchivo.search('error') == -1 ){
         res.send({
             data: [{
@@ -119,5 +126,14 @@ app.post('/cargaI',  (req : Request , res: Response)=>{
 //     });
 })
 
-
+interface files {
+    fieldname     ? : string,
+    originalname ? : string,
+    encoding ? : string,
+    mimetype ? : string,
+    destination ? : string,
+    filename ? : string,
+    path ? : string,
+    size ? : string,
+}[]
 export default app;

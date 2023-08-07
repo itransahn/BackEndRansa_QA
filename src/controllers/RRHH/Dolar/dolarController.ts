@@ -211,6 +211,28 @@ export default class dolar{
   }
   }
 
+     /* Ver Canjeo de Dolar TIEMPO REAL SPS*/
+ async canjeoDolar_sps  ( parametros ?: any  ) {  
+  try {
+   let conexionSql = new DbHelper();
+   if ( parametros ) { 
+           conexionSql.parametros = [ ]
+   }
+   let respuesta: any = await conexionSql.Ejecutar(`sp_verControlCafeteria_sps`);
+  if (!respuesta.hasError ){
+          return { 
+            data :      respuesta.data,
+            errors :    respuesta.errors,
+            hasError : respuesta.hasError
+            }
+  }else{
+    return respuesta;
+  }
+} catch ( error ) {
+       errorMensaje(error)
+}
+}
+
    /* Ver usuarios permididos canjeo dolar */
    async usuariosPermitidosC  ( parametros ?: any  ) {  
     try {
@@ -284,6 +306,10 @@ export default class dolar{
                     parametro : 'cco',
                     valor : parametros.cco
                   } ,
+                  {
+                    parametro : 'sede',
+                    valor : parametros.sede
+                  } ,
               ]
      }
      let respuesta: any = await conexionSql.Ejecutar(`sp_insCafeteriaPermisos`);
@@ -326,6 +352,10 @@ export default class dolar{
                 {
                   parametro : 'cco',
                   valor : parametros.cco
+                } ,
+                {
+                  parametro : 'sede',
+                  valor : parametros.sede
                 } ,
             ]
    }

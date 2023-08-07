@@ -105,8 +105,7 @@ async creditoAcumulado  ( parametros ?: any  ) {
          errorMensaje(error)
   }
   }
-
-
+  
   async creditoPorFecha  ( parametros ?: any  ) {  
     try {
      let conexionSql = new DbHelper();
@@ -136,7 +135,6 @@ async creditoAcumulado  ( parametros ?: any  ) {
          errorMensaje(error)
   }
   }
-
 
    /* Insertar Crédito */
  async insertarCredito  ( parametros ?: any  ) {  
@@ -169,8 +167,7 @@ async creditoAcumulado  ( parametros ?: any  ) {
   }
   }
 
-  
-   /* Insertar Crédito */
+   /* ver Crédito Tiempo real */
  async Credito  ( parametros ?: any  ) {  
   try {
    let conexionSql = new DbHelper();
@@ -193,6 +190,28 @@ async creditoAcumulado  ( parametros ?: any  ) {
 }
 
 
+   /* ver Crédito Tiempo real */
+   async CreditoSps  ( parametros ?: any  ) {  
+    try {
+     let conexionSql = new DbHelper();
+     if ( parametros ) { 
+             conexionSql.parametros = [  ]
+     }
+     let respuesta: any = await conexionSql.Ejecutar(`sp_vercreditoshoy_sps`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError : respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+  } catch ( error ) {
+         errorMensaje(error)
+  }
+  }
+  
        /* Ver creditos */
        async verCreditosP  ( parametros ?: any  ) {  
         try {
@@ -225,7 +244,7 @@ async creditoAcumulado  ( parametros ?: any  ) {
       }
 
         /* Ver creditos */
-        async verCreditosG  ( parametros ?: any  ) {  
+      async verCreditosG  ( parametros ?: any  ) {  
           try {
            let conexionSql = new DbHelper();
            if ( parametros ) { 
@@ -246,9 +265,8 @@ async creditoAcumulado  ( parametros ?: any  ) {
         }
         }
 
-
             /* Actualizar Crédito */
-            async updateCredito  ( parametros ?: any  ) {  
+      async updateCredito  ( parametros ?: any  ) {  
               try {
                let conexionSql = new DbHelper();
                if ( parametros ) { 
@@ -290,9 +308,8 @@ async creditoAcumulado  ( parametros ?: any  ) {
             }
                        }
 
-
                /* Ver creditos */
-        async eliminarCredito  ( parametros ?: any  ) {  
+      async eliminarCredito  ( parametros ?: any  ) {  
           try {
            let conexionSql = new DbHelper();
            if ( parametros ) { 

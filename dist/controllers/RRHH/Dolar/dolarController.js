@@ -239,6 +239,31 @@ class dolar {
             }
         });
     }
+    /* Ver Canjeo de Dolar TIEMPO REAL SPS*/
+    canjeoDolar_sps(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_verControlCafeteria_sps`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
     /* Ver usuarios permididos canjeo dolar */
     usuariosPermitidosC(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -317,6 +342,10 @@ class dolar {
                             parametro: 'cco',
                             valor: parametros.cco
                         },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
+                        },
                     ];
                 }
                 let respuesta = yield conexionSql.Ejecutar(`sp_insCafeteriaPermisos`);
@@ -362,6 +391,10 @@ class dolar {
                         {
                             parametro: 'cco',
                             valor: parametros.cco
+                        },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.sede
                         },
                     ];
                 }

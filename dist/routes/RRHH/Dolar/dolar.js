@@ -86,6 +86,20 @@ app.get('/canjeoDolar', (req, res) => {
         }
     }));
 });
+/* Ver Cajeo Dolar TR */
+app.get('/canjeoDolarSps', (req, res) => {
+    let dol = new dolarController_1.default();
+    let params = req.body;
+    dol.canjeoDolar_sps(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 /* usuarios Permitidos Cafeteria */
 app.get('/usuariosPermitidosC', (req, res) => {
     let dol = new dolarController_1.default();
