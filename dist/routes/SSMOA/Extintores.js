@@ -185,4 +185,18 @@ app.get('/correccionesG', (req, res) => {
         }
     }));
 });
+/* Imagenes */
+app.get('/Imagenes', (req, res) => {
+    let per = new Extintores_1.default();
+    let params = req.query;
+    per.cargarImagenes(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 exports.default = app;

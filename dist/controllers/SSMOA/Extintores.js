@@ -515,5 +515,38 @@ class extintores {
             }
         });
     }
+    cargarImagenes(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default;
+                if (parametros) {
+                    conexionSql.parametros = [
+                        { parametro: 'Tipo',
+                            valor: parametros.Tipo },
+                        { parametro: 'Mes',
+                            valor: parametros.Mes },
+                        { parametro: 'Anio',
+                            valor: parametros.Anio },
+                        { parametro: 'Sede',
+                            valor: parametros.Sede },
+                    ];
+                }
+                let respuesta = yield conexionSql.Ejecutar(`sp_cargarimagenes`);
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
 }
 exports.default = extintores;

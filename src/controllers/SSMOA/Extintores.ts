@@ -467,4 +467,35 @@ async cargarAuditoria ( parametros ?: any  ) {
         errorMensaje(error)
     }
   }
+
+  async cargarImagenes( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper;
+    if( parametros){
+        conexionSql.parametros = [
+              { parametro : 'Tipo' ,
+              valor     : parametros.Tipo },
+              { parametro : 'Mes' ,
+              valor     : parametros.Mes },
+              { parametro : 'Anio' ,
+              valor     : parametros.Anio },
+              { parametro : 'Sede' ,
+              valor     : parametros.Sede },
+            
+        ]
+    }
+    let respuesta: any = await conexionSql.Ejecutar(`sp_cargarimagenes`);
+    if (!respuesta.hasError ){
+            return { 
+              data :      respuesta.data,
+              errors :    respuesta.errors,
+              hasError :  respuesta.hasError
+              }
+    }else{
+      return respuesta;
+    }
+    }catch( error ){
+        errorMensaje(error)
+    }
+  }
 }

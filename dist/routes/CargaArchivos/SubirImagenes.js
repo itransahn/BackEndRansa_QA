@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -8,7 +17,10 @@ const multer_1 = __importDefault(require("multer"));
 const path_1 = __importDefault(require("path"));
 const uuid_1 = require("uuid");
 const app = (0, express_1.Router)();
+const cargarArchivos_1 = __importDefault(require("../../controllers/Ficheros/cargarArchivos"));
 //const rutaCarga = '/src/public/ssmoa';
+let incidencia;
+let tipo;
 /* Destino de Carga */
 const storage = multer_1.default.diskStorage({
     filename: (req, file, cb) => {
@@ -27,40 +39,55 @@ const storage = multer_1.default.diskStorage({
     destination: './uploads',
 });
 const funcion = (nombre) => {
-    let ficheros = [];
-    if (nombre) {
-        ficheros.push(nombre);
-        console.log(ficheros);
+    if (nombre && incidencia) {
+        let car = new cargarArchivos_1.default();
+        let params = {
+            idIncidencia: incidencia,
+            fichero: nombre,
+            tipo: tipo
+        };
+        car.cargarArchivo(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+            const result = yield respuesta;
+            if (!result.hasError) {
+                return respuesta;
+            }
+            else {
+                return respuesta;
+            }
+        }));
     }
 };
-// const storage = multer.diskStorage({
-//         destination: ( req, file, cb) =>{
-//                 cb(null,'./uploads')
-//         },
-//         filename : (req, file, cb) => {
-//             const ext = file.originalname.split('.').pop()
-//             cb(null,`${Date.now()}.${ext}` )
-//         }
-//     });
 const upload = (0, multer_1.default)({ storage });
-const CargadeImagen = (0, multer_1.default)({
-    storage,
-    dest: './uploads',
-    limits: { fileSize: 55000000 },
-    fileFilter: (req, file, cb) => {
-        const filetypes = /jpeg|jpg|png/;
-        const mimetype = filetypes.test(file.mimetype);
-        if (mimetype) {
-            return {
-                error: false
-            };
-        }
-        return {
-            error: true
-        };
+// const CargadeImagen = multer({
+//     storage,
+//     dest: './uploads',
+//     limits: {fileSize: 55000000},
+//     fileFilter: (req, file , cb)=>{
+//         const filetypes = /jpeg|jpg|png/;
+//         const mimetype   = filetypes.test(file.mimetype);
+//         if ( mimetype )
+//         { return{
+//             error : false
+//         } }
+//         return{
+//             error : true
+//         } ;
+//     }
+// }).fields([{ name : "file", maxCount : 10}]);
+app.post('/CargarItem', (req, res) => {
+    incidencia = req.body.item;
+    tipo = req.body.tipo; /* 1 Incidencia, 2 Auditoria*/
+    if (incidencia) {
+        res.send({
+            data: [{
+                    data: 'Enviado',
+                }],
+            errors: [],
+            hasError: false
+        });
     }
-}).fields([{ name: "file", maxCount: 10 }]);
-app.post('/upload', upload.fields([{ name: "file", maxCount: 10 }]), (req, res) => {
+});
+app.post('/upload', upload.fields([{ name: "file", maxCount: 100 }]), (req, res) => {
     const file = req.files;
     if (!file) {
         res.send({
@@ -72,7 +99,6 @@ app.post('/upload', upload.fields([{ name: "file", maxCount: 10 }]), (req, res) 
         });
     }
     else {
-        // const nombreArchivo = file?.path;
         const nombreArchivo = '';
         if (nombreArchivo.search('error') == -1) {
             res.send({
@@ -94,34 +120,6 @@ app.post('/upload', upload.fields([{ name: "file", maxCount: 10 }]), (req, res) 
             });
         }
     }
-});
-// const err = new Error('Solamente .png, .jpg and .jpeg como formato Permitido!')
-// err.name = 'ExtensionError'
-// return cb(err);
-//Carga de Imagen
-app.post('/cargaI', (req, res) => {
-    return {
-        mensaje: 'hola'
-    };
-    //     const file = req.file;
-    //    if(!file){
-    //      res.send('Archivo No Encontrado')
-    //      res.send({
-    //         data: [{
-    //             path: "Archivo no Encontrado",
-    //         }],
-    //         errors: [],
-    //         hasError: true
-    //     });
-    //     }
-    //     const nombreArchivo = file?.path;
-    //     res.send({
-    //         data: [{
-    //             path: nombreArchivo,
-    //         }],
-    //         errors: [],
-    //         hasError: false
-    //     });
 });
 [];
 exports.default = app;
