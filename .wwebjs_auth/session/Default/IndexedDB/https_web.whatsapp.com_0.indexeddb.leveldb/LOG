@@ -1,0 +1,9 @@
+2023/09/05-10:31:40.458 16d8 Reusing MANIFEST C:\Users\MVelasquezB\Documents\Ransa\Desarrollo\Utilitario Web\BackEnd-Ransa\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/09/05-10:31:40.460 16d8 Recovering log #605
+2023/09/05-10:31:40.496 16d8 Reusing old log C:\Users\MVelasquezB\Documents\Ransa\Desarrollo\Utilitario Web\BackEnd-Ransa\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000605.log 
+2023/09/05-10:31:40.497 16d8 Delete type=2 #604
+2023/09/05-10:31:41.666 143c Level-0 table #610: started
+2023/09/05-10:31:41.704 143c Level-0 table #610: 98738 bytes OK
+2023/09/05-10:31:41.708 143c Delete type=0 #605
+2023/09/05-10:31:41.713 143c Manual compaction at level-0 from '\x00\xdf\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\xe0\x00\x00\x00' @ 0 : 0; will stop at '\x00\xe0\x00\x00\xc8\x0d\x00l\x00o\x00c\x00a\x00l\x00_\x00s\x00t\x00o\x00r\x00a\x00g\x00e' @ 468973 : 1
+2023/09/05-10:31:41.713 143c Compacting 1@0 + 1@1 files

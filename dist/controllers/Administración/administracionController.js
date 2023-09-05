@@ -519,6 +519,7 @@ class administracion {
                         ColumFleje: respuesta.data.Table24,
                         PropietarioInfor: respuesta.data.Table25,
                         SedesExtintor: respuesta.data.Table26,
+                        usuariosCAB: respuesta.data.Table27,
                     };
                 }
                 else {

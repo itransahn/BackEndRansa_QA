@@ -27,8 +27,6 @@ menus.categorias( ).then(async (respuesta: any) => {
 });
 })
 
-
-
 app.post('/login', (req: Request, res: Response) => {
     let params = req.body;
     let autenticacion  = new login();

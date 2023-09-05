@@ -27,6 +27,7 @@ const menus_1 = __importDefault(require("./Administraci\u00F3n/menus"));
 const mantenimientos_1 = __importDefault(require("./Administraci\u00F3n/mantenimientos"));
 //Finanzas
 const finanzas_1 = __importDefault(require("./finanzas/finanzas"));
+const CAB_1 = __importDefault(require("./finanzas/CAB"));
 const retenciones_1 = __importDefault(require("./finanzas/retenciones"));
 //Fleje
 const Fleje_1 = __importDefault(require("./Operaciones/Fleje/Fleje"));
@@ -67,7 +68,7 @@ app.use('/operaciones', asignacion_1.default, Fleje_1.default);
 //RRHH
 app.use('/rrhh', credito_1.default, dolar_1.default);
 //Finanzas
-app.use('/finanzas', finanzas_1.default, retenciones_1.default);
+app.use('/finanzas', finanzas_1.default, retenciones_1.default, CAB_1.default);
 //Transporte
 app.use('/transporte', transportes_1.default, camiones_1.default, motoristas_1.default, permisos_2.default, mantenimientosT_1.default, PasesSalida_1.default, recibos_1.default);
 //SSMOA

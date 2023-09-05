@@ -26,9 +26,9 @@ app.get('/', (req, res) => {
 });
 app.get('/correo', (req, res) => {
     const ejemploController = new correo_1.default();
-    ejemploController.ejemplo().then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    ejemploController.primeraVez().then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
-        // console.log(result);
+        console.log(result);
         return res.status(200).send(result);
     }));
 });

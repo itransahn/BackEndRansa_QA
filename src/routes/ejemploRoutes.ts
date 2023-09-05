@@ -27,10 +27,9 @@ app.get('/', (req: Request, res: Response) => {
 app.get('/correo', (req: Request, res: Response) => {
     const ejemploController: EjemploController = new EjemploController();
  
-    ejemploController.ejemplo().then(async (respuesta: any) => {
-
+    ejemploController.primeraVez().then(async (respuesta: any) => {
         const result: any = await respuesta;
-        // console.log(result);
+        console.log(result);
         return res.status(200).send(result);
     });
 });

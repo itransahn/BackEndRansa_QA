@@ -36,5 +36,21 @@ class Ejemplo {
             }
         });
     }
+    primeraVez() {
+        return __awaiter(this, void 0, void 0, function* () {
+            // let conexionSql = new DbHelper();
+            try {
+                return yield Email.enviarCorreo(1, {
+                    usuario: 'Mvelasquez',
+                    nombre: 'Mario',
+                    idUsuario: '202205072',
+                    contra: '123123',
+                    correo: 'mvelasquezb@ransa.net'
+                });
+            }
+            catch (error) {
+            }
+        });
+    }
 }
 exports.default = Ejemplo;

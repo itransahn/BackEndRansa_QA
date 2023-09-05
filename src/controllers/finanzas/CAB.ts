@@ -6,6 +6,26 @@ import DbHelper from '../../helpers/DbHelper';
 
 export default class CAB{
 
+async empleadosCAB( parametros ?: any ){
+        try{
+            let conexionSql = new DbHelper();
+            if ( parametros ){
+                conexionSql.parametros = []
+            let respuesta : any = await conexionSql.Ejecutar("sp_verEmpleadosCAB");
+                if( !respuesta.hasError ){
+                    return { 
+                        data :      respuesta.data,
+                        errors :    respuesta.errors,
+                        hasError :  respuesta.hasError
+                        }
+                }else{
+                    return respuesta
+                }
+            }
+        }catch( error ){
+            errorMensaje(error)
+        }
+        }
 
 async CrearempleadoCAB( parametros ?: any ){
 try{
@@ -95,6 +115,27 @@ async ActualizarempleadoCAB( parametros ?: any ){
     }
 }   
 
+async VerAprobadorCAB( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [  ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_verAprobadorCAB");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+}
+
 async CrearAprobadorCAB( parametros ?: any ){
     try{
         let conexionSql = new DbHelper();
@@ -111,6 +152,10 @@ async CrearAprobadorCAB( parametros ?: any ){
                 {
                     parametro : 'sede',
                     valor     : parametros.sede
+                },
+                {
+                    parametro : 'tipo',
+                    valor     : parametros.tipo
                 }
             ]
         let respuesta : any = await conexionSql.Ejecutar("sp_insertAprobadorCAB");
@@ -128,6 +173,66 @@ async CrearAprobadorCAB( parametros ?: any ){
         errorMensaje(error)
     }
 }   
+
+async AprobacionViaje( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [
+                {
+                 parametro : 'idViaje',
+                 valor     : parametros.idViaje
+                },
+                {
+                    parametro : 'aprobacion',
+                    valor     : parametros.aprobacion 
+                },
+                {
+                    parametro : 'usuario',
+                    valor     : parametros.usuario 
+                }
+              ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_aprobacionViaje");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+} 
+
+async AprobarViaje( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [
+                {
+                 parametro : 'id_usuario',
+                 valor     : parametros.id_usuario
+                }
+              ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_ViajesToAprobar");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+} 
 
 async ActualizarAprobadorCAB( parametros ?: any ){
     try{
@@ -149,6 +254,10 @@ async ActualizarAprobadorCAB( parametros ?: any ){
                 {
                     parametro : 'sede',
                     valor     : parametros.sede
+                },
+                {
+                    parametro : 'tipo',
+                    valor     : parametros.tipo
                 }
             ]
         let respuesta : any = await conexionSql.Ejecutar("sp_updateAprobadorCAB");
@@ -209,6 +318,122 @@ async CargarTarifaMasivoCAB( parametros ?: any ){
     }
 }   
 
+async CargarTarifa( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [
+                {
+                 parametro : 'cod_empleado',
+                 valor     : parametros.cod_empleado
+                }
+              ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_cargarTarifas");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+}  
+
+async VerViajeCab2( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [
+                {
+                 parametro : 'tipo',
+                 valor     : parametros.tipo
+                },
+                {
+                    parametro : 'sede',
+                    valor     : parametros.sede
+                   }
+              ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_viajesCAB");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+}  
+
+async cancelacionViaje( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [
+                {
+                 parametro : 'usuario',
+                 valor     : parametros.usuario
+                },
+                {
+                    parametro : 'idViaje',
+                    valor     : parametros.idViaje
+                },
+                {
+                    parametro : 'cancelado',
+                    valor     : parametros.cancelado
+                }
+              ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_cancelacionViaje");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+}  
+
+async VerViajeCab( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [
+                {
+                 parametro : 'codEmpleado',
+                 valor     : parametros.codEmpleado
+                }
+              ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_verviajesCAB");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+}  
+
 async CrearViajeCab( parametros ?: any ){
     try{
         let conexionSql = new DbHelper();
@@ -249,6 +474,10 @@ async CrearViajeCab( parametros ?: any ){
                 {
                     parametro : 'metodoPago',
                     valor     : parametros.metodoPago
+                },
+                {
+                    parametro : 'motivo',
+                    valor     : parametros.motivo
                 }
             ]
         let respuesta : any = await conexionSql.Ejecutar("sp_crearViajeCAB");
@@ -266,6 +495,33 @@ async CrearViajeCab( parametros ?: any ){
         errorMensaje(error)
     }
 }   
+;
+async viajeEspecifico( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [
+                {
+                    parametro : 'idViaje',
+                    valor     : parametros.idViaje
+                }
+               
+            ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_cargarviajeEspecifico");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+}  
 
 async IncidenciaViajeCab( parametros ?: any ){
     try{
@@ -301,5 +557,40 @@ async IncidenciaViajeCab( parametros ?: any ){
         errorMensaje(error)
     }
 }   
+
+async estadoEmpleadoCab( parametros ?: any ){
+    try{
+        let conexionSql = new DbHelper();
+        if ( parametros ){
+            conexionSql.parametros = [
+                {
+                    parametro : 'id',
+                    valor     : parametros.id
+                },
+                {
+                    parametro : 'estado',
+                    valor     : parametros.estado
+                },
+               
+            ]
+        let respuesta : any = await conexionSql.Ejecutar("sp_cambiarEstadoEmpCab");
+            if( !respuesta.hasError ){
+                return { 
+                    data :      respuesta.data,
+                    errors :    respuesta.errors,
+                    hasError :  respuesta.hasError
+                    }
+            }else{
+                return respuesta
+            }
+        }
+    }catch( error ){
+        errorMensaje(error)
+    }
+}   
+
+
+
+
 
 }

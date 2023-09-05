@@ -29,6 +29,7 @@ import mantenimientos from './Administración/mantenimientos';
 
 //Finanzas
 import finanzas from './finanzas/finanzas';
+import CAB from './finanzas/CAB';
 import retencion from './finanzas/retenciones';
 //Fleje
 
@@ -84,7 +85,7 @@ app.use('/operaciones', asignacion, fleje)
 app.use('/rrhh', credito, dolar);
 
 //Finanzas
-app.use('/finanzas', finanzas, retencion )
+app.use('/finanzas', finanzas, retencion, CAB )
 
 //Transporte
 app.use('/transporte', transporte, camiones, motoristas, permisosT, mantenimientoT, pasesSalid, recibos );

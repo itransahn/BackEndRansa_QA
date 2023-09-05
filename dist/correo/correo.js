@@ -8,15 +8,17 @@ const primerIngreso_1 = __importDefault(require("./primerIngreso"));
 const recuperacionP_1 = __importDefault(require("./recuperacionP"));
 class EnviarEmail {
     constructor() {
-        // private cuentaCorreo : string = 'soporteintelsahn@gmail.com';
-        this.cuentaCorreo = 'rtnowhn@gmail.com';
-        this.cuentaCorOut = 'ITRansaHN@ransa.net';
-        // private cuentaCorreo : string = 'rtnow@ransa.net';
+        // private cuentaCorreoGmail : string = 'soporteintelsahn@gmail.com';
+        this.cuentaCorreoGmail = 'rtnowhn@gmail.com';
+        this.cuentaHotmail = 'itransahn@ransa.net';
+        this.ContraHotmail = 'R4ns4Adm1nistr4ad0r.1T';
+        this.ContraGmail = 'ServicioRansaIT654_$';
+        this.ContraGmailCifrada = 'sonu vtsu tcrn jsyb';
+        // private cuentaCorreoGmail : string = 'rtnow@ransa.net';
         // private contraCorreo : string = 'f re t c q sol mi q una f f t j k sol _';
         // private contraCorreo : string = 'Intelsa.123'
         // bekz rywb gktf gfxa
         this.contraCorreo = 'sonu vtsu tcrn jsyb';
-        // ServicioRansaIT654_$
         this.enviarCorreo = (tipo, mensaje) => {
             let asunto;
             let html;
@@ -46,12 +48,13 @@ class EnviarEmail {
             return new Promise((resolve, reject) => {
                 let transporte = nodemailer_1.default.createTransport({
                     service: 'gmail',
-                    // host : 'smtp.gmail.com', 
-                    port: 587,
+                    // service : 'hotmail',
+                    host: 'smtp.gmail.com',
+                    // port : 465,
                     secure: true,
                     // requireTLS : true,
                     //     auth :{
-                    //         user: this.cuentaCorreo,
+                    //         user: this.cuentaCorreoGmail,
                     //         pass: this.contraCorreo,
                     //     },       
                     //     tls: {
@@ -65,16 +68,15 @@ class EnviarEmail {
                     //     rejectUnauthorized : false
                     // },
                     auth: {
-                        // user : this.cuentaCorOut ,
+                        // user : this.cuentaHotmail ,
                         // pass :'R4ns4Adm1nistr4ad0r.1T'
-                        user: this.cuentaCorreo,
-                        // pass : 'ServicioRansaIT654_$'
-                        pass: this.contraCorreo
+                        user: this.cuentaCorreoGmail,
+                        pass: this.ContraGmailCifrada
                     }
                 });
                 // let mensajeUsuario: any;
                 let mailOptions = {
-                    from: this.cuentaCorreo,
+                    from: this.cuentaCorreoGmail,
                     to: mensaje['correo'],
                     subject: asunto,
                     html: html

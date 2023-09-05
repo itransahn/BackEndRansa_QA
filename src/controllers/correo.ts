@@ -38,49 +38,26 @@ export default class Ejemplo {
         }
     }
 
-    // async primeraVez(parametros?: any) {
+    async primeraVez( ) {
 
-    //     // let conexionSql = new DbHelper();
+        // let conexionSql = new DbHelper();
 
-    //     try {
-    //         return await Email.enviarCorreo(
-    //             'mvelasquezb@ransa.net','');
+        try {
+            return await Email.enviarCorreo( 1,
+                {
+usuario   :'Mvelasquez',
+nombre    :'Mario',
+idUsuario :'202205072',
+contra    :'123123',
+correo    : 'mvelasquezb@ransa.net'
+                });
 
-    //     } catch (error) {
+        } catch (error) {
 
-    //     }
+        }
 
-    //     try {
-    //         let conexionSql = new DbHelper();
-    //         if ( parametros ) {
-   
-    //                 conexionSql.parametros = [ 
-    //                  {
-    //                    parametro : 'desde',
-    //                    valor     : parametros.desde
-    //                  },
-    //                  {
-    //                    parametro : 'hasta',
-    //                    valor     : parametros.hasta
-    //                  }
-    //                 ]
-    //         }
-       
-    //         let respuesta: any = await conexionSql.Ejecutar(`sp_verAsignacionesMaqH`);
-    //        if (!respuesta.hasError ){
-    //                return { 
-    //                  data :      respuesta.data,
-    //                  errors :    respuesta.errors,
-    //                  hasError :  respuesta.hasError
-    //                  }
-    //        }else{
-    //          return respuesta;
-    //        }
-    //     } catch ( error ) {
-    //             errorMensaje(error)
-    //     }
-        
-    // }
+      
+    }
 
 
 
