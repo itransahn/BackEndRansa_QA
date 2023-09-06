@@ -21,6 +21,19 @@ const SECRET_KEY = 'wv+BWnX\qRap|S[%f/jd!?pq*O[Mg$Z+|/g/c;(]X(O%CB[Y[[&Gi)z##WEH
             });
     });
 
+     /* Pases de Salida Estandar */
+     app.get('/paseSalidaEstandar' ,  (req: Request, res:Response)=>{
+        let ps = new pasesSalida();
+        let params = req.query;
+        ps.PasesSalidaEstandar( params ).then(async (respuesta: any) => {
+        const result:  dataApi = await respuesta;
+            if(!result.hasError){
+            return res.status(200).send( respuesta )
+            }else{
+            return res.status(400).send(result)
+            }
+            });
+      }); 
         /* Catalogo */
     app.post('/CatpasesSalida' ,  (req: Request, res:Response)=>{
             let ps = new pasesSalida();

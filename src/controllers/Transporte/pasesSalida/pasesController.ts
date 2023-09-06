@@ -28,6 +28,29 @@ export default class pasesSalida{
     }
  }
 
+  /* verPasesSalida Estandar */ 
+  async PasesSalidaEstandar( parametros ?: any){
+    try{
+        let conexionSql = new DbHelper();
+    if ( parametros ){
+        conexionSql.parametros = [ ]
+    }
+    let respuesta : any = await conexionSql.Ejecutar('sp_verPasesEstandar')
+    if( !respuesta.hasError  ){
+        return {
+            data     : respuesta.data,
+            errors   : respuesta.errors,
+            hasError : respuesta.hasError
+              }
+    }else{
+        return respuesta
+    }
+    }catch( error){
+        errorMensaje(error)
+    }
+ }
+
+
  /* INSERTAR PASE DE SALIDA */
  async CrearPaseSalida( parametros ?: any){
     try{

@@ -30,6 +30,20 @@ app.get('/pasesSalida', (req, res) => {
         }
     }));
 });
+/* Pases de Salida Estandar */
+app.get('/paseSalidaEstandar', (req, res) => {
+    let ps = new pasesController_1.default();
+    let params = req.query;
+    ps.PasesSalidaEstandar(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
 /* Catalogo */
 app.post('/CatpasesSalida', (req, res) => {
     let ps = new pasesController_1.default();

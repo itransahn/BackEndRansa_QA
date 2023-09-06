@@ -42,6 +42,31 @@ class pasesSalida {
             }
         });
     }
+    /* verPasesSalida Estandar */
+    PasesSalidaEstandar(parametros) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let conexionSql = new DbHelper_1.default();
+                if (parametros) {
+                    conexionSql.parametros = [];
+                }
+                let respuesta = yield conexionSql.Ejecutar('sp_verPasesEstandar');
+                if (!respuesta.hasError) {
+                    return {
+                        data: respuesta.data,
+                        errors: respuesta.errors,
+                        hasError: respuesta.hasError
+                    };
+                }
+                else {
+                    return respuesta;
+                }
+            }
+            catch (error) {
+                (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
     /* INSERTAR PASE DE SALIDA */
     CrearPaseSalida(parametros) {
         return __awaiter(this, void 0, void 0, function* () {

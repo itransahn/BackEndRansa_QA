@@ -33,17 +33,16 @@ class ValeTaxi {
                    <h2 style="color: #006F1D;">Vale de Transporte </h2>
                <p style=" font-size: 15px; color: #00A72C !important; text-align: center;"> SOLICITADO POR MARIO JOSUE VELASQUEZ BANEGAS </p>
                <p style="margin: 2px; font-size: 15px; color: #00A72C !important; text-align:  center;"> 
-                       DETALLES  <br><br>
-                    Sauce - Mundial | Mundial - Aeropuerto | Mundial - Aeropuerto
-                       </p>
-
+                       DETALLES  <br>  Sauce - Mundial | Mundial - Aeropuerto | Mundial - Aeropuerto </p> 
+                <p style="margin: 3px; font-size: 15px; color: #00A72C !important; text-align:  center;"> 
+                    Fecha/Hora del viaje <br> 04/09/2023 15:35 </p>
+                <p style="margin: 3px; font-size: 15px; color: #00A72C !important; text-align:  center;"> 
+                        Contacto <br> (+504) 9999-9999 </p>
             <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center">  </div>
                </div>
            </td>
        </tr>
    </table>
-   <!--hasta aquí-->
-   
    </body>
    </html>
    `;
