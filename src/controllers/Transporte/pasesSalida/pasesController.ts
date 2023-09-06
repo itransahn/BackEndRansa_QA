@@ -275,6 +275,10 @@ export default class pasesSalida{
                             {
                                 parametro : 'placa',
                                 valor     : parametros.placa
+                            },
+                            {
+                                parametro : 'proveedor',
+                                valor     : parametros.proveedor
                             }
 
                          ]

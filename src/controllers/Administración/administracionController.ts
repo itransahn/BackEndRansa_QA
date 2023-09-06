@@ -460,11 +460,11 @@ async CambiocontraUsuarioU( parametros ?: any  ) {
           //   idUsuario : respuesta.data.Table0[0]['usuario'],
           //   contra    : parametros.contra
           // }).then(   )
-          //           return { 
-          //             data :      respuesta.data,
-          //             errors :    respuesta.errors,
-          //             hasError :  respuesta.hasError
-          //             }
+                    return { 
+                      data :      respuesta.data,
+                      errors :    respuesta.errors,
+                      hasError :  respuesta.hasError
+                      }
             }else{
               return respuesta;
             }
