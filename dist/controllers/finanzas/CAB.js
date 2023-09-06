@@ -529,6 +529,10 @@ class CAB {
                         {
                             parametro: 'motivo',
                             valor: parametros.motivo
+                        },
+                        {
+                            parametro: 'numero',
+                            valor: parametros.numero
                         }
                     ];
                     let respuesta = yield conexionSql.Ejecutar("sp_crearViajeCAB");

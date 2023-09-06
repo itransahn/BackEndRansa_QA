@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const primerIngreso_1 = __importDefault(require("./primerIngreso"));
 const recuperacionP_1 = __importDefault(require("./recuperacionP"));
+const ValeTaxi_1 = __importDefault(require("./ValeTaxi"));
 class EnviarEmail {
     constructor() {
         // private cuentaCorreoGmail : string = 'soporteintelsahn@gmail.com';
@@ -45,13 +46,24 @@ class EnviarEmail {
                     contra: mensaje['contra']
                 });
             }
+            // CAB
+            if (tipo == 3) {
+                var envio = new ValeTaxi_1.default();
+                asunto = 'Nuevo Viaje';
+                html = envio.mensajePropio({
+                    usuario: mensaje['usuario'],
+                    nombre: mensaje['nombre'],
+                    idUsuario: mensaje['idUsuario'],
+                    contra: mensaje['contra']
+                });
+            }
             return new Promise((resolve, reject) => {
                 let transporte = nodemailer_1.default.createTransport({
-                    service: 'gmail',
+                    // service : 'gmail',
                     // service : 'hotmail',
                     host: 'smtp.gmail.com',
-                    // port : 465,
-                    secure: true,
+                    // port : 587,
+                    // secure : false,
                     // requireTLS : true,
                     //     auth :{
                     //         user: this.cuentaCorreoGmail,
@@ -74,7 +86,6 @@ class EnviarEmail {
                         pass: this.ContraGmailCifrada
                     }
                 });
-                // let mensajeUsuario: any;
                 let mailOptions = {
                     from: this.cuentaCorreoGmail,
                     to: mensaje['correo'],
@@ -83,7 +94,6 @@ class EnviarEmail {
                 };
                 transporte.sendMail(mailOptions, function (error) {
                     if (error) {
-                        console.log(error);
                         resolve({
                             hasError: true,
                             data: [{ mensaje: 'Correo sin Exito' }],

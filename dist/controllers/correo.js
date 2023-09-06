@@ -40,7 +40,7 @@ class Ejemplo {
         return __awaiter(this, void 0, void 0, function* () {
             // let conexionSql = new DbHelper();
             try {
-                return yield Email.enviarCorreo(1, {
+                return yield Email.enviarCorreo(3, {
                     usuario: 'Mvelasquez',
                     nombre: 'Mario',
                     idUsuario: '202205072',

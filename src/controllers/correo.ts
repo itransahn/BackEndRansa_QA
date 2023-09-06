@@ -39,11 +39,9 @@ export default class Ejemplo {
     }
 
     async primeraVez( ) {
-
         // let conexionSql = new DbHelper();
-
         try {
-            return await Email.enviarCorreo( 1,
+            return await Email.enviarCorreo( 3,
                 {
 usuario   :'Mvelasquez',
 nombre    :'Mario',

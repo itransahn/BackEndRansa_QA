@@ -29,7 +29,6 @@ app.get('/correo', (req: Request, res: Response) => {
  
     ejemploController.primeraVez().then(async (respuesta: any) => {
         const result: any = await respuesta;
-        console.log(result);
         return res.status(200).send(result);
     });
 });
