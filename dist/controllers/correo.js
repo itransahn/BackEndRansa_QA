@@ -36,19 +36,47 @@ class Ejemplo {
             }
         });
     }
-    primeraVez() {
+    primeraVez(params) {
+        var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
-            // let conexionSql = new DbHelper();
+            let detalle = '';
+            let array = [];
+            let viaje = '';
+            if ((params === null || params === void 0 ? void 0 : params.tipoViaje) == 1) {
+                viaje = 'Ida';
+            }
+            if ((params === null || params === void 0 ? void 0 : params.tipoViaje) == 2) {
+                viaje = 'Retorno';
+            }
+            if ((params === null || params === void 0 ? void 0 : params.tipoViaje) == 3) {
+                viaje = 'MultiParada';
+            }
+            if ((params === null || params === void 0 ? void 0 : params.tipoViaje) != 3) {
+                detalle = (params === null || params === void 0 ? void 0 : params['origen']) + ' | ' + (params === null || params === void 0 ? void 0 : params['destino']);
+            }
+            else {
+                array = JSON.parse(params === null || params === void 0 ? void 0 : params['multipleDestino']);
+                for (let i = 0; i < array.length; i++) {
+                    detalle += ((_a = array[i]) === null || _a === void 0 ? void 0 : _a.Origen) + '-' + ((_b = array[i]) === null || _b === void 0 ? void 0 : _b.Destino) + ' | ';
+                }
+            }
             try {
                 return yield Email.enviarCorreo(3, {
-                    usuario: 'Mvelasquez',
-                    nombre: 'Mario',
-                    idUsuario: '202205072',
-                    contra: '123123',
-                    correo: 'mvelasquezb@ransa.net'
+                    solicitado: params === null || params === void 0 ? void 0 : params['solicitado'],
+                    tipoViaje: params === null || params === void 0 ? void 0 : params['tipoViaje'],
+                    detalle: detalle,
+                    FechaHora: params === null || params === void 0 ? void 0 : params['FechaHora'],
+                    numero: params === null || params === void 0 ? void 0 : params['numero'],
+                    correo: params === null || params === void 0 ? void 0 : params['correo'],
+                    viaje: viaje,
                 });
             }
             catch (error) {
+                return {
+                    hasError: true,
+                    data: [{ mensaje: 'Correo sin Exito' }],
+                    errors: [error]
+                };
             }
         });
     }

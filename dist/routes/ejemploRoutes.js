@@ -24,23 +24,12 @@ app.get('/', (req, res) => {
         return res.status(200).send(result);
     }));
 });
-app.get('/correo', (req, res) => {
+app.get('/ViajeAprobado', (req, res) => {
     const ejemploController = new correo_1.default();
-    ejemploController.primeraVez().then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+    let params = req.query;
+    ejemploController.primeraVez(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         return res.status(200).send(result);
     }));
 });
-// app.post('/CprimeraVez', (req: Request, res: Response) => {
-//     let params = 
-//     {
-//         usuario : req.body.nombre,
-//         correo  : req.body.correo
-//     };
-//     const ejemploController: EjemploController = new EjemploController();
-//     ejemploController.primeraVez(params).then(async (respuesta: any) => {
-//         const result: any = await respuesta;
-//         return res.status(200).send(result);
-//     });
-// });
 exports.default = app;

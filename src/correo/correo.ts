@@ -20,7 +20,6 @@ export default class EnviarEmail{
     public enviarCorreo = ( tipo ?: number,  mensaje ?: any)=>{
         let asunto : string;
         let html   : string;
-        // console.log(mensaje)
         // Primera vez
         if ( tipo == 1){
             var envio = new formato();
@@ -43,25 +42,26 @@ export default class EnviarEmail{
                 contra   : mensaje['contra']
             })
         }
-
             // CAB
             if ( tipo == 3){
-                var envio = new ValeTaxi();
+                let envio = new ValeTaxi();
                 asunto = 'Nuevo Viaje';
-                html = envio.mensajePropio({   
-                    usuario : mensaje['usuario'],
-                    nombre  : mensaje['nombre'],
-                    idUsuario: mensaje['idUsuario'],
-                    contra   : mensaje['contra']
+                html = envio.valeTaxi({   
+solicitado : mensaje?.['solicitado'],
+tipoViaje  : mensaje?.['tipoViaje'], 
+detalle    : mensaje?.['detalle'],
+FechaHora  : mensaje?.['FechaHora'],
+numero     : mensaje?.['numero'],
+viaje      : mensaje?.['viaje'],
                 })
             }
        
         return new Promise(( resolve, reject)=>{
             let transporte = nodemailer.createTransport({
-            // service : 'gmail',
+            //service : 'gmail',
             // service : 'hotmail',
             host : 'smtp.gmail.com', 
-            // port : 587,
+            port : 587,
             // secure : false,
             // requireTLS : true,
             //     auth :{

@@ -23,7 +23,6 @@ class EnviarEmail {
         this.enviarCorreo = (tipo, mensaje) => {
             let asunto;
             let html;
-            // console.log(mensaje)
             // Primera vez
             if (tipo == 1) {
                 var envio = new primerIngreso_1.default();
@@ -48,21 +47,23 @@ class EnviarEmail {
             }
             // CAB
             if (tipo == 3) {
-                var envio = new ValeTaxi_1.default();
+                let envio = new ValeTaxi_1.default();
                 asunto = 'Nuevo Viaje';
-                html = envio.mensajePropio({
-                    usuario: mensaje['usuario'],
-                    nombre: mensaje['nombre'],
-                    idUsuario: mensaje['idUsuario'],
-                    contra: mensaje['contra']
+                html = envio.valeTaxi({
+                    solicitado: mensaje === null || mensaje === void 0 ? void 0 : mensaje['solicitado'],
+                    tipoViaje: mensaje === null || mensaje === void 0 ? void 0 : mensaje['tipoViaje'],
+                    detalle: mensaje === null || mensaje === void 0 ? void 0 : mensaje['detalle'],
+                    FechaHora: mensaje === null || mensaje === void 0 ? void 0 : mensaje['FechaHora'],
+                    numero: mensaje === null || mensaje === void 0 ? void 0 : mensaje['numero'],
+                    viaje: mensaje === null || mensaje === void 0 ? void 0 : mensaje['viaje'],
                 });
             }
             return new Promise((resolve, reject) => {
                 let transporte = nodemailer_1.default.createTransport({
-                    // service : 'gmail',
+                    //service : 'gmail',
                     // service : 'hotmail',
                     host: 'smtp.gmail.com',
-                    // port : 587,
+                    port: 587,
                     // secure : false,
                     // requireTLS : true,
                     //     auth :{
