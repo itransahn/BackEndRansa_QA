@@ -53,6 +53,8 @@ detalle    : mensaje?.['detalle'],
 FechaHora  : mensaje?.['FechaHora'],
 numero     : mensaje?.['numero'],
 viaje      : mensaje?.['viaje'],
+recibo     : mensaje?.['recibo'],
+valor      : mensaje?.['valor'],
                 })
             }
        
@@ -108,7 +110,6 @@ viaje      : mensaje?.['viaje'],
                 })
             }
         })
-
         })
     }
 }

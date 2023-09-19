@@ -68,6 +68,8 @@ class Ejemplo {
                     FechaHora: params === null || params === void 0 ? void 0 : params['FechaHora'],
                     numero: params === null || params === void 0 ? void 0 : params['numero'],
                     correo: params === null || params === void 0 ? void 0 : params['correo'],
+                    recibo: params === null || params === void 0 ? void 0 : params['recibo'],
+                    valor: params === null || params === void 0 ? void 0 : params['valor'],
                     viaje: viaje,
                 });
             }

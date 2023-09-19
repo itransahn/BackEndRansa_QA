@@ -31,6 +31,7 @@ class ValeTaxi{
            <td style="background-color: white;">
                <div style="color: #34495e; text-align: justify;font-family: sans-serif; text-align: center;">
                    <h2 style="color: #006F1D;">Vale de Transporte </h2>
+                   <h2 style="color: #006F1D;"> Recibo ${data?.recibo} </h2>
                <p style=" font-size: 15px; color: #00A72C !important; text-align: center;"> SOLICITADO POR ${data.solicitado} </p>
                <p style="margin: 2px; font-size: 15px; color: #00A72C !important; text-align:  center;"> 
                Tipo de Viaje  <br> ${data.viaje}</p> 
@@ -40,6 +41,8 @@ class ValeTaxi{
                     Fecha/Hora del viaje <br> ${data?.FechaHora} </p>
                 <p style="margin: 3px; font-size: 15px; color: #00A72C !important; text-align:  center;"> 
                         Contacto <br> (+504) ${data?.numero} </p>
+                        <p style="margin: 3px; font-size: 15px; color: #00A72C !important; text-align:  center;"> 
+                        Valor <br> ${data?.valor} </p>
             <div style="width: 100%;margin:20px 0; display: inline-block;text-align: center">  </div>
                </div>
            </td>

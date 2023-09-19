@@ -60,6 +60,8 @@ detalle    : detalle,
 FechaHora  : params?.['FechaHora'] ,
 numero     : params?.['numero'] ,
 correo     : params?.['correo'] ,
+recibo     : params?.['recibo'] ,
+valor      : params?.['valor'] ,
 viaje      : viaje ,
                 });
         } catch (error) {

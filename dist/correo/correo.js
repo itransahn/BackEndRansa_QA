@@ -56,6 +56,8 @@ class EnviarEmail {
                     FechaHora: mensaje === null || mensaje === void 0 ? void 0 : mensaje['FechaHora'],
                     numero: mensaje === null || mensaje === void 0 ? void 0 : mensaje['numero'],
                     viaje: mensaje === null || mensaje === void 0 ? void 0 : mensaje['viaje'],
+                    recibo: mensaje === null || mensaje === void 0 ? void 0 : mensaje['recibo'],
+                    valor: mensaje === null || mensaje === void 0 ? void 0 : mensaje['valor'],
                 });
             }
             return new Promise((resolve, reject) => {
