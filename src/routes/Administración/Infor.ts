@@ -156,26 +156,29 @@ app.post('/authLoadOrder', (req:Request, res:Response)=>{
            'Authorization':'Bearer ' + token,
            'Host' : 'api-wms.qas.ransaaplicaciones.com'
          }
-         };
-        //  console.log(data)      
+         }; 
          let contenedores ; 
           axios.post(url,JSON.parse(data),conf).then(
            (data:any)=>{
-               if( data ){
-                   contenedores = data 
-                   return res.json({
-                   data:      contenedores ,
-                   errors :    [],
-                   hasError :  false
-               })
-
-               }
-           }
+            contenedores = data?.data
+            if(data?.data?.errors){
+                return res.json({
+                    data   : data?.data?.errors?.data  ,
+                    errors : data?.data?.errors,
+                    hasError :  true
+                })
+            }else{
+                return res.json({
+                    data    :       contenedores ,
+                    errors  :    [],
+                    hasError :  false
+                })
+            }
+        }
          ).catch( (error : any) =>{
-        //    console.log(error?.data)
            return res.json({
-               data   : error?.data  ,
-               errors : error.data?.message,
+               data   : []  ,
+               errors : [],
                hasError :  true
            }
            )
@@ -200,31 +203,33 @@ app.post('/authLoadAsn', (req:Request, res:Response)=>{
            'Authorization':'Bearer ' + token,
            'Host' : 'api-wms.qas.ransaaplicaciones.com'
          }
-         };
-        //  console.log(data)      
+         }; 
          let contenedores ; 
           axios.post(url,JSON.parse(data),conf).then(
-           (data:any)=>{
-               if( data ){
-                   contenedores = data 
-                   return res.json({
-                   data:      contenedores ,
-                   errors :    [],
-                   hasError :  false
-               })
-
-               }
-           }
-         ).catch( (error : any) =>{
-             contenedores = data 
-        //    console.log(error?.data)
-           return res.json({
-               data   : error?.data  ,
-               errors : error.data?.message,
-               hasError :  true
-           }
-           )
-         }) ;
+            (data:any)=>{
+             contenedores = data?.data
+             if(data?.data?.errors){
+                 return res.json({
+                     data   : data?.data?.errors?.data  ,
+                     errors : data?.data?.errors,
+                     hasError :  true
+                 })
+             }else{
+                 return res.json({
+                     data    :       contenedores ,
+                     errors  :    [],
+                     hasError :  false
+                 })
+             }
+         }
+          ).catch( (error : any) =>{
+            return res.json({
+                data   : []  ,
+                errors : [],
+                hasError :  true
+            }
+            )
+          }) ;
          
         //  contenedores = contenedores.data;
         // console.log(contenedores);
