@@ -1,8 +1,11 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, response } from 'express';
 import { verifyToken } from '../../controllers/auth/authController'; 
 import infor from '../../controllers/Administración/InforController';
 import {dataApi} from '../../interfaces/dataApi';
 import { encriptar } from '../../classes/Encriptacion';
+import { error } from 'console';
+const axios = require('axios');
+
 const app: Router = Router();
 
 
@@ -66,5 +69,169 @@ app.put('/Mascara' ,  (req: Request, res:Response)=>{
             }
     });
     })
+
+app.get('/propietariosInt', (req:Request, res:Response)=>{
+    let admin = new infor();
+    let params = req.query;
+    admin.verPropietariosIntegracion( params ).then(async ( respuesta: any )=>{
+        const result : dataApi = await respuesta;
+        if(!result.hasError ){
+            return res.status(200).send(respuesta)
+        }else{
+            return res.status(400).send(result)
+        }
+    })
+})
+
+app.get('/auth0Pro', (req:Request, res:Response)=>{
+    let admin = new infor();
+    let params = req.query;
+    admin.cargarAuth0( params ).then(async ( respuesta: any )=>{
+        const result : dataApi = await respuesta;
+        if(!result.hasError ){
+            return res.status(200).send(respuesta)
+        }else{
+            return res.status(400).send(result)
+        }
+    })
+})
+
+app.post('/auth0', (req:Request, res:Response)=>{
+ let url = 'https://api-wms.qas.ransaaplicaciones.com/auth/token';
+ let usuario: string = req.body?.usuario;
+ let contra : string = req.body?.contra;
+
+ let codificar = (usuario + ':'+contra)
+// axios.defaults.headers.post['Authorization'] = ` Basic ZGlzdHJpYnVpZG9yYS1pbnRlZ3JhY2lvbi13bXM6UmFuc2EtMzYw`;
+let base64Encoded = Buffer.from(codificar).toString('base64');
+      let conf = {
+        // auth : {
+        //     username : req.body?.usuario,
+        //     password : req.body?.contra
+        // }
+        headers: { 
+        'Authorization':'Basic ' + base64Encoded,
+        'Host' : 'api-wms.qas.ransaaplicaciones.com'
+        // 'Accept-Encoding': 'gzip, deflate, br',
+        // 'Connection': 'keep-alive'
+      }
+      };
+      
+      let contenedores ; 
+       axios.post(url,[],conf).then(
+        (data:any)=>{
+            if( data ){
+                contenedores = data?.data  
+                return res.json({
+                data:      contenedores ,
+                errors :    [],
+                hasError :  false
+            })
+            }
+        }
+      ).catch( (error : any) =>{
+        // console.log(error?.data)
+        return res.json({
+            data   : error?.data  ,
+            errors : error.data?.message,
+            hasError :  true
+        }
+        )
+      }) ;
+      
+    //   contenedores = contenedores.data;
+   
+    //  console.log(contenedores);
+      
+})
+
+
+app.post('/authLoadOrder', (req:Request, res:Response)=>{
+    let url = 'https://api-wms.qas.ransaaplicaciones.com/order';
+    let data : string = req.body?.data;
+    let token: string = req.body?.token;
+   
+         let conf = {
+           headers: { 
+           'Authorization':'Bearer ' + token,
+           'Host' : 'api-wms.qas.ransaaplicaciones.com'
+         }
+         };
+        //  console.log(data)      
+         let contenedores ; 
+          axios.post(url,JSON.parse(data),conf).then(
+           (data:any)=>{
+               if( data ){
+                   contenedores = data 
+                   return res.json({
+                   data:      contenedores ,
+                   errors :    [],
+                   hasError :  false
+               })
+
+               }
+           }
+         ).catch( (error : any) =>{
+        //    console.log(error?.data)
+           return res.json({
+               data   : error?.data  ,
+               errors : error.data?.message,
+               hasError :  true
+           }
+           )
+         }) ;
+         
+        //  contenedores = contenedores.data;
+      
+        // console.log(contenedores);
+   
+   
+       
+         
+   })
+
+app.post('/authLoadAsn', (req:Request, res:Response)=>{
+    let url = 'https://api-wms.qas.ransaaplicaciones.com/asn';
+    let data : string = req.body?.data;
+    let token: string = req.body?.token;
+   
+         let conf = {
+           headers: { 
+           'Authorization':'Bearer ' + token,
+           'Host' : 'api-wms.qas.ransaaplicaciones.com'
+         }
+         };
+        //  console.log(data)      
+         let contenedores ; 
+          axios.post(url,JSON.parse(data),conf).then(
+           (data:any)=>{
+               if( data ){
+                   contenedores = data 
+                   return res.json({
+                   data:      contenedores ,
+                   errors :    [],
+                   hasError :  false
+               })
+
+               }
+           }
+         ).catch( (error : any) =>{
+             contenedores = data 
+        //    console.log(error?.data)
+           return res.json({
+               data   : error?.data  ,
+               errors : error.data?.message,
+               hasError :  true
+           }
+           )
+         }) ;
+         
+        //  contenedores = contenedores.data;
+        // console.log(contenedores);
+   
+   })
+
+
+
 
     export default app;

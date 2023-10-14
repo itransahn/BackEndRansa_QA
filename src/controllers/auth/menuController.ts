@@ -66,13 +66,13 @@ export default class menu{
         //    console.log( hijo.id_menuPadre, padre.id_menuPadre)
            this.menusOficiales[i].hijos.push({
             idmenuPadre : hijo.id_menuPadre,
-            idMenuHijo : hijo.id_menuHijo,
-            menuHijo: hijo.menuHijo, 
-            icon:  hijo.icon,
-            url :  hijo.urlM,
-            insertar: hijo.insertar,
-            actualizar: hijo.actualizar,
-            eliminar:  hijo.eliminar
+            idMenuHijo :  hijo.id_menuHijo,
+            menuHijo:     hijo.menuHijo, 
+            icon:         hijo.icon,
+            url :         hijo.urlM,
+            insertar:     hijo.insertar,
+            actualizar:   hijo.actualizar,
+            eliminar:     hijo.eliminar
            })
 
           } 

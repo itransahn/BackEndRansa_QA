@@ -137,5 +137,57 @@ export default class infor{
      }
      }
 
+           /* Cargar Auth0 */
+   async cargarAuth0( parametros ?: any  ) {  
+                try {
+                 let conexionSql = new DbHelper();
+                 if ( parametros ) {
+                        
+                         conexionSql.parametros = [
+                           {
+                             parametro : 'propietario',
+                             valor : parametros.propietario
+                           }, 
+                         ]
+                 }
+                 let respuesta: any = await conexionSql.Ejecutar(`sp_cargarAuth0Us`);
+                if (!respuesta.hasError ){
+                        return { 
+                          data :      respuesta.data,
+                          errors :    respuesta.errors,
+                          hasError :  respuesta.hasError
+                          }
+                }else{
+                  return respuesta;
+                }
+             } catch ( error ) {
+                     errorMensaje(error)
+             }
+             }
 
+
+     /* Integraciones */
+          /* Ver Propietarios */
+    async verPropietariosIntegracion( parametros ?: any  ) {  
+            try {
+             let conexionSql = new DbHelper();
+             if ( parametros ) {
+    
+                     conexionSql.parametros = [ ]
+             }
+        
+            let respuesta: any = await conexionSql.Ejecutar(`sp_verPropietariosIntegracion`);
+            if (!respuesta.hasError ){
+                    return { 
+                      data :      respuesta.data,
+                      errors :    respuesta.errors,
+                      hasError :  respuesta.hasError
+                      }
+            }else{
+              return respuesta;
+            }
+         } catch ( error ) {
+                 errorMensaje(error)
+         }
+         }
 }
