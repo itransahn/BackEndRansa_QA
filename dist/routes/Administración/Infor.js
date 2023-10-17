@@ -153,12 +153,12 @@ app.post('/authLoadOrder', (req, res) => {
     };
     let contenedores;
     axios.post(url, JSON.parse(data), conf).then((data) => {
-        var _a, _b, _c, _d;
+        var _a;
         contenedores = data === null || data === void 0 ? void 0 : data.data;
-        if ((_a = data === null || data === void 0 ? void 0 : data.data) === null || _a === void 0 ? void 0 : _a.errors) {
+        if ((_a = data === null || data === void 0 ? void 0 : data.data) === null || _a === void 0 ? void 0 : _a.errors[0]) {
             return res.json({
-                data: (_c = (_b = data === null || data === void 0 ? void 0 : data.data) === null || _b === void 0 ? void 0 : _b.errors) === null || _c === void 0 ? void 0 : _c.data,
-                errors: (_d = data === null || data === void 0 ? void 0 : data.data) === null || _d === void 0 ? void 0 : _d.errors,
+                data: data,
+                errors: data,
                 hasError: true
             });
         }
@@ -192,12 +192,12 @@ app.post('/authLoadAsn', (req, res) => {
     };
     let contenedores;
     axios.post(url, JSON.parse(data), conf).then((data) => {
-        var _a, _b, _c, _d;
+        var _a;
         contenedores = data === null || data === void 0 ? void 0 : data.data;
-        if ((_a = data === null || data === void 0 ? void 0 : data.data) === null || _a === void 0 ? void 0 : _a.errors) {
+        if ((_a = data === null || data === void 0 ? void 0 : data.data) === null || _a === void 0 ? void 0 : _a.errors[0]) {
             return res.json({
-                data: (_c = (_b = data === null || data === void 0 ? void 0 : data.data) === null || _b === void 0 ? void 0 : _b.errors) === null || _c === void 0 ? void 0 : _c.data,
-                errors: (_d = data === null || data === void 0 ? void 0 : data.data) === null || _d === void 0 ? void 0 : _d.errors,
+                data: data,
+                errors: data,
                 hasError: true
             });
         }

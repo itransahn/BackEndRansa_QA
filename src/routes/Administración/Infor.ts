@@ -161,10 +161,10 @@ app.post('/authLoadOrder', (req:Request, res:Response)=>{
           axios.post(url,JSON.parse(data),conf).then(
            (data:any)=>{
             contenedores = data?.data
-            if(data?.data?.errors){
+            if(data?.data?.errors[0]){
                 return res.json({
-                    data   : data?.data?.errors?.data  ,
-                    errors : data?.data?.errors,
+                    data   : data ,
+                    errors : data,
                     hasError :  true
                 })
             }else{
@@ -185,7 +185,6 @@ app.post('/authLoadOrder', (req:Request, res:Response)=>{
          }) ;
          
         //  contenedores = contenedores.data;
-      
         // console.log(contenedores);
    
    
@@ -208,10 +207,10 @@ app.post('/authLoadAsn', (req:Request, res:Response)=>{
           axios.post(url,JSON.parse(data),conf).then(
             (data:any)=>{
              contenedores = data?.data
-             if(data?.data?.errors){
+             if(data?.data?.errors[0]){
                  return res.json({
-                     data   : data?.data?.errors?.data  ,
-                     errors : data?.data?.errors,
+                     data   : data ,
+                     errors : data,
                      hasError :  true
                  })
              }else{
