@@ -103,6 +103,7 @@ app.post('/auth0', (req, res) => {
     let url = 'https://api-wms.qas.ransaaplicaciones.com/auth/token';
     let usuario = (_a = req.body) === null || _a === void 0 ? void 0 : _a.usuario;
     let contra = (_b = req.body) === null || _b === void 0 ? void 0 : _b.contra;
+    console.log(usuario, contra);
     let codificar = (usuario + ':' + contra);
     // axios.defaults.headers.post['Authorization'] = ` Basic ZGlzdHJpYnVpZG9yYS1pbnRlZ3JhY2lvbi13bXM6UmFuc2EtMzYw`;
     let base64Encoded = Buffer.from(codificar).toString('base64');
@@ -130,7 +131,6 @@ app.post('/auth0', (req, res) => {
         }
     }).catch((error) => {
         var _a;
-        // console.log(error?.data)
         return res.json({
             data: error === null || error === void 0 ? void 0 : error.data,
             errors: (_a = error.data) === null || _a === void 0 ? void 0 : _a.message,
@@ -145,6 +145,7 @@ app.post('/authLoadOrder', (req, res) => {
     let url = 'https://api-wms.qas.ransaaplicaciones.com/order';
     let data = (_a = req.body) === null || _a === void 0 ? void 0 : _a.data;
     let token = (_b = req.body) === null || _b === void 0 ? void 0 : _b.token;
+    let response;
     let conf = {
         headers: {
             'Authorization': 'Bearer ' + token,
@@ -155,10 +156,12 @@ app.post('/authLoadOrder', (req, res) => {
     axios.post(url, JSON.parse(data), conf).then((data) => {
         var _a;
         contenedores = data === null || data === void 0 ? void 0 : data.data;
+        response = data === null || data === void 0 ? void 0 : data.data;
         if ((_a = data === null || data === void 0 ? void 0 : data.data) === null || _a === void 0 ? void 0 : _a.errors[0]) {
+            // console.log(contenedores?.errors)
             return res.json({
-                data: data,
-                errors: data,
+                data: JSON.stringify(data),
+                errors: contenedores === null || contenedores === void 0 ? void 0 : contenedores.errors,
                 hasError: true
             });
         }
@@ -171,8 +174,8 @@ app.post('/authLoadOrder', (req, res) => {
         }
     }).catch((error) => {
         return res.json({
-            data: [],
-            errors: [],
+            data: response,
+            errors: response === null || response === void 0 ? void 0 : response.errors,
             hasError: true
         });
     });
@@ -184,6 +187,7 @@ app.post('/authLoadAsn', (req, res) => {
     let url = 'https://api-wms.qas.ransaaplicaciones.com/asn';
     let data = (_a = req.body) === null || _a === void 0 ? void 0 : _a.data;
     let token = (_b = req.body) === null || _b === void 0 ? void 0 : _b.token;
+    let response;
     let conf = {
         headers: {
             'Authorization': 'Bearer ' + token,
@@ -210,12 +214,64 @@ app.post('/authLoadAsn', (req, res) => {
         }
     }).catch((error) => {
         return res.json({
-            data: [],
-            errors: [],
+            data: response,
+            errors: response === null || response === void 0 ? void 0 : response.errors,
             hasError: true
         });
     });
     //  contenedores = contenedores.data;
     // console.log(contenedores);
+});
+app.get('/CpropietariosInt', (req, res) => {
+    let admin = new InforController_1.default();
+    let params = req.query;
+    admin.verPropietariosIntegracionMod(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+app.get('/CpropietariosInt', (req, res) => {
+    let admin = new InforController_1.default();
+    let params = req.query;
+    admin.verPropietariosIntegracionMod(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+app.post('/CpropietariosInt', (req, res) => {
+    let admin = new InforController_1.default();
+    let params = req.query;
+    admin.AccionesPropietarios(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+app.get('/CpropietariosIntEsp', (req, res) => {
+    let admin = new InforController_1.default();
+    let params = req.query;
+    admin.PropietarioEspecifico(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
 });
 exports.default = app;
