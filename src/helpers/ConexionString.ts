@@ -36,7 +36,7 @@ this.database   =  'DB_RANSA_HONDURAS'
         }else{
             this.user   =  'sa'
             this.password   =  '$ega2014',
-            this.server   =  '10.130.65.226',
+            this.server   =  '10.130.65.146',
             this.database   =  'DB_RANSA_HONDURAS'
         }
     }
