@@ -102,7 +102,6 @@ app.post('/auth0', (req:Request, res:Response)=>{
  let url = 'https://api-wms.qas.ransaaplicaciones.com/auth/token';
  let usuario: string = req.body?.usuario;
  let contra : string = req.body?.contra;
-    console.log(usuario, contra)
  let codificar = (usuario + ':'+contra)
 // axios.defaults.headers.post['Authorization'] = ` Basic ZGlzdHJpYnVpZG9yYS1pbnRlZ3JhY2lvbi13bXM6UmFuc2EtMzYw`;
 let base64Encoded = Buffer.from(codificar).toString('base64');
@@ -279,6 +278,19 @@ app.get('/CpropietariosIntEsp', (req:Request, res:Response)=>{
     let admin = new infor();
     let params = req.query;
     admin.PropietarioEspecifico( params ).then(async ( respuesta: any )=>{
+        const result : dataApi = await respuesta;
+        if(!result.hasError ){
+            return res.status(200).send(respuesta)
+        }else{
+            return res.status(400).send(result)
+        }
+    })
+})
+
+app.post('/correoTransaccion', (req:Request, res:Response)=>{
+    let admin = new infor();
+    let params = req.body;
+    admin.transaccion( params ).then(async ( respuesta: any )=>{
         const result : dataApi = await respuesta;
         if(!result.hasError ){
             return res.status(200).send(respuesta)

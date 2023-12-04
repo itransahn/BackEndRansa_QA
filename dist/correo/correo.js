@@ -7,6 +7,7 @@ const nodemailer_1 = __importDefault(require("nodemailer"));
 const primerIngreso_1 = __importDefault(require("./primerIngreso"));
 const recuperacionP_1 = __importDefault(require("./recuperacionP"));
 const ValeTaxi_1 = __importDefault(require("./ValeTaxi"));
+const transacciones_1 = __importDefault(require("./transacciones"));
 class EnviarEmail {
     constructor() {
         // private cuentaCorreoGmail : string = 'soporteintelsahn@gmail.com';
@@ -58,6 +59,19 @@ class EnviarEmail {
                     viaje: mensaje === null || mensaje === void 0 ? void 0 : mensaje['viaje'],
                     recibo: mensaje === null || mensaje === void 0 ? void 0 : mensaje['recibo'],
                     valor: mensaje === null || mensaje === void 0 ? void 0 : mensaje['valor'],
+                });
+            }
+            //Transacciones
+            if (tipo == 4) {
+                let envio = new transacciones_1.default();
+                asunto = 'Nueva Transaccion';
+                html = envio.transacciones({
+                    cliente: mensaje === null || mensaje === void 0 ? void 0 : mensaje['cliente'],
+                    wh: mensaje === null || mensaje === void 0 ? void 0 : mensaje['wh'],
+                    transaccion: mensaje === null || mensaje === void 0 ? void 0 : mensaje['transaccion'],
+                    detalle: mensaje === null || mensaje === void 0 ? void 0 : mensaje['detalle'],
+                    fecha: mensaje === null || mensaje === void 0 ? void 0 : mensaje['fecha'],
+                    bultaje: mensaje === null || mensaje === void 0 ? void 0 : mensaje['bultaje'],
                 });
             }
             return new Promise((resolve, reject) => {

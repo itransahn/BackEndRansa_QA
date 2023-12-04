@@ -1,5 +1,8 @@
 import DbHelper from '../../helpers/DbHelper';
 import { errorMensaje } from '../../classes/classes';
+import EnviarEmail from '../../correo/correo';
+
+let Email = new EnviarEmail();
 
 export default class infor{
     
@@ -268,7 +271,7 @@ async AccionesPropietarios( parametros ?: any  ) {
              }
 
 
-             /* Ver Propietarios */
+             /* propietario Infor  */
 async PropietarioEspecifico( parametros ?: any  ) {  
         try {
          let conexionSql = new DbHelper();
@@ -295,4 +298,32 @@ async PropietarioEspecifico( parametros ?: any  ) {
              errorMensaje(error)
      }
                   }
+
+       /* Correo Transaccion  */
+async transaccion( params?:any ) {
+        let detalle : String ='';
+        let array : any[]= [];
+               
+                try {
+                return await Email.enviarCorreo( 4,
+                {
+                cliente      : params?.['cliente'] ,
+                wh           : params?.['wh'] ,
+                transaccion  : params?.['transaccion'],
+                detalle      : params?.['detalle'] ,
+                fecha        : params?.['fecha'] ,
+                bultaje      : params?.['bultaje'],
+                correo       : params?.['correo'],
+                                });
+
+                        } catch (error) {
+                                return {
+                                    hasError: true,
+                                    data: [{ mensaje: 'Correo sin Exito' }],
+                                    errors:  [error]
+                                }
+                        }
+                    
+                    }
+                
 }

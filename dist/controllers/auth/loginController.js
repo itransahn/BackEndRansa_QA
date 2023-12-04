@@ -23,7 +23,7 @@ class login {
         this.menusOficiales = [];
     }
     login(parametros) {
-        var _a;
+        var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let conexionSql = new DbHelper_1.default();
@@ -64,7 +64,9 @@ class login {
                                     id_area: respuestaLogin.data.Table0[0].id_area,
                                     id_rol: respuestaLogin.data.Table0[0].id_rol,
                                     imgPerfil: respuestaLogin.data.Table0[0].url_imagen,
-                                    sede: (_a = respuestaLogin.data.Table0[0]) === null || _a === void 0 ? void 0 : _a.id_sede
+                                    sede: (_a = respuestaLogin.data.Table0[0]) === null || _a === void 0 ? void 0 : _a.id_sede,
+                                    rol: (_b = respuestaLogin.data.Table0[0]) === null || _b === void 0 ? void 0 : _b.rol,
+                                    usuario: (_c = respuestaLogin.data.Table0[0]) === null || _c === void 0 ? void 0 : _c.usuario
                                 },
                                 modulosPermitidos: this.menusOficiales
                             },

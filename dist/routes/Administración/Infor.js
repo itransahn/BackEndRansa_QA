@@ -103,7 +103,6 @@ app.post('/auth0', (req, res) => {
     let url = 'https://api-wms.qas.ransaaplicaciones.com/auth/token';
     let usuario = (_a = req.body) === null || _a === void 0 ? void 0 : _a.usuario;
     let contra = (_b = req.body) === null || _b === void 0 ? void 0 : _b.contra;
-    console.log(usuario, contra);
     let codificar = (usuario + ':' + contra);
     // axios.defaults.headers.post['Authorization'] = ` Basic ZGlzdHJpYnVpZG9yYS1pbnRlZ3JhY2lvbi13bXM6UmFuc2EtMzYw`;
     let base64Encoded = Buffer.from(codificar).toString('base64');
@@ -265,6 +264,19 @@ app.get('/CpropietariosIntEsp', (req, res) => {
     let admin = new InforController_1.default();
     let params = req.query;
     admin.PropietarioEspecifico(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield respuesta;
+        if (!result.hasError) {
+            return res.status(200).send(respuesta);
+        }
+        else {
+            return res.status(400).send(result);
+        }
+    }));
+});
+app.post('/correoTransaccion', (req, res) => {
+    let admin = new InforController_1.default();
+    let params = req.body;
+    admin.transaccion(params).then((respuesta) => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield respuesta;
         if (!result.hasError) {
             return res.status(200).send(respuesta);

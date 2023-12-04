@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import formato from './primerIngreso';
 import recuperacion from './recuperacionP';
 import ValeTaxi from './ValeTaxi';
+import transaccion from './transacciones';
 
 export default class EnviarEmail{
     // private cuentaCorreoGmail : string = 'soporteintelsahn@gmail.com';
@@ -55,6 +56,20 @@ numero     : mensaje?.['numero'],
 viaje      : mensaje?.['viaje'],
 recibo     : mensaje?.['recibo'],
 valor      : mensaje?.['valor'],
+                })
+            }
+
+            //Transacciones
+            if ( tipo == 4){
+                let envio = new transaccion();
+                asunto = 'Nueva Transaccion';
+                html = envio.transacciones({   
+                 cliente     : mensaje?.['cliente'],
+                 wh          : mensaje?.['wh'],
+                 transaccion : mensaje?.['transaccion'],
+                 detalle     : mensaje?.['detalle'],
+                 fecha       : mensaje?.['fecha'],
+                 bultaje     : mensaje?.['bultaje'],
                 })
             }
        

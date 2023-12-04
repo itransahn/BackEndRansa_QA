@@ -39,7 +39,7 @@ export function verifyToken(req: Request, res:Response, next:any){
                     return res.json({ mensaje: 'Token inválida' });
                 }else{
                     req.body.decoded = decoded;    
-                 next();
+                    next();
                 }
             })    
             // next()

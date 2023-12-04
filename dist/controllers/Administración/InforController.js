@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const DbHelper_1 = __importDefault(require("../../helpers/DbHelper"));
 const classes_1 = require("../../classes/classes");
+const correo_1 = __importDefault(require("../../correo/correo"));
+let Email = new correo_1.default();
 class infor {
     /* Ver Mascaras */
     verMascaras(parametros) {
@@ -288,7 +290,7 @@ class infor {
             }
         });
     }
-    /* Ver Propietarios */
+    /* propietario Infor  */
     PropietarioEspecifico(parametros) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -315,6 +317,31 @@ class infor {
             }
             catch (error) {
                 (0, classes_1.errorMensaje)(error);
+            }
+        });
+    }
+    /* Correo Transaccion  */
+    transaccion(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let detalle = '';
+            let array = [];
+            try {
+                return yield Email.enviarCorreo(4, {
+                    cliente: params === null || params === void 0 ? void 0 : params['cliente'],
+                    wh: params === null || params === void 0 ? void 0 : params['wh'],
+                    transaccion: params === null || params === void 0 ? void 0 : params['transaccion'],
+                    detalle: params === null || params === void 0 ? void 0 : params['detalle'],
+                    fecha: params === null || params === void 0 ? void 0 : params['fecha'],
+                    bultaje: params === null || params === void 0 ? void 0 : params['bultaje'],
+                    correo: params === null || params === void 0 ? void 0 : params['correo'],
+                });
+            }
+            catch (error) {
+                return {
+                    hasError: true,
+                    data: [{ mensaje: 'Correo sin Exito' }],
+                    errors: [error]
+                };
             }
         });
     }

@@ -50,7 +50,10 @@ export default class login{
                     id_area: respuestaLogin.data.Table0[0].id_area,
                     id_rol: respuestaLogin.data.Table0[0].id_rol,
                     imgPerfil : respuestaLogin.data.Table0[0].url_imagen,
-                    sede  : respuestaLogin.data.Table0[0]?.id_sede  },
+                    sede  : respuestaLogin.data.Table0[0]?.id_sede,
+                    rol  : respuestaLogin.data.Table0[0]?.rol,
+                    usuario : respuestaLogin.data.Table0[0]?.usuario
+                  },
                 modulosPermitidos : this.menusOficiales },
                 errors :  respuestaLogin.errors ,
                 hasError : false
