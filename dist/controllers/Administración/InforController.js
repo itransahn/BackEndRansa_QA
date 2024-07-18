@@ -270,6 +270,14 @@ class infor {
                         {
                             parametro: 'pwdQA',
                             valor: parametros.pwdQA
+                        },
+                        {
+                            parametro: 'sede',
+                            valor: parametros.pwdQA
+                        },
+                        {
+                             parametro: 'sedeQA',
+                             valor: parametros.pwdQA
                         }
                     ];
                 }
